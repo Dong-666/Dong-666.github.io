@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dong</title>
+  
+  <subtitle>啦啦啦</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://dong-666.github.io/"/>
+  <updated>2020-06-27T08:27:38.241Z</updated>
+  <id>http://dong-666.github.io/</id>
+  
+  <author>
+    <name>yuan</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>你好啊</title>
+    <link href="http://dong-666.github.io/2020/06/27/hello-world/"/>
+    <id>http://dong-666.github.io/2020/06/27/hello-world/</id>
+    <published>2020-06-27T01:39:02.755Z</published>
+    <updated>2020-06-27T08:27:38.241Z</updated>
+    
+    <content type="html"><![CDATA[<p>大家好啊</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;大家好啊&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
