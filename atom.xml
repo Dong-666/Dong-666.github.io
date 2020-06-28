@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2020-06-27T13:10:56.145Z</updated>
+  <updated>2020-06-28T02:53:31.245Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>b</title>
+    <link href="http://dong-666.github.io/2020/06/28/b/"/>
+    <id>http://dong-666.github.io/2020/06/28/b/</id>
+    <published>2020-06-28T02:50:46.000Z</published>
+    <updated>2020-06-28T02:53:31.245Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>啊飒飒大苏打</p><p><img src= "/img/loading.gif" data-src="/2020/06/28/b/Meizu.jpg" alt="高达"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;技术&quot;&gt;&lt;a href=&quot;#技术&quot; class=&quot;headerlink&quot; title=&quot;技术&quot;&gt;&lt;/a&gt;技术&lt;/h1&gt;&lt;p&gt;啊飒飒大苏打&lt;/p&gt;
+&lt;p&gt;&lt;img src= &quot;/img/loading.gif&quot; data-src=&quot;/2020/06/28/b/Mei
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://Dong-666.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="hhhh" scheme="http://Dong-666.github.io/tags/hhhh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>a</title>
+    <link href="http://dong-666.github.io/2020/06/28/a/"/>
+    <id>http://dong-666.github.io/2020/06/28/a/</id>
+    <published>2020-06-28T02:50:38.000Z</published>
+    <updated>2020-06-28T02:51:33.471Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="hello"><a href="#hello" class="headerlink" title="hello"></a>hello</h1><p>阿松倒是</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;hello&quot;&gt;&lt;a href=&quot;#hello&quot; class=&quot;headerlink&quot; title=&quot;hello&quot;&gt;&lt;/a&gt;hello&lt;/h1&gt;&lt;p&gt;阿松倒是&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="http://Dong-666.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="照片" scheme="http://Dong-666.github.io/tags/%E7%85%A7%E7%89%87/"/>
+    
+  </entry>
   
   <entry>
     <title>node.js</title>
