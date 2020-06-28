@@ -117,7 +117,7 @@ h6 code {
 hr {
   position: relative;
   margin: 2rem auto;
-  border: 2px dashed #a4d8fa;
+  border: 2px dashed #d2ebfd;
   width: calc(100% - 4px);
 }
 hr:hover:before {
@@ -128,7 +128,7 @@ hr:before {
   top: -10px;
   left: 5%;
   z-index: 1;
-  color: #80c8f8;
+  color: #bfe4fb;
   content: '\f0c4';
   font-size: 20px;
   line-height: 1;
@@ -229,7 +229,7 @@ button {
   bottom: 0;
   left: 0;
   z-index: -1;
-  background: #ff7242;
+  background: #ffc0cb;
   content: '';
   -webkit-transition-timing-function: ease-out;
   -moz-transition-timing-function: ease-out;
@@ -2230,7 +2230,7 @@ blockquote footer cite:before {
   line-height: 1.2rem;
 }
 .category-content ul li:hover:before {
-  border-color: #ff7242;
+  border-color: #ffc0cb;
 }
 .category-content ul li:before {
   top: 10px;
@@ -3115,7 +3115,7 @@ _:future,
   transition: all 0.3s;
 }
 .tag-cloud a:hover {
-  color: #ff7242 !important;
+  color: #ffc0cb !important;
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   -o-transform: scale(1.1);
@@ -3164,7 +3164,7 @@ _:future,
   line-height: 1;
 }
 .article-sort-title:hover:before {
-  border-color: #ff7242;
+  border-color: #ffc0cb;
 }
 .article-sort-title:before {
   position: absolute;
@@ -3206,7 +3206,7 @@ _:future,
   transition: all 0.2s ease-in-out;
 }
 .article-sort-item:hover:before {
-  border-color: #ff7242;
+  border-color: #ffc0cb;
 }
 .article-sort-item:before {
   position: absolute;
@@ -3258,7 +3258,7 @@ _:future,
 }
 .article-sort-item.year:before {
   top: 0.7rem;
-  border-color: #ff7242;
+  border-color: #ffc0cb;
 }
 .article-sort-item__time {
   padding-left: 0.4rem;
@@ -3661,7 +3661,7 @@ img {
   overflow-wrap: break-word;
 }
 #article-container a {
-  color: #49b1f5;
+  color: #99a9bf;
 }
 #article-container a:hover {
   text-decoration: underline;
@@ -3810,8 +3810,8 @@ img {
   transition: all 0.4s;
 }
 .post-reward .reward-button:hover {
-  -webkit-box-shadow: inset 9em 0 0 0 #ff7242;
-  box-shadow: inset 9em 0 0 0 #ff7242;
+  -webkit-box-shadow: inset 9em 0 0 0 #ffc0cb;
+  box-shadow: inset 9em 0 0 0 #ffc0cb;
 }
 .post-reward .reward-button:hover .reward-main {
   display: block;
@@ -3924,7 +3924,7 @@ img {
 }
 #rightside > div > button:hover,
 #rightside > div > a:hover {
-  background-color: #ff7242;
+  background-color: #ffc0cb;
 }
 #rightside #rightside_config i {
   -webkit-animation: avatar_turn_around 2s linear infinite;
