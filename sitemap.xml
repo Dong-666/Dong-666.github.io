@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dong-666.github.io/2020/06/27/hello-world/</loc>
+    
+    <lastmod>2020-06-28T03:14:56.745Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://dong-666.github.io/2020/06/27/Node.JS/</loc>
+    
+    <lastmod>2020-06-28T03:14:28.518Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://dong-666.github.io/tags/index.html</loc>
     
     <lastmod>2020-06-28T03:11:19.223Z</lastmod>
@@ -12,34 +26,6 @@
     <loc>http://dong-666.github.io/categories/index.html</loc>
     
     <lastmod>2020-06-28T03:11:01.578Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dong-666.github.io/2020/06/27/hello-world/</loc>
-    
-    <lastmod>2020-06-28T02:58:44.469Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dong-666.github.io/2020/06/27/Node.JS/</loc>
-    
-    <lastmod>2020-06-28T02:58:38.206Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dong-666.github.io/2020/06/28/b/</loc>
-    
-    <lastmod>2020-06-28T02:53:31.245Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dong-666.github.io/2020/06/28/a/</loc>
-    
-    <lastmod>2020-06-28T02:51:33.471Z</lastmod>
     
   </url>
   
