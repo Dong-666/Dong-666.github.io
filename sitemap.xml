@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dong-666.github.io/music/index.html</loc>
+    
+    <lastmod>2020-07-01T00:32:55.308Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://dong-666.github.io/2020/06/27/Node.JS/</loc>
     
     <lastmod>2020-06-29T00:59:16.219Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://dong-666.github.io/gallery/index.html</loc>
     
     <lastmod>2020-06-28T13:20:48.602Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dong-666.github.io/music/index.html</loc>
-    
-    <lastmod>2020-06-28T13:19:25.622Z</lastmod>
     
   </url>
   
