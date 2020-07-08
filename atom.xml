@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2020-07-08T08:42:53.718Z</updated>
+  <updated>2020-07-08T08:59:15.328Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -17,13 +17,63 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>实验04 栅格编码方法与分辨率对数据的影响</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C04-%E6%A0%85%E6%A0%BC%E7%BC%96%E7%A0%81%E6%96%B9%E6%B3%95%E4%B8%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%AF%B9%E6%95%B0%E6%8D%AE%E7%9A%84%E5%BD%B1%E5%93%8D/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C04-%E6%A0%85%E6%A0%BC%E7%BC%96%E7%A0%81%E6%96%B9%E6%B3%95%E4%B8%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%AF%B9%E6%95%B0%E6%8D%AE%E7%9A%84%E5%BD%B1%E5%93%8D/</id>
+    <published>2020-07-08T08:57:43.000Z</published>
+    <updated>2020-07-08T08:59:15.328Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>了解主要类型法、像元中心法等栅格像元的编码方法及其误差特征</p><p>熟悉像元大小对数据精度、计算时间、存储空间等方面的影响</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>比较同一编码方法在不同分辨率下、同一分辨率在不同编码方法下各类土地的面积误差，并观察不同分辨率下数据的处理时间和文件大小差异</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>矢量数据转换成栅格数据时，栅格像元需要进行编码</p></li><li><p>常用的编码方法包括<em>主要类型法和像元中心法</em></p></li><li><p>总体上，无论何种编码方法，<em>像元越大，误差越大、计算时间和存储空间越小</em>，因此实际应用中在确定像元大小时</p></li></ul><h1 id="一、-实验步骤"><a href="#一、-实验步骤" class="headerlink" title="一、 实验步骤"></a>一、 实验步骤</h1><p>1.浏览数据</p><p>2.统计土地利用矢量数据中各类土地的面积</p><p>（1）在ArcCatalog中，【ArcToolbox】 | 【分析工具】|【统计】|<em>【频数】</em></p><p>（2）将上一步生成的表格导出为dbf格式</p><p>3.按主要类型法对土地利用数据进行栅格编码</p><p>（1）【转换】|【至栅格】|【面转栅格】</p><p>（2）重复上一步，对Landuse数据采用主要类型法分别按</p><p>像元大小为500m、1000m进行栅格转换</p><p>（3）输出属性表</p><p>（4）用Excel分别打开前述输出的三个dbf文件</p><p>（5）在“结果统计表”中，计算各类土地面积的误差百分比</p><p>4.按像元中心法对土地利用数据进行栅格编码</p><p>5.数据比较</p><p>（1）面积比较</p><p>（2）图形比较</p><p>（3）文件大小比较</p>]]></content>
+    
+    <summary type="html">
+    
+      ArcGIS实验整理
+    
+    </summary>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实验03 ArcGIS基本操作与数据表示</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C03-ArcGIS%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C03-ArcGIS%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA/</id>
+    <published>2020-07-08T08:55:02.000Z</published>
+    <updated>2020-07-08T08:57:25.516Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>ArcGIS的<em>基本操作<em>及ArcGIS中</em>空间数据的不同表示方法</em></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>在ArcGIS中，创建地图或打开已有的底图，进行<strong>数据加载、数据显示、地图布局与地图输出</strong>等方面的基本操作</p><p>认识ArcGIS中的集中数据格式，创建新的Shapefile数据</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><p>🍕ArcGIS最基本的造作，包括新建或打开地图、数据加载、数据显示和浏览、地图布局与输出等</p><p>🍕空间数据是GIS的核心组成不扥默认是空间数据的表示方法或不同的数据格式，有助于对空间数据进行合理的使用</p><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h2 id="1-打开（创建）地图文档（4种方式）"><a href="#1-打开（创建）地图文档（4种方式）" class="headerlink" title="1.打开（创建）地图文档（4种方式）"></a>1.打开（创建）地图文档（4种方式）</h2><p>（1）双击打开地图：直接双击地图文档，启动ArcMap并同时打开该地图文档。双击实验03中的底图文档USA.mxd，启动ArcMap并打开一张美国地图</p><p>（2）在启动对话框中打开地图：启动ArcMap，在ArcMap的启动对话框中，选择打开一个已有的底图文档或新建地图文档。其中，新建地图可以基于已有的地图模板创建新的地图。在启动对话框中选择Tamplates中的World，在右侧窗口中选择Asia，即可打开一个亚洲地图的模板用于新建基于亚洲的地图</p><p>（3）通过ArcMap的菜单创建或打开一个地图文档，在菜单栏上点击【文件】|【新建】，打开ArcMap的启动对话框，打开已有地图或新建地图，点击【文件】|【打开】，依据路径选择并打开任一地图文档</p><p>（4）通过工具按钮创建或打开一个地图文档，在ArcMap的标准工具条上点击新建按钮或打开按钮，也可实现</p><h2 id="2-加载数据（4种方式）"><a href="#2-加载数据（4种方式）" class="headerlink" title="2.加载数据（4种方式）"></a>2.加载数据（4种方式）</h2><p>（1）直接点击标准工具条上的添加数据按钮，打开添加数据对话框，选择要加载的数据，点击添加按钮即可加载数据</p><p>（2）点击菜单【文件】|【添加数据】|【添加数据】打开添加数据对话框，选择数据进行加载</p><p>（3）在ArcMap中，直接点击标准工具条上的【目录】按钮，在右侧打开的目录窗口中，选择需要添加的数据，直接拖移到显示窗口或内容列表中</p><p>（4）在ArcCatalog中选中数据，然后脱衣到ArcMap的显示窗口或内容列表中</p><h2 id="3-数据显示与浏览"><a href="#3-数据显示与浏览" class="headerlink" title="3.数据显示与浏览"></a>3.数据显示与浏览</h2><p>（1）在ArcMap中进行数据的显示与浏览。通过点击【视图】菜单下的【数据浏览】或点击显示窗口下的第一个按钮，将显示窗口的类型设置为数据视图猴，采用Tools工具条中的浏览工具对数据的图形部分进行浏览，另外，打开数据的属性表，可以浏览属性数据</p><p>（2）在ArcCatalog中对空间数据的空间信息和属性信息进行浏览。在左侧的目录树窗口中选中需要浏览的数据，在右边的属兔窗口顶端选择【预览】选项卡，实现空间数据的图形浏览，在窗口底部的【预览】方式列表框中，选择Table，实现属性数据浏览</p><h2 id="4-地图布局"><a href="#4-地图布局" class="headerlink" title="4.地图布局"></a>4.地图布局</h2><p>在ArcMap中，将视图窗口切换至版面视图，进行地图布局。另外，可点击菜单【文件】|【页面设置】，在打开的窗口中对页面的大小和方向进行设置</p><h2 id="5-地图文档的保存"><a href="#5-地图文档的保存" class="headerlink" title="5.地图文档的保存"></a>5.地图文档的保存</h2><p>点击标准工具栏中的保存按钮，或者点击菜单【文件】|【保存】没设置地图保存的路径和名称，点击“保存”按钮保存当前的底图文档</p><h2 id="6-地图输出"><a href="#6-地图输出" class="headerlink" title="6.地图输出"></a>6.地图输出</h2><p>点击菜单【文件】|【导出地图】，打开地图输出对话框，完成相关设定，然后点击“保存”按钮，完成地图输出</p><h2 id="7-认识ArcGIS中常见的空间数据表示方法"><a href="#7-认识ArcGIS中常见的空间数据表示方法" class="headerlink" title="7.认识ArcGIS中常见的空间数据表示方法"></a>7.认识ArcGIS中常见的空间数据表示方法</h2><p>Shapefile、Coverage、Geodatabase、Raster</p><h2 id="8-在ArcGIS中创建新的数据文件"><a href="#8-在ArcGIS中创建新的数据文件" class="headerlink" title="8.在ArcGIS中创建新的数据文件"></a>8.在ArcGIS中创建新的数据文件</h2><p>（1）在ArcCatalog打开创建Shapefile对话框</p><p>（2）设置Shapefile文件</p><p>（3）设置坐标系统</p>]]></content>
+    
+    <summary type="html">
+    
+      ArcGIS实验整理
+    
+    </summary>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>实验02 空间数据的表达与转换</title>
     <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C02-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E8%BE%BE%E4%B8%8E%E8%BD%AC%E6%8D%A2/"/>
     <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C02-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E8%BE%BE%E4%B8%8E%E8%BD%AC%E6%8D%A2/</id>
     <published>2020-07-08T08:38:31.000Z</published>
-    <updated>2020-07-08T08:42:53.718Z</updated>
+    <updated>2020-07-08T08:54:42.906Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h1><p>认识空间数据的<em>矢量表达和栅格表达</em>，初步掌握事项和栅格两种数据结构之间的<em>相互转换方法</em>，明确<em>像元大小</em>在栅格表达中影响。</p><h1 id="二、实验内容"><a href="#二、实验内容" class="headerlink" title="二、实验内容"></a>二、实验内容</h1><p>矢量数据结构及栅格数据结构，通过相互转换，认识点、线、面三种要素在不同空间分辨率下的表达特征。</p><h1 id="三、实验原理"><a href="#三、实验原理" class="headerlink" title="三、实验原理"></a>三、实验原理</h1><p>🍔 矢量和栅格结构可以进行相互转换，转换中有两个关键参数：<em>属性字段（*</em>Field<strong>）和像元大小（</strong>Cell size*<em>）</em>，前者决定了<em>将哪项属性值赋予输出栅格</em>，后者决定了<em>输出栅格的空间分辨率</em>。</p><p>🍔在不同空间分辨率下转换所生成的栅格数据有着不同的图形特征。</p><h1 id="四、实验步骤"><a href="#四、实验步骤" class="headerlink" title="四、实验步骤"></a>四、实验步骤</h1><p>1.在ArcCatalog中浏览空间数据</p><p>2.打开矢量转栅格</p><p>3.将Point数据按像元大小为2m转换为栅格数据</p><p>4.重复上一步，将point数据分别按像元8m、32m进行转换</p><p>5.重复以上第3、4步，将polyline数据分别按像元大小2m、8m、32m转换成栅格数据</p><p>6.重复以上第3、4步，将polygon数据分别按像元大小2m、8m、32m转换为栅格数据</p><p>7.在ArcMap中㢉不同像元大小下的栅格点数据的位置偏移和属性偏差</p><p>8.加载polyline、polygpn及其转换成的栅格数据，比较不同像元大小的栅格数据之间，以及它们与原矢量数据之间的差异，重点分析数据在不同像元大小时位置的移动、形状的畸变、属性的偏差。</p><p>9.将前述生成的栅格数据再转换回与源数据同类型的矢量数据</p><p>（1）点：栅格转点</p><p>（2）线：栅格转线</p><p>（3）面：栅格转面</p><p>10.将上一步新生成的矢量数据与point、polyine、polygon分别进行对比，分析它们之间的差异</p><p>11.分析矢量数据结构和栅格数据结构在表达空间对象时的特点或规律</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h1><p>认识空间数据的<strong>矢量表达和栅格表达</strong>，初步掌握矢量和栅格两种数据结构之间的<strong>相互转换</strong>方法，明确<strong>像元大小</strong>在栅格表达中影响。</p><h1 id="二、实验内容"><a href="#二、实验内容" class="headerlink" title="二、实验内容"></a>二、实验内容</h1><p>矢量数据结构及栅格数据结构，通过相互转换，认识点、线、面三种要素在不同空间分辨率下的表达特征。</p><h1 id="三、实验原理"><a href="#三、实验原理" class="headerlink" title="三、实验原理"></a>三、实验原理</h1><p>🍔 矢量和栅格结构可以进行相互转换，转换中有两个关键参数：<strong>属性字段（Field）</strong>和<strong>像元大小（Cell size）</strong>，前者决定了<strong>将哪项属性值赋予输出栅格</strong>，后者决定了<strong>输出栅格的空间分辨率</strong>。</p><p>🍔在不同空间分辨率下转换所生成的栅格数据有着不同的图形特征。</p><h1 id="四、实验步骤"><a href="#四、实验步骤" class="headerlink" title="四、实验步骤"></a>四、实验步骤</h1><p>1.在ArcCatalog中浏览空间数据</p><p>2.打开矢量转栅格</p><p>3.将Point数据按像元大小为2m转换为栅格数据</p><p>4.重复上一步，将point数据分别按像元8m、32m进行转换</p><p>5.重复以上第3、4步，将polyline数据分别按像元大小2m、8m、32m转换成栅格数据</p><p>6.重复以上第3、4步，将polygon数据分别按像元大小2m、8m、32m转换为栅格数据</p><p>7.在ArcMap中观察不同像元大小下的栅格点数据的位置偏移和属性偏差</p><p>8.加载polyline、polygpn及其转换成的栅格数据，比较不同像元大小的栅格数据之间，以及它们与原矢量数据之间的差异，重点分析数据在不同像元大小时位置的移动、形状的畸变、属性的偏差。</p><p>9.将前述生成的栅格数据再转换回与源数据同类型的矢量数据</p><p>（1）点：栅格转点</p><p>（2）线：栅格转线</p><p>（3）面：栅格转面</p><p>10.将上一步新生成的矢量数据与point、polyine、polygon分别进行对比，分析它们之间的差异</p><p>11.分析矢量数据结构和栅格数据结构在表达空间对象时的特点或规律</p>]]></content>
     
     <summary type="html">
     
