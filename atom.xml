@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2020-07-08T08:59:15.328Z</updated>
+  <updated>2020-07-08T09:21:12.882Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -15,6 +15,156 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实验10 空间数据编辑</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C10-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%BC%96%E8%BE%91/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C10-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%BC%96%E8%BE%91/</id>
+    <published>2020-07-08T09:20:05.000Z</published>
+    <updated>2020-07-08T09:21:12.882Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>了解常用的<em>空间数据编辑方法</em>，掌握<em>拓扑检查与编辑</em>、<em>由线生成多边形</em>、<em>多边形的合并与切割</em>等操作方法</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>在ArcMap中，采用【编辑】工具条上的各项工具对空间数据进行<em>编辑</em></p><p>在ArcCatalog中，对矢量化生成的数据进行<em>拓扑查错<em>，经编辑修改后</em>生成多边形<em>，并对其中的部分多边形进行</em>合并及切割</em></p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><p>Ø ArcMap中的【编辑】工具条集成了众多进行矢量空间数据编辑的工具</p><p>Ø 多边形矢量数据的输入，在输入边界线后需要对线进行拓扑检查，确保边界线之间首尾详解（拓扑规则为“无悬挂弧段”，再由线生成多边形）</p><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h3 id="1-常规空间数据编辑"><a href="#1-常规空间数据编辑" class="headerlink" title="1.常规空间数据编辑"></a>1.常规空间数据编辑</h3><p>（1）打开ArcCatalog，浏览数据，新建线要素，命名为“test”</p><p>（2）打开ArcMap，加载“test”文件，打开【编辑】工具条，了解各个工具的功能</p><p>（3）点击编辑工具条上的【编辑】按钮，在下拉菜单中选择【开始编辑】启动编辑任务并选择需要编辑的图层或工作空间</p><p>（4）打开【创建要素】窗口，选择test图层，在其下方的选择线</p><p>（5）绘制其他图像</p><p>（6）显示要素上的节点</p><p>（7）对节点进行下列操作</p><p>删除节点、按坐标增量或坐标值移动节点、改变线要素的方向、沿线方向对线进行剪切保留指定的长度、对草图进行任务管理、在草图属性表中直接修改各点的坐标以修改草图</p><p>（8）选择某一要素进行劈分、旋转等操作，对属性数据和草图属性进行编辑</p><h3 id="2-对中国西部数据进行拓扑查错并进行编辑"><a href="#2-对中国西部数据进行拓扑查错并进行编辑" class="headerlink" title="2.对中国西部数据进行拓扑查错并进行编辑"></a>2.对中国西部数据进行拓扑查错并进行编辑</h3><p>（1）在ArcCatalog中完成拓扑关系的建立</p><p>（2）预览拓扑错误</p><p>（3）启动ArcMap，加载拓扑关系及其相联系的数据，观察并分析拓扑错误产生的原因，思考修改错误需采用的方法</p><p>（4）打开编辑动作条，启动编辑</p><p>（5）打开拓扑工具条</p><p>（6）检查各处拓扑错误，逐一进行编辑修改</p><p>（7）确认所有错误都修改后，保存编辑</p><p>（8）打开ArcToolbox&gt;数据管理工具&gt;要素&gt;要素转多边形</p><h3 id="3-合并和切割多边形"><a href="#3-合并和切割多边形" class="headerlink" title="3.合并和切割多边形"></a>3.合并和切割多边形</h3><p>（1）对新生成的多边形进行编辑，关闭其他图层的显示，然后选择四川省所在范围的两个多边形，点击【编辑】工具条上的编辑按钮，选择【合并】，将连个多边形合并为一个</p><p>（2）加载栅格数据，将其置于上一步中的多边形图层之下</p><p>（3）将多边形图层设置为50%透明显示</p><p>（4）以栅格数据为参照，将重庆市从四川省的多边形中切割出来</p>]]></content>
+    
+    <summary type="html">
+    
+      ArcGIS实验整理
+    
+    </summary>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实验09 从谷歌地球中采集数据</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C09-%E4%BB%8E%E8%B0%B7%E6%AD%8C%E5%9C%B0%E7%90%83%E4%B8%AD%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C09-%E4%BB%8E%E8%B0%B7%E6%AD%8C%E5%9C%B0%E7%90%83%E4%B8%AD%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE/</id>
+    <published>2020-07-08T09:18:03.000Z</published>
+    <updated>2020-07-08T09:19:47.149Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>认识<em>谷歌地球</em>，了解<em>KML*</em>、KML*<em>数据格式</em>，掌握在谷歌地球中<em>采集各类矢量数据的方法</em>，学会将其转换成ArcGIS支持的数据格式</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>从谷歌地球中<em>获取点、线、面</em>等矢量数据</p><p>利用ArcToolbox的<em>转换工具</em>，将数据<em>导入*</em>ArcGIS*中</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><p>Ø 谷歌地球依托<em>海量影像数据库<em>，用户可以从不同的角度，浏览不同时期、不同卫星、不同分辨率的</em>遥感数据</em></p><p>Ø KML、KMZ数据格式可以与ArcGIS等地理信息系统软件的<em>数据格式进行交互</em></p><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><p>1.添加文件夹</p><p>右击【我的地点】&gt;添加文件夹&gt;命名</p><p>2.采集点数据</p><p>右击【文件夹】&gt;添加&gt;地标</p><p>3.采集线数据</p><p>右击【文件夹】&gt;添加&gt;路径</p><p>4.采集面数据</p><p>右击【文件夹】&gt;添加&gt;多边形</p><p>5.保存数据</p><p>右击【文件夹】&gt;将位置另存为&gt;KML或KMZ格式</p><p>6.数据转换</p><p>ArcToolbox&gt;【转换工具】&gt;【由KML转出】</p><p>7.浏览数据</p><p>8.将矢量数据转换为KMZ文件</p><p>ArcToolbox&gt;【转换工具】&gt;【转为KML】</p><p>9、在谷歌地球中浏览KMZ数据</p>]]></content>
+    
+    <summary type="html">
+    
+      ArcGIS实验整理
+    
+    </summary>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实验08 空间数据扫描矢量化</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C08-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E6%89%AB%E6%8F%8F%E7%9F%A2%E9%87%8F%E5%8C%96/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C08-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E6%89%AB%E6%8F%8F%E7%9F%A2%E9%87%8F%E5%8C%96/</id>
+    <published>2020-07-08T09:16:30.000Z</published>
+    <updated>2020-07-08T09:17:44.682Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>掌握空间数据的<em>扫描矢量化输入方法</em></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p><em>配准</em>扫描图件，采用不同的<em>矢量化方法</em>进行空间数据的输入</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>矢量化是指将栅格数据转换为矢量数据的过程</p></li><li><p>对<strong>纸质图件进行扫描可以生成栅格数据</strong>，对扫描文件进行<strong>空间配准</strong>后，可以采用<strong>屏幕直接矢量化、全自动矢量化、跟踪矢量化</strong>等多种方式，将要素转换为矢量数据</p></li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h2 id="1-图件扫描"><a href="#1-图件扫描" class="headerlink" title="1.图件扫描"></a>1.图件扫描</h2><p>（1）扫描仪与电脑连接</p><p>（2）放图纸、保存路径&gt;图像格式&gt;分辨率等</p><p>（3）<em>转换成灰度图像</em>，利用Photoshop&gt;图片格式img</p><p>（4）ArcCatalog浏览、分析&gt;<em>确定矢量化的数据分层方案</em></p><h2 id="2-图像配准"><a href="#2-图像配准" class="headerlink" title="2.图像配准"></a>2.图像配准</h2><p>（1）添加控制点</p><p>（2）自动校正</p><p>（3）View Link Table配准残差</p><p>（4）更新几何参考</p><p>（5）定义投影</p><h2 id="3-点要素的矢量化"><a href="#3-点要素的矢量化" class="headerlink" title="3.点要素的矢量化"></a>3.点要素的矢量化</h2><p>（1）新建Shapefile</p><p>（2）启动编辑</p><p>（3）保存并停止编辑</p><h2 id="4-线要素的矢量化"><a href="#4-线要素的矢量化" class="headerlink" title="4.线要素的矢量化"></a>4.线要素的矢量化</h2><p>（1）启动编辑</p><p>（2）<em>二值化</em>&gt;灰度直方图、分类值Classfield</p><p>（3）启动<em>ArcScan</em>工具条</p><p>（4）预处理&gt; <em>Raster Painting**工具条</em>&gt;清除噪声、连接断线</p><p>（5）矢量化环境设置</p><p>（6）预览</p><p>（7）其他矢量化方法</p><p>屏幕矢量化、全自动矢量化、跟踪矢量化、在选择的区域内进行矢量化、在两点之间矢量化、对选定的对象进行矢量化</p>]]></content>
+    
+    <summary type="html">
+    
+      ArcGIS实验整理
+    
+    </summary>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实验07 元数据的浏览与编辑</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C07-%E5%85%83%E6%95%B0%E6%8D%AE%E7%9A%84%E6%B5%8F%E8%A7%88%E4%B8%8E%E7%BC%96%E8%BE%91/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C07-%E5%85%83%E6%95%B0%E6%8D%AE%E7%9A%84%E6%B5%8F%E8%A7%88%E4%B8%8E%E7%BC%96%E8%BE%91/</id>
+    <published>2020-07-08T09:14:05.000Z</published>
+    <updated>2020-07-08T09:14:45.834Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>浏览元数据、认识<em>元数据的地位和作用</em></p><p>掌握<em>元数据的编辑、输入与输出方法</em></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>在ArcGIS环境下，掌握<em>查看元数据的不同方法<em>，浏览元数据的各项内容及其来源，采用不同的样式对元数据进行显示并</em>比较各样式的差异</em></p><p>对<em>元数据进行编辑并保存</em>，实现<em>元数据的输出、输入</em>等操作</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><p>元数据是“关于数据的数据”，ArcCatalog显示区的【描述】标签下列出了元数据的各项内容，元数据工具条可以控制元数据的显示、编辑、输入和输出</p><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><p>1.查看元数据</p><p>（1）通过目录窗口查看元数据</p><p>（2）在ArcCatalog中查看元数据</p><p>（3）通过内容表窗口查看元数据</p><p>2.认识元数据的简单描述</p><p>3.采用不同的样式浏览更多的元数据</p><p>（1）ArcGIS元数据</p><p>（2）FGDC元数据</p><p>4.元数据的编辑</p><p>5.元数据的输出与输入</p><p>（1）输出元数据</p><p>在ArcCatalog中，依次点击【Cusomize】|【Toolbar】|【Metadata】，打开元数据工具条，点击该工具条上的Expoet Metadata按钮</p><p>（2）输入元数据</p><p>在ArcCatalog的目录树中，单击选中steams数据，在窗口右侧的【描述】标签下，点击【输入】按钮，选择元数据源，为steams数据输入元数据</p>]]></content>
+    
+    <summary type="html">
+    
+      ArcGIS实验整理
+    
+    </summary>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实验06 ArcCatalog中空间数据的操作</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C06-ArcCatalog%E4%B8%AD%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E6%93%8D%E4%BD%9C/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C06-ArcCatalog%E4%B8%AD%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E6%93%8D%E4%BD%9C/</id>
+    <published>2020-07-08T09:11:59.000Z</published>
+    <updated>2020-07-08T09:13:44.274Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>了解<strong>ArcCatalog</strong>中空间数据的<strong>基本操作</strong></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>ArcCatalog不同视图模式下，浏览空间数据，认识ArcGIS支持的不同数据格式</p><p>账务不同类型数据的操作，熟悉<strong>目录连接的建立</strong>和<strong>网络服务器的连接</strong></p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>ArcGIS支持<em>多种不同格式的<em>空间数据，并可以根据需要将这些数据与目录和网络服务器进行</em>连接</em></p></li><li><p>ArcCatalog是ArcGIS软件的重要组成部分，主要用于<em>浏览、组织、分发、记录</em>各种控件数据</p></li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><p>1.熟悉ArcCatalog界面</p><p>认识<strong>标题栏、菜单栏、工具条、地址条、目录树、显示区</strong>等组成部分</p><p>比较该界面与ArcMap的界面、与资源管理器的界面之间的差异</p><p>2.了解浏览数据的三种视图方法</p><p>（1）显示区左上方的内容标签</p><p>（2）标准工具条上不同类型的图标</p><p>（3）显示区左上方的预览标签</p><p>（4）显示区左上方的预览方式下拉列表框</p><p>（5）显示区左上方的元数据标签</p><p>3.了解ArcGIS支持的常用数据格式</p><p>（1）Shapefile</p><p>（2）Coverage</p><p>（3）Geodatabase</p><p>（4）CAD</p><p>（5）栅格数据</p><p>（7）其他数据</p><p>4.建立目录连接</p><p>5.链接GIS服务器</p><p>6.设置显示数据的类型与信息</p><p>7.创建缩略图</p><p>8.在ArcMap中使用Catalog</p>]]></content>
+    
+    <summary type="html">
+    
+      ArcGIS实验整理
+    
+    </summary>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实验05 ArcMap中空间数据的表示</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C05-ArcMap%E4%B8%AD%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C05-ArcMap%E4%B8%AD%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA/</id>
+    <published>2020-07-08T09:10:14.000Z</published>
+    <updated>2020-07-08T09:11:35.077Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>了解ArcMap中空间数据的<em>显示方法</em></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>在ArcGIS的ArcMap环境下，运用各种工具及方法实现对<em>空间数据的多种不同显示</em></p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>在ArcMap的内容列表中，通过<em>图层、图层组、数据框</em>等的合理组织可以形成一幅完整的地图</p></li><li><p>ArcMap的显示区包含<em>数据视图和版面视图</em>两种地图的视图方式</p></li><li><p>图层中的要素可采用<em>不同的方法进行符号化显示</em>，<em>控制图层的比例尺范围</em>可限定图层的显示尺度</p></li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h2 id="1-认识ArcMap界面"><a href="#1-认识ArcMap界面" class="headerlink" title="1.认识ArcMap界面"></a>1.认识ArcMap界面</h2><p>认识地图中的<strong>标题条、菜单条、工具条、内容表、显示区、状态栏</strong>等界面要素</p><h2 id="2-认识两种视图方式"><a href="#2-认识两种视图方式" class="headerlink" title="2.认识两种视图方式"></a>2.认识两种视图方式</h2><h2 id="3-认识内容表"><a href="#3-认识内容表" class="headerlink" title="3.认识内容表"></a>3.认识内容表</h2><p>（1）数据框Data Frame</p><p>（2）图层Layer</p><p>（3）图层组Group layer</p><p>（4）内容表的管理</p><p>（5）地图文档</p><h2 id="4-地图的显示"><a href="#4-地图的显示" class="headerlink" title="4.地图的显示"></a>4.地图的显示</h2><p>（1）Tools工具条</p><p>（2）使用书签</p><p>（3）放大镜和全景图窗口</p><h2 id="5-图层的符号化"><a href="#5-图层的符号化" class="headerlink" title="5.图层的符号化"></a>5.图层的符号化</h2><h2 id="6-设置图层显示的比例尺范围"><a href="#6-设置图层显示的比例尺范围" class="headerlink" title="6.设置图层显示的比例尺范围"></a>6.设置图层显示的比例尺范围</h2><p>（1）【比例尺范围】设置最大、最小比例尺</p>]]></content>
+    
+    <summary type="html">
+    
+      ArcGIS实验整理
+    
+    </summary>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+  </entry>
   
   <entry>
     <title>实验04 栅格编码方法与分辨率对数据的影响</title>
