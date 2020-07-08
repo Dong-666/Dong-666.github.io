@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2020-07-08T08:34:17.932Z</updated>
+  <updated>2020-07-08T08:42:53.718Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -17,13 +17,13 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>实验01  GIS的组成与功能</title>
-    <link href="http://dong-666.github.io/2020/07/08/ArcGIS%E5%AE%9E%E9%AA%8C/"/>
-    <id>http://dong-666.github.io/2020/07/08/ArcGIS%E5%AE%9E%E9%AA%8C/</id>
-    <published>2020-07-08T07:26:03.000Z</published>
-    <updated>2020-07-08T08:34:17.932Z</updated>
+    <title>实验02 空间数据的表达与转换</title>
+    <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C02-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E8%BE%BE%E4%B8%8E%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C02-%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E8%BE%BE%E4%B8%8E%E8%BD%AC%E6%8D%A2/</id>
+    <published>2020-07-08T08:38:31.000Z</published>
+    <updated>2020-07-08T08:42:53.718Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="实验01-GIS的组成与功能"><a href="#实验01-GIS的组成与功能" class="headerlink" title="实验01  GIS的组成与功能"></a>实验01  GIS的组成与功能</h2><h2 id="一、GIS组成"><a href="#一、GIS组成" class="headerlink" title="一、GIS组成"></a>一、GIS组成</h2><h3 id="1-硬件系统"><a href="#1-硬件系统" class="headerlink" title="1.硬件系统"></a>1.硬件系统</h3><p>（1）输入设备</p><p>常规输入设备：<strong>鼠标、键盘、数字化仪、扫描仪</strong>等</p><p>专用输入设备：<strong>全站仪、GPS、数学摄影测量系统、遥感图像处理系统</strong></p><p>（2）存储于处理设备</p><p><strong>光盘、光驱、U盘和USB节后、移动硬盘、主机固定硬盘，计算机处理器</strong></p><p>（3）输出设备</p><p><strong>显示器（LCD、CRT）、打印机、绘图仪</strong></p><h4 id="2-软件系统"><a href="#2-软件系统" class="headerlink" title="2.软件系统"></a>2.软件系统</h4><p>（1）系统软件</p><p><strong>Windows7、8、10</strong></p><p>（2）基础软件</p><p><strong>Auto CAD、PhotoShop</strong></p><p>（3）GIS软件</p><p><strong>ArcGIS、SuperMap</strong></p><h4 id="3-空间数据"><a href="#3-空间数据" class="headerlink" title="3.空间数据"></a>3.空间数据</h4><h4 id="4-GIS人员"><a href="#4-GIS人员" class="headerlink" title="4.GIS人员"></a>4.GIS人员</h4><p>开发、管理、维护和使用人员</p><h2 id="二、GIS主要功能"><a href="#二、GIS主要功能" class="headerlink" title="二、GIS主要功能"></a>二、GIS主要功能</h2><p>1.数据<strong>获取</strong></p><p>2.数据<strong>操作</strong></p><p>3.数据<strong>集成</strong></p><p>4.数据<strong>分析</strong></p><p>5.数据<strong>输出</strong></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h1><p>认识空间数据的<em>矢量表达和栅格表达</em>，初步掌握事项和栅格两种数据结构之间的<em>相互转换方法</em>，明确<em>像元大小</em>在栅格表达中影响。</p><h1 id="二、实验内容"><a href="#二、实验内容" class="headerlink" title="二、实验内容"></a>二、实验内容</h1><p>矢量数据结构及栅格数据结构，通过相互转换，认识点、线、面三种要素在不同空间分辨率下的表达特征。</p><h1 id="三、实验原理"><a href="#三、实验原理" class="headerlink" title="三、实验原理"></a>三、实验原理</h1><p>🍔 矢量和栅格结构可以进行相互转换，转换中有两个关键参数：<em>属性字段（*</em>Field<strong>）和像元大小（</strong>Cell size*<em>）</em>，前者决定了<em>将哪项属性值赋予输出栅格</em>，后者决定了<em>输出栅格的空间分辨率</em>。</p><p>🍔在不同空间分辨率下转换所生成的栅格数据有着不同的图形特征。</p><h1 id="四、实验步骤"><a href="#四、实验步骤" class="headerlink" title="四、实验步骤"></a>四、实验步骤</h1><p>1.在ArcCatalog中浏览空间数据</p><p>2.打开矢量转栅格</p><p>3.将Point数据按像元大小为2m转换为栅格数据</p><p>4.重复上一步，将point数据分别按像元8m、32m进行转换</p><p>5.重复以上第3、4步，将polyline数据分别按像元大小2m、8m、32m转换成栅格数据</p><p>6.重复以上第3、4步，将polygon数据分别按像元大小2m、8m、32m转换为栅格数据</p><p>7.在ArcMap中㢉不同像元大小下的栅格点数据的位置偏移和属性偏差</p><p>8.加载polyline、polygpn及其转换成的栅格数据，比较不同像元大小的栅格数据之间，以及它们与原矢量数据之间的差异，重点分析数据在不同像元大小时位置的移动、形状的畸变、属性的偏差。</p><p>9.将前述生成的栅格数据再转换回与源数据同类型的矢量数据</p><p>（1）点：栅格转点</p><p>（2）线：栅格转线</p><p>（3）面：栅格转面</p><p>10.将上一步新生成的矢量数据与point、polyine、polygon分别进行对比，分析它们之间的差异</p><p>11.分析矢量数据结构和栅格数据结构在表达空间对象时的特点或规律</p>]]></content>
     
     <summary type="html">
     
@@ -46,9 +46,9 @@
     <link href="http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C01%20%20GIS%E7%9A%84%E7%BB%84%E6%88%90%E4%B8%8E%E5%8A%9F%E8%83%BD/"/>
     <id>http://dong-666.github.io/2020/07/08/%E5%AE%9E%E9%AA%8C01%20%20GIS%E7%9A%84%E7%BB%84%E6%88%90%E4%B8%8E%E5%8A%9F%E8%83%BD/</id>
     <published>2020-07-08T07:26:03.000Z</published>
-    <updated>2020-07-08T08:33:51.202Z</updated>
+    <updated>2020-07-08T08:37:51.881Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="实验01-GIS的组成与功能"><a href="#实验01-GIS的组成与功能" class="headerlink" title="实验01  GIS的组成与功能"></a>实验01  GIS的组成与功能</h2><h2 id="一、GIS组成"><a href="#一、GIS组成" class="headerlink" title="一、GIS组成"></a>一、GIS组成</h2><h3 id="1-硬件系统"><a href="#1-硬件系统" class="headerlink" title="1.硬件系统"></a>1.硬件系统</h3><p>（1）输入设备</p><p>常规输入设备：<strong>鼠标、键盘、数字化仪、扫描仪</strong>等</p><p>专用输入设备：<strong>全站仪、GPS、数学摄影测量系统、遥感图像处理系统</strong></p><p>（2）存储于处理设备</p><p><strong>光盘、光驱、U盘和USB节后、移动硬盘、主机固定硬盘，计算机处理器</strong></p><p>（3）输出设备</p><p><strong>显示器（LCD、CRT）、打印机、绘图仪</strong></p><h4 id="2-软件系统"><a href="#2-软件系统" class="headerlink" title="2.软件系统"></a>2.软件系统</h4><p>（1）系统软件</p><p><strong>Windows7、8、10</strong></p><p>（2）基础软件</p><p><strong>Auto CAD、PhotoShop</strong></p><p>（3）GIS软件</p><p><strong>ArcGIS、SuperMap</strong></p><h4 id="3-空间数据"><a href="#3-空间数据" class="headerlink" title="3.空间数据"></a>3.空间数据</h4><h4 id="4-GIS人员"><a href="#4-GIS人员" class="headerlink" title="4.GIS人员"></a>4.GIS人员</h4><p>开发、管理、维护和使用人员</p><h2 id="二、GIS主要功能"><a href="#二、GIS主要功能" class="headerlink" title="二、GIS主要功能"></a>二、GIS主要功能</h2><p>1.数据<strong>获取</strong></p><p>2.数据<strong>操作</strong></p><p>3.数据<strong>集成</strong></p><p>4.数据<strong>分析</strong></p><p>5.数据<strong>输出</strong></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="一、GIS组成"><a href="#一、GIS组成" class="headerlink" title="一、GIS组成"></a>一、GIS组成</h1><h2 id="1-硬件系统"><a href="#1-硬件系统" class="headerlink" title="1.硬件系统"></a>1.硬件系统</h2><p>（1）输入设备</p><p>常规输入设备：<strong>鼠标、键盘、数字化仪、扫描仪</strong>等</p><p>专用输入设备：<strong>全站仪、GPS、数学摄影测量系统、遥感图像处理系统</strong></p><p>（2）存储于处理设备</p><p><strong>光盘、光驱、U盘和USB节后、移动硬盘、主机固定硬盘，计算机处理器</strong></p><p>（3）输出设备</p><p><strong>显示器（LCD、CRT）、打印机、绘图仪</strong></p><h2 id="2-软件系统"><a href="#2-软件系统" class="headerlink" title="2.软件系统"></a>2.软件系统</h2><p>（1）系统软件</p><p><strong>Windows7、8、10</strong></p><p>（2）基础软件</p><p><strong>Auto CAD、PhotoShop</strong></p><p>（3）GIS软件</p><p><strong>ArcGIS、SuperMap</strong></p><h2 id="3-空间数据"><a href="#3-空间数据" class="headerlink" title="3.空间数据"></a>3.空间数据</h2><h2 id="4-GIS人员"><a href="#4-GIS人员" class="headerlink" title="4.GIS人员"></a>4.GIS人员</h2><p>开发、管理、维护和使用人员</p><h1 id="二、GIS主要功能"><a href="#二、GIS主要功能" class="headerlink" title="二、GIS主要功能"></a>二、GIS主要功能</h1><p>1.数据<strong>获取</strong></p><p>2.数据<strong>操作</strong></p><p>3.数据<strong>集成</strong></p><p>4.数据<strong>分析</strong></p><p>5.数据<strong>输出</strong></p>]]></content>
     
     <summary type="html">
     
