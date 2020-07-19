@@ -1,3 +1,17 @@
+//中国疫情数据
+var china = function() {
+    $.ajax({
+        url: 'https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5',
+        type: 'get',
+        // data: {},
+        dataType: 'jsonp',
+        success: function(data) {
+            var res = data.data || "";
+            res = JSON.parse(res).chinaTotal.confirm;
+            return res
+        }
+    })
+};
 //各州累计确诊分布模块
 (function() {
     //初识化ECharts
@@ -28,44 +42,54 @@
     var count = [];
     var ajax = function() {
         $.ajax({
-            url: 'https://111.231.75.86:8000/api/countries/',
+            // url: 'https://111.231.75.86:8000/api/countries/', //联网失败
+            url: 'https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoGlobalStatis,FAutoContinentStatis,FAutoGlobalDailyList,FAutoCountryConfirmAdd',
             type: 'get',
             // data: {},
             dataType: 'json',
             success: function(data) {
-                var num = data
-                var a = 0
-                var b = 0
-                var c = 0
-                var d = 0
-                var e = 0
-                var f = 0
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].continents === "亚洲") {
-                        a += data[i].confirmedCount
-                    }
-                    if (data[i].continents === '非洲') {
-                        b += data[i].confirmedCount
-                    }
-                    if (data[i].continents === '欧洲') {
-                        c += data[i].confirmedCount
-                    }
-                    if (data[i].continents === '北美洲') {
-                        d += data[i].confirmedCount
-                    }
-                    if (data[i].continents === '南美洲') {
-                        e += data[i].confirmedCount
-                    }
-                    if (data[i].continents === '大洋洲') {
-                        f += data[i].confirmedCount
-                    }
+                // url: 'https://111.231.75.86:8000/api/countries/', //联网失败
+                // var num = data
+                // var a = 0
+                // var b = 0
+                // var c = 0
+                // var d = 0
+                // var e = 0
+                // var f = 0
+                // for (var i = 0; i < data.length; i++) {
+                //     if (data[i].continents === "亚洲") {
+                //         a += data[i].confirmedCount
+                //     }
+                //     if (data[i].continents === '非洲') {
+                //         b += data[i].confirmedCount
+                //     }
+                //     if (data[i].continents === '欧洲') {
+                //         c += data[i].confirmedCount
+                //     }
+                //     if (data[i].continents === '北美洲') {
+                //         d += data[i].confirmedCount
+                //     }
+                //     if (data[i].continents === '南美洲') {
+                //         e += data[i].confirmedCount
+                //     }
+                //     if (data[i].continents === '大洋洲') {
+                //         f += data[i].confirmedCount
+                //     }
+                // }
+                // count.push({ value: e, name: '南美洲' })
+                // count.push({ value: c, name: '欧洲' })
+                // count.push({ value: d, name: '北美洲' })
+                // count.push({ value: f, name: '大洋洲' })
+                // count.push({ value: b, name: '非洲' })
+                // count.push({ value: a, name: '亚洲' })
+
+                var a = data.data.FAutoContinentStatis.length - 1
+                var contines = data.data.FAutoContinentStatis[a].statis
+                var con = Object.keys(contines)
+                var sum = Object.values(contines)
+                for (var i = 0; i < con.length; i++) {
+                    count.push({ value: sum[i], name: con[i] })
                 }
-                count.push({ value: e, name: '南美洲' })
-                count.push({ value: c, name: '欧洲' })
-                count.push({ value: d, name: '北美洲' })
-                count.push({ value: f, name: '大洋洲' })
-                count.push({ value: b, name: '非洲' })
-                count.push({ value: a, name: '亚洲' })
 
                 // myChart.hideLoading()
                 //必须在这里在设置一遍，这里涉及到的问题不太懂，只知道如不再设置，而在ajax外赋值是没有作用的
@@ -78,7 +102,7 @@
         })
     }
     ajax()
-    setInterval(ajax, 3600000) //设定定时器，循环运行;
+    // setInterval(ajax, 3600000) //设定定时器，循环运行;
 
     //图表跟随屏幕自适应
     window.addEventListener('resize', function() {
@@ -233,7 +257,7 @@
         xAxis: [{
             type: 'category',
             boundaryGap: false,
-            data: [ '二月', '三月', '四月', '五月', '六月'],
+            // data: ['二月', '三月', '四月', '五月', '六月'],
             // 文本颜色为rgba(255,255,255,.6)  文字大小为 12
             axisLabel: {
                 textStyle: {
@@ -374,55 +398,29 @@
 
     var count = []
     var count1 = []
+    var date = []
     var ajax = function() {
         $.ajax({
-            url: 'https://111.231.75.86:8000/api/countries/daily/',
+            url: 'https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoGlobalStatis,FAutoContinentStatis,FAutoGlobalDailyList,FAutoCountryConfirmAdd',
             type: 'get',
             // data: {},
             dataType: 'json',
             success: function(data) {
-                var jan = 0
-                var feb = 0
-                var mar = 0
-                var apr = 0
-                var may = 0
-                var jun = 0
-                var jan1 = 0
-                var feb1 = 0
-                var mar1 = 0
-                var apr1 = 0
-                var may1 = 0
-                var jun1 = 0
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].dateId === 20200229) {
-                        feb += data[i].confirmedCount
-                        feb1 += data[i].deadCount
-                    }
-                    if (data[i].dateId === 20200331) {
-                        mar1 += data[i].deadCount
-                        mar += data[i].confirmedCount
-                    }
-                    if (data[i].dateId === 20200430) {
-                        apr1 += data[i].deadCount
-                        apr += data[i].confirmedCount
-                    }
-                    if (data[i].dateId === 20200531) {
-                        may1 += data[i].deadCount
-                        may += data[i].confirmedCount
-                    }
-                    if (data[i].dateId === 20200630) {
-                        jun1 += data[i].deadCount
-                        jun += data[i].confirmedCount
-                    }
+                var qushi = data.data.FAutoGlobalDailyList
+                for (var i = 0; i < qushi.length; i++) {
+                    count.push(qushi[i].all.confirm)
+                    count1.push(qushi[i].all.dead)
+                    date.push(qushi[i].date)
                 }
-                count = [feb, mar, apr, may, jun]
-                count1 = [feb1, mar1, apr1, may1, jun1]
                 // //必须在这里在设置一遍，这里涉及到的问题不太懂，只知道如不再设置，而在ajax外赋值是没有作用的
                 myChart.setOption({ //加载数据图表
                     series: [{
                         data: count
                     }, {
                         data: count1
+                    }],
+                    xAxis: [{
+                        data: date
                     }]
                 })
             }
@@ -548,7 +546,7 @@
         "Austria": "奥地利",
         "Mozambique": "莫桑比克",
         "Uganda": "乌干达",
-        "Japan": "日本",
+        "Japan": "日本本土",
         "Niger": "尼日尔",
         "Brazil": "巴西",
         "Kuwait": "科威特",
@@ -599,7 +597,7 @@
         "Uzbekistan": "乌兹别克斯坦",
         "Tunisia": "突尼斯",
         "Djibouti": "吉布提",
-        "Greenland": "格陵兰",
+        "Greenland": "丹麦",
         "Timor-Leste": "东帝汶",
         "Dominica": "多米尼克",
         "Colombia": "哥伦比亚",
@@ -710,17 +708,34 @@
     var virus = []
     var ajax = function() {
         $.ajax({
-            url: 'https://111.231.75.86:8000/api/countries/',
+            url: 'https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5',
+            type: 'get',
+            // data: {},
+            dataType: 'jsonp',
+            success: function(data) {
+                var res = data.data || "";
+                res = JSON.parse(res).chinaTotal.confirm;
+        virus.push({ name: '中国', value: res })
+        myChart.setOption({ //加载数据图表
+            series: [{
+                // 根据名字对应到相应的系列
+                data: virus
+            }]
+        })
+            }
+        });
+        $.ajax({
+            url: 'https://api.inews.qq.com/newsqa/v1/automation/foreign/country/ranklist',
             type: 'get',
             // data: {},
             dataType: 'json',
             success: function(data) {
-                var num = data
+                var num = data.data
+                var sum = 0
                 for (var i = 0; i < num.length; i++) {
-                    virus.push({ name: num[i].countryName, value: num[i].confirmedCount })
+                    virus.push({ name: num[i].name, value: num[i].confirm })
+                    sum += num[i].confirm
                 }
-                // console.log(virus)
-                // console.log(virus)
                 // myChart.hideLoading()
                 //必须在这里在设置一遍，这里涉及到的问题不太懂，只知道如不再设置，而在ajax外赋值是没有作用的
                 myChart.setOption({ //加载数据图表
@@ -731,9 +746,9 @@
                 })
             }
         })
+        setInterval(ajax, 3600000) //设定定时器，循环运行;
     }
     ajax()
-    setInterval(ajax, 3600000) //设定定时器，循环运行;
 
     window.addEventListener('resize', function() {
         myChart.resize()

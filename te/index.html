@@ -46,12 +46,12 @@
         <!-- 左 -->
         <div class="column">
             <div class="panel bar">
-                <h2>各洲累计确诊分布</h2>
+                <h2>各洲累计确诊分布（海外）</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
             </div>
             <div class="panel line">
-                <h2>全球疫情趋势</h2>
+                <h2>全球疫情趋势（海外）</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
             </div>
@@ -85,7 +85,7 @@
         <!-- 右 -->
         <div class="column">
             <div class="panel bar1">
-                <h2>各国疫情确诊情况</h2>
+                <h2>世界疫情确诊情况前十五</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
             </div>
@@ -98,18 +98,30 @@
     <script src="js/index.js"></script>
     <script>
     $.ajax({
-        url: 'https://111.231.75.86:8000/api/statistics/latest/',
+        url: 'https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5',
         type: 'get',
         // data: {},
-        dataType: 'json',
+        dataType: 'jsonp',
         success: function(data) {
-            // console.log(data)
-            var sum = data.globalStatistics.confirmedCount
-            var cureSum = data.globalStatistics.curedCount
-            $(".no-hd li:first").text(sum)
-            $(".no-hd li:nth-child(2)").text(cureSum)
+            var res = data.data || "";
+            // console.log(JSON.parse(res).chinaTotal.heal)
+            var res1 = JSON.parse(res).chinaTotal.confirm;
+            var res2 = JSON.parse(res).chinaTotal.heal;
+            $.ajax({
+                url: 'https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoGlobalStatis,FAutoContinentStatis,FAutoGlobalDailyList,FAutoCountryConfirmAdd',
+                type: 'get',
+                // data: {},
+                dataType: 'json',
+                success: function(data) {
+                    // console.log(data)
+                    var sum = data.data.FAutoGlobalStatis.confirm + res1
+                    var cureSum = data.data.FAutoGlobalStatis.heal + res2
+                    $(".no-hd li:first").text(sum)
+                    $(".no-hd li:nth-child(2)").text(cureSum)
+                }
+            })
         }
-    })
+    });
     </script>
 </body>
 
