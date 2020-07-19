@@ -32,8 +32,9 @@ var china = function() {
         series: [{
             name: '各州累计确诊',
             type: 'pie',
-            radius: [20, 80],
-            roseType: 'area',
+            radius: [20, 70],
+            center: ['50%', '50%'],
+            roseType: 'radius',
             // data:
         }]
     };
