@@ -32,9 +32,9 @@
     </summary>
     
     
-      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
-    
       <category term="MongoDB" scheme="http://Dong-666.github.io/categories/MongoDB/"/>
+    
+      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
     
     
       <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
@@ -363,9 +363,9 @@
     <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C17-%E5%8F%A0%E5%8A%A0%E5%88%86%E6%9E%90/"/>
     <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C17-%E5%8F%A0%E5%8A%A0%E5%88%86%E6%9E%90/</id>
     <published>2020-07-13T02:13:57.000Z</published>
-    <updated>2020-07-13T02:15:56.428Z</updated>
+    <updated>2020-07-13T07:52:14.564Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>理解矢量数据空间<strong>叠加分析</strong>的基本原理，掌握常用的<strong>空间叠加分析</strong>方法</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>根据规划道路的中心线及道路红线宽度（100m），确定各村将被征用的各类土地，并完成面积的分类统计表</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li>叠加分析是将<strong>两个或两个以上具有重叠关系的空间数据进行空间叠加</strong>的过程。叠加的结果不仅生成了<strong>新的空间关系</strong>，还将输入的多个数据层的属性联系起来产生<strong>新的属性关系</strong>。多边形之间的叠加来说，<strong>叠加后多边形之间相互切割</strong>，新生成的多边形的属性表中将继承参与叠加的数据的属性字段。</li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><p>1.打开ArcMap，加载数据，调整图层顺序，浏览数据</p><p>2.打开‘道路用地统计表’以了解需要统计的数据</p><p>3.以road为输入数据，以50m为缓冲距离，建立缓冲区，产生道路用地范围数据（缓冲区半径采用道路宽度的一半）<em>【分析工具】<strong>|</strong>【领域分析】|**【缓冲区】</em></p><p>4.将缓冲区道路与土地利用信息空间叠加</p><p>利用<em>【分析工具】*</em>|<strong>【叠加分析】|</strong>【相交】*进行叠加，产生道路用地范围的土地利用数据</p><p>5.再与village进行叠加</p><p>利用<em>【分析工具】<strong>|</strong>【叠加分析】|**【标识】</em></p><p>6.<em>面积重计算</em></p><p>在属性表中，重算土地面积，新建字段new_area右击<em>【计算几何】</em></p><p>7.重算土地类型代码</p><p>利用【字段计算器】根据叠加后数据的类型代码，提取出各类土地的一级代码。输入‘Left(,1)’1表示取第一个</p><p>8.面积<em>分类汇总统计</em></p><p><em>【分析工具】|<strong>【统计分析】|</strong>【频数】</em>| 统计各村各类土地的面积</p><p>9.表格输出与打开</p><p>10.单位换算与填表</p><p>11.制图</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>理解矢量数据空间<strong>叠加分析</strong>的基本原理，掌握常用的<strong>空间叠加分析</strong>方法</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>根据规划道路的中心线及道路红线宽度（100m），确定各村将被征用的各类土地，并完成面积的分类统计表</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li>叠加分析是将<strong>两个或两个以上具有重叠关系的空间数据进行空间叠加</strong>的过程。叠加的结果不仅生成了<strong>新的空间关系</strong>，还将输入的多个数据层的属性联系起来产生<strong>新的属性关系</strong>。多边形之间的叠加来说，<strong>叠加后多边形之间相互切割</strong>，新生成的多边形的属性表中将继承参与叠加的数据的属性字段。</li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><p>1.打开ArcMap，加载数据，调整图层顺序，浏览数据</p><p>2.打开‘道路用地统计表’以了解需要统计的数据</p><p>3.以road为输入数据，以50m为缓冲距离，建立缓冲区，产生道路用地范围数据（缓冲区半径采用道路宽度的一半）【分析工具】<strong>|</strong>【领域分析】|【缓冲区】</p><p>4.将缓冲区道路与土地利用信息空间叠加</p><p>利用【分析工具】<strong>|</strong>【叠加分析】|【相交】进行叠加，产生道路用地范围的土地利用数据</p><p>5.再与village进行叠加</p><p>利用【分析工具】<strong>|</strong>【叠加分析】|【标识】</p><p>6.面积重计算</p><p>在属性表中，重算土地面积，新建字段new_area右击【计算几何】</p><p>7.重算土地类型代码</p><p>利用【字段计算器】根据叠加后数据的类型代码，提取出各类土地的一级代码。输入‘Left(,1)’1表示取第一个</p><p>8.面积分类汇总统计</p><p>【分析工具】|<strong>【统计分析】|</strong>【频数】| 统计各村各类土地的面积</p><p>9.表格输出与打开</p><p>10.单位换算与填表</p><p>11.制图</p>]]></content>
     
     <summary type="html">
     

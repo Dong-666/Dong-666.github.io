@@ -1,302 +1,207 @@
-//左上模块
+//各州累计确诊分布模块
 (function() {
     //初识化ECharts
     var myChart = echarts.init(document.querySelector(".bar .chart"));
     //指定配置项和数据
     var option = {
-        color: ["#2f89cf"],
+        title: {
+            show: false,
+            text: '南丁格尔玫瑰图',
+            x: 'center'
+        },
+        color: ['#37a2da', '#9fe6b8', '#ffdb5c', '#ff9f7f', '#fb7293', '#8378ea'],
         tooltip: {
-            trigger: "axis",
-            axisPointer: {
-                // 坐标轴指示器，坐标轴触发有效
-                type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
-            }
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
-        grid: {
-            left: "0%",
-            top: "10px",
-            right: "0%",
-            bottom: "4%",
-            containLabel: true //是否将文字标注也算进去
-        },
-        // X轴
-        xAxis: [{
-            type: "category", //X轴类型
-            data: [
-                "湖北",
-                "广东",
-                "江西",
-                "北京",
-                "上海",
-                "河北",
-                "浙江"
-            ],
-            //刻度
-            axisTick: {
-                alignWithLabel: true
-            },
-            //刻度标签
-            axisLabel: {
-                textStyle: {
-                    color: "rgba(255,255,255,.6)",
-                    fontSize: '12'
-                }
-            },
-            //刻度线
-            axisLine: {
-                show: false
-            }
-        }],
-        // y轴
-        yAxis: [{
-            type: "value",
-            axisLabel: {
-                textStyle: {
-                    color: "rgba(255,255,255,.6)",
-                    fontSize: '12'
-                }
-            },
-            axisLine: {
-                lineStyle: {
-                    color: "rgba(255,255,255,.1)"
-                    // width: 1,
-                    // type: "solid"
-                }
-            },
-            splitLine: {
-                lineStyle: {
-                    color: "rgba(255,255,255,.1)"
-                }
-            }
-        }],
-        //图表中心内容
+        calculable: true,
         series: [{
-            name: "直接访问",
-            type: "bar",
-            barWidth: "35%",
-            // fontSize: '8',
-            data: [200, 300, 300, 900, 1500, 1200, 600],
-            itemStyle: {
-                barBorderRadius: 5
-            }
+            name: '各州累计确诊',
+            type: 'pie',
+            radius: [20, 80],
+            roseType: 'area',
+            // data:
         }]
     };
     //配置项设置给ECarts实例对象
     myChart.setOption(option);
+    var count = [];
+    var ajax = function() {
+        $.ajax({
+            url: 'http://111.231.75.86:8000/api/countries/',
+            type: 'get',
+            // data: {},
+            dataType: 'json',
+            success: function(data) {
+                var num = data
+                var a = 0
+                var b = 0
+                var c = 0
+                var d = 0
+                var e = 0
+                var f = 0
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].continents === "亚洲") {
+                        a += data[i].confirmedCount
+                    }
+                    if (data[i].continents === '非洲') {
+                        b += data[i].confirmedCount
+                    }
+                    if (data[i].continents === '欧洲') {
+                        c += data[i].confirmedCount
+                    }
+                    if (data[i].continents === '北美洲') {
+                        d += data[i].confirmedCount
+                    }
+                    if (data[i].continents === '南美洲') {
+                        e += data[i].confirmedCount
+                    }
+                    if (data[i].continents === '大洋洲') {
+                        f += data[i].confirmedCount
+                    }
+                }
+                count.push({ value: e, name: '南美洲' })
+                count.push({ value: c, name: '欧洲' })
+                count.push({ value: d, name: '北美洲' })
+                count.push({ value: f, name: '大洋洲' })
+                count.push({ value: b, name: '非洲' })
+                count.push({ value: a, name: '亚洲' })
+
+                // myChart.hideLoading()
+                //必须在这里在设置一遍，这里涉及到的问题不太懂，只知道如不再设置，而在ajax外赋值是没有作用的
+                myChart.setOption({ //加载数据图表
+                    series: [{
+                        data: count
+                    }]
+                })
+            }
+        })
+    }
+    ajax()
+    setInterval(ajax, 3600000) //设定定时器，循环运行;
+
     //图表跟随屏幕自适应
     window.addEventListener('resize', function() {
         myChart.resize();
     })
 })();
-// 学习进度柱状图模块
+// 全球疫情确诊图模块
 (function() {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.querySelector(".bar1 .chart"));
-
-    var data = [70, 34, 60, 78, 69];
-    var titlename = ["中国", "美国", "日本", "伊朗", "意大利"];
-    var valdata = [702, 350, 610, 793, 664];
-    var myColor = ["#1089E7", "#F57474", "#56D0E3", "#F8B448", "#8B78F6"];
     option = {
-        //图表位置（网格）
-        grid: {
-            top: "10%",
-            left: "22%",
-            bottom: "10%"
+        dataset: {
+            source: [
+                ['Country', 'Confirmed']
+            ]
         },
-        //X轴
-        xAxis: {
-            show: false //取消显示x轴（包括竖线）
+        calculable: true,
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{c} ({d}%)'
         },
-        //y轴
-        yAxis: [{
-                show: true, //显示y轴
-                data: titlename, //类目数据
-                inverse: true, //反向坐标轴
-                axisLine: { //坐标轴线
-                    show: false
-                },
-                splitLine: { //分割线
-                    show: false
-                },
-                axisTick: { //坐标轴刻度
-                    show: false
-                },
-                axisLabel: {
-                    color: "#fff", //标注字体颜色    
-                    rich: { //富文本样式
-                        lg: {
-                            backgroundColor: "#391",
-                            color: "#fff",
-                            borderRadius: 15,
-                            // padding: 5,
-                            align: "center",
-                            width: 15,
-                            height: 15
-                        }
-                    }
-                }
-            },
-            //定义右侧y坐标轴
-            {
-                show: true,
-                inverse: true,
-                data: valdata,
-                axisLabel: {
-                    textStyle: {
-                        fontSize: 12,
-                        color: "#fff"
-                    }
-                }
-            }
-        ],
         series: [{
-                name: "条",
-                type: "bar", //类型
-                yAxisIndex: 0, //使用的 y 轴的 index，bar的基部位置
-                data: data,
-                barCategoryGap: 50,
-                barWidth: 10, //bar宽度
-                itemStyle: { //图形样式
-                    normal: {
-                        barBorderRadius: 20, //数据条圆角
-                        //定义函数分配每个数据值的颜色，不知道%num啥意思
-                        color: function(params) {
-                            // var num = myColor.length;
-                            // console.log(params);
-                            // return myColor[params.dataIndex % num]
-                            return myColor[params.dataIndex]
-                        }
-                    }
+                name: '确诊人数',
+                type: 'pie',
+                clockWise: false,
+                radius: [30, 460],
+                center: ['73%', '80%'],
+                roseType: 'area',
+                encode: {
+                    itemName: 'Country',
+                    value: 'Confirmed'
                 },
-                label: { //标签
-                    normal: {
-                        show: true,
-                        position: "inside", //标签位置
-                        formatter: "{c}%" //数值
-                    }
-                }
-            },
-            //第二个图形
-            {
-                name: "框",
-                type: "bar",
-                yAxisIndex: 1,
-                barCategoryGap: 50,
-                data: [100, 100, 100, 100, 100],
-                barWidth: 15,
                 itemStyle: {
                     normal: {
-                        color: "none", //去掉填充颜色
-                        borderColor: "#00c1de",
-                        borderWidth: 3, //边框宽度
-                        barBorderRadius: 15
-                    }
-                }
+                        color: function(params) {
+                            var colorList = [
+                                "#a71a4f", "#c71b1b", "#d93824", "#e7741b", "#dc9e31", "#d2b130", "#8cc13f", "#53b440", "#48af54", "#479c7f", "#48a698", "#57868c"
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                        label: {
+                            position: 'inside',
+                            textStyle: {
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei',
+                                color: '#FAFAFA',
+                                fontSize: 10
+                            },
+                            //formatter:'{b} \n{@Confirmed}例 \n死亡{@Dead}',//注意这里大小写敏感哦
+                            formatter: function(params) {
+                                // console.log('参数列表', params)
+                                if (params.data[1] > 9000) { return params.data[0] } else { return ""; }
+                            },
+
+                        },
+                    },
+                },
+
+            },
+            {
+                name: '透明圆圈',
+                type: 'pie',
+                radius: [8, 20],
+                center: ['73%', '80%'],
+                itemStyle: {
+                    color: 'rgba(250, 250, 250, 0.3)',
+                },
+                data: [
+                    { value: 5, name: '' }
+                ]
+            },
+            {
+                name: '透明圆圈',
+                type: 'pie',
+                radius: [8, 28],
+                center: ['73%', '80%'],
+                itemStyle: {
+                    color: 'rgba(250, 250, 250, 0.3)',
+                },
+                data: [
+                    { value: 5, name: '' }
+                ]
             }
         ]
+
     };
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
+    var virus = [
+        ['Country', 'Confirmed']
+    ]
+    var ajax = function() {
+        $.ajax({
+            url: 'https://api.inews.qq.com/newsqa/v1/automation/foreign/country/ranklist',
+            type: 'get',
+            // data: {},
+            dataType: 'json',
+            success: function(data) {
+                var num = data.data
+                for (var i = 0; i < 15; i++) {
+                    virus.push([num[i].name, num[i].confirm])
+                }
+                // myChart.hideLoading()
+                //必须在这里在设置一遍，这里涉及到的问题不太懂，只知道如不再设置，而在ajax外赋值是没有作用的
+                myChart.setOption({ //加载数据图表
+                    dataset: {
+                        source: virus
+                    }
+                })
+            }
+        })
+    }
+    ajax()
+    setInterval(ajax, 3600000) //设定定时器，循环运行;
+
     window.addEventListener("resize", function() {
         myChart.resize();
     });
 })();
-//折线图模块
+//确诊趋势模块
 (function() {
     var myChart = echarts.init(document.querySelector('.line .chart'))
-    var option = {
-        color: ["#00f2f1", "#ed3f35"],
-        tooltip: {
-            trigger: 'axis'
-        },
-        //图例模块
-        legend: {
-            // 距离容器10%
-            right: "10%",
-            // 修饰图例文字的颜色
-            textStyle: {
-                color: "#4c9bfd"
-            }
-            // 如果series 里面设置了name，此时图例组件的data可以省略
-            // data: ["邮件营销", "联盟广告"]
-        },
-        grid: {
-            top: "20%",
-            left: "3%",
-            right: "4%",
-            bottom: "3%",
-            show: true,
-            borderColor: "#012f4a",
-            containLabel: true
-        },
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            //去除刻度
-            axisTick: {
-                show: false
-            },
-            //修改刻度标签颜色
-            axisLabel: {
-                color: "white"
-            },
-            //去除x坐标轴
-            axisLine: {
-                show: false
-            },
-            boundaryGap: false // 去除轴内间距
-
-        },
-        yAxis: {
-            type: 'value',
-            //去除y轴刻度
-            axisTick: {
-                show: false
-            },
-            //修改刻度标签颜色
-            axisLabel: {
-                color: "white"
-            },
-            //修改y轴分割线颜色
-            splitLine: {
-                lineStyle: {
-                    color: "#012f4a"
-                }
-            }
-        },
-        // 图表数据
-        series: [{
-                name: '现存确诊',
-                type: 'line',
-                stack: '总量',
-                data: [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
-                smooth: true
-
-            },
-            {
-                name: '累计确诊',
-                type: 'line',
-                stack: '总量',
-                data: [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79],
-                smooth: true
-
-            }
-        ]
-    };
-    // 把配置和数据给实例对象
-    myChart.setOption(option);
-
-
-    window.addEventListener('resize', function() {
-        myChart.resize()
-    })
-})();
-//折线图2模块
-(function() {
-    var myChart = echarts.init(document.querySelector(".line1 .chart"))
     var option = {
         tooltip: {
             trigger: 'axis',
@@ -328,7 +233,7 @@
         xAxis: [{
             type: 'category',
             boundaryGap: false,
-            data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月'],
+            data: [ '二月', '三月', '四月', '五月', '六月'],
             // 文本颜色为rgba(255,255,255,.6)  文字大小为 12
             axisLabel: {
                 textStyle: {
@@ -357,7 +262,7 @@
             axisLabel: {
                 textStyle: {
                     color: "rgba(255,255,255,.6)",
-                    fontSize: 12
+                    fontSize: 8
                 }
             },
             // 修改分割线的颜色
@@ -369,10 +274,10 @@
         }],
         //主题样式设计
         series: [{
-                name: '新增确诊',
+                name: '累计确诊',
                 type: 'line',
                 // stack: '总量', //数据堆叠
-                data: [220, 182, 191, 234, 290, 330, 310],
+                // data: [220, 182, 191, 234, 290, 330, 310],
                 //线圆滑
                 smooth: true,
                 // 单独修改线的样式
@@ -417,7 +322,7 @@
             {
                 // 开始不显示拐点， 鼠标经过显示
                 showSymbol: false,
-                name: "新增死亡",
+                name: "累计死亡",
                 type: "line",
                 smooth: true,
                 lineStyle: {
@@ -459,127 +364,377 @@
                 },
                 // 开始不显示拐点， 鼠标经过显示
                 showSymbol: false,
-                data: [120, 132, 101, 134, 90, 230, 210],
+                // data: [120, 132, 101, 134, 90, 230, 210]
                 // stack: '总量',
             }
         ]
     };
+    // 把配置和数据给实例对象
     myChart.setOption(option);
-    window.addEventListener('resize', function() {
-        myChart.resize();
-    });
-})();
-//饼状图1模块
-(function() {
-    var myChart = echarts.init(document.querySelector(".pie .chart"));
-    var option = {
-        color: [
-            "#065aab",
-            "#066eab",
-            "#0682ab",
-            "#0696ab",
-            "#06a0ab",
-        ],
-        tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b}: {c} ({d}%)'
-        },
-        legend: {
-            // 距离底部为0%
-            bottom: "0%",
-            // 小图标的宽度和高度
-            itemWidth: 10,
-            itemHeight: 10,
-            // 修改图例组件的文字为 12px
-            textStyle: {
-                color: "rgba(255,255,255,.5)",
-                fontSize: "12"
-            }
-        },
-        series: [{
-            name: '确诊病例',
-            type: 'pie',
-            //设置饼状图在容器中的位置，这里和带有坐标系的图不一样
-            center: ["50%", "50%"],
-            //  修改内圆半径和外圆半径为  百分比是相对于容器宽度来说的
-            radius: ["40%", "60%"],
-            avoidLabelOverlap: false,
-            label: {
-                show: false,
-                position: 'center'
-            },
-            emphasis: {
-                label: {
-                    // show: true,
-                    fontSize: '30',
-                    fontWeight: 'bold'
+
+    var count = []
+    var count1 = []
+    var ajax = function() {
+        $.ajax({
+            url: 'http://111.231.75.86:8000/api/countries/daily/',
+            type: 'get',
+            // data: {},
+            dataType: 'json',
+            success: function(data) {
+                var jan = 0
+                var feb = 0
+                var mar = 0
+                var apr = 0
+                var may = 0
+                var jun = 0
+                var jan1 = 0
+                var feb1 = 0
+                var mar1 = 0
+                var apr1 = 0
+                var may1 = 0
+                var jun1 = 0
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dateId === 20200229) {
+                        feb += data[i].confirmedCount
+                        feb1 += data[i].deadCount
+                    }
+                    if (data[i].dateId === 20200331) {
+                        mar1 += data[i].deadCount
+                        mar += data[i].confirmedCount
+                    }
+                    if (data[i].dateId === 20200430) {
+                        apr1 += data[i].deadCount
+                        apr += data[i].confirmedCount
+                    }
+                    if (data[i].dateId === 20200531) {
+                        may1 += data[i].deadCount
+                        may += data[i].confirmedCount
+                    }
+                    if (data[i].dateId === 20200630) {
+                        jun1 += data[i].deadCount
+                        jun += data[i].confirmedCount
+                    }
                 }
-            },
-            //不显示连接线
-            labelLine: {
-                show: false
-            },
-            data: [
-                { value: 335, name: '广东' },
-                { value: 310, name: '武汉' },
-                { value: 234, name: '北京' },
-                { value: 135, name: '浙江' },
-                { value: 1548, name: '江苏' }
-            ]
-        }]
-    };
-    myChart.setOption(option);
+                count = [feb, mar, apr, may, jun]
+                count1 = [feb1, mar1, apr1, may1, jun1]
+                // //必须在这里在设置一遍，这里涉及到的问题不太懂，只知道如不再设置，而在ajax外赋值是没有作用的
+                myChart.setOption({ //加载数据图表
+                    series: [{
+                        data: count
+                    }, {
+                        data: count1
+                    }]
+                })
+            }
+        })
+    }
+
+    ajax()
+    setInterval(ajax, 3600000) //设定定时器，循环运行;
+
     window.addEventListener('resize', function() {
-        myChart.resize();
+        myChart.resize()
     })
 })();
-//饼状图2模块
+//地图模块
 (function() {
-    var myChart = echarts.init(document.querySelector(".pie1 .chart"))
+    var myChart = echarts.init(document.querySelector('.map .chart'))
+    var nameMap = {
+        "Canada": "加拿大",
+        "Turkmenistan": "土库曼斯坦",
+        "Saint Helena": "圣赫勒拿",
+        "Lao PDR": "老挝",
+        "Lithuania": "立陶宛",
+        "Cambodia": "柬埔寨",
+        "Ethiopia": "埃塞俄比亚",
+        "Faeroe Is.": "法罗群岛",
+        "Swaziland": "斯威士兰",
+        "Palestine": "巴勒斯坦",
+        "Belize": "伯利兹",
+        "Argentina": "阿根廷",
+        "Bolivia": "玻利维亚",
+        "Cameroon": "喀麦隆",
+        "Burkina Faso": "布基纳法索",
+        "Aland": "奥兰群岛",
+        "Bahrain": "巴林",
+        "Saudi Arabia": "沙特阿拉伯",
+        "Fr. Polynesia": "法属波利尼西亚",
+        "Cape Verde": "佛得角",
+        "W. Sahara": "西撒哈拉",
+        "Slovenia": "斯洛文尼亚",
+        "Guatemala": "危地马拉",
+        "Guinea": "几内亚",
+        "Dem. Rep. Congo": "刚果（金）",
+        "Germany": "德国",
+        "Spain": "西班牙",
+        "Liberia": "利比里亚",
+        "Netherlands": "荷兰",
+        "Jamaica": "牙买加",
+        "Solomon Is.": "所罗门群岛",
+        "Oman": "阿曼",
+        "Tanzania": "坦桑尼亚",
+        "Costa Rica": "哥斯达黎加",
+        "Isle of Man": "曼岛",
+        "Gabon": "加蓬",
+        "Niue": "纽埃",
+        "Bahamas": "巴哈马",
+        "New Zealand": "新西兰",
+        "Yemen": "也门",
+        "Jersey": "泽西岛",
+        "Pakistan": "巴基斯坦",
+        "Albania": "阿尔巴尼亚",
+        "Samoa": "萨摩亚",
+        "Czech Rep.": "捷克",
+        "United Arab Emirates": "阿拉伯联合酋长国",
+        "Guam": "关岛",
+        "India": "印度",
+        "Azerbaijan": "阿塞拜疆",
+        "N. Mariana Is.": "北马里亚纳群岛",
+        "Lesotho": "莱索托",
+        "Kenya": "肯尼亚",
+        "Belarus": "白俄罗斯",
+        "Tajikistan": "塔吉克斯坦",
+        "Turkey": "土耳其",
+        "Afghanistan": "阿富汗",
+        "Bangladesh": "孟加拉国",
+        "Mauritania": "毛里塔尼亚",
+        "Dem. Rep. Korea": "朝鲜",
+        "Saint Lucia": "圣卢西亚",
+        "Br. Indian Ocean Ter.": "英属印度洋领地",
+        "Mongolia": "蒙古",
+        "France": "法国",
+        "Cura?ao": "库拉索岛",
+        "S. Sudan": "南苏丹",
+        "Rwanda": "卢旺达",
+        "Slovakia": "斯洛伐克",
+        "Somalia": "索马里",
+        "Peru": "秘鲁",
+        "Vanuatu": "瓦努阿图",
+        "Norway": "挪威",
+        "Malawi": "马拉维",
+        "Benin": "贝宁",
+        "St. Vin. and Gren.": "圣文森特和格林纳丁斯",
+        "Korea": "韩国",
+        "Singapore": "新加坡",
+        "Montenegro": "黑山共和国",
+        "Cayman Is.": "开曼群岛",
+        "Togo": "多哥",
+        "China": "中国",
+        "Heard I. and McDonald Is.": "赫德岛和麦克唐纳群岛",
+        "Armenia": "亚美尼亚",
+        "Falkland Is.": "马尔维纳斯群岛（福克兰）",
+        "Ukraine": "乌克兰",
+        "Ghana": "加纳",
+        "Tonga": "汤加",
+        "Finland": "芬兰",
+        "Libya": "利比亚",
+        "Dominican Rep.": "多米尼加",
+        "Indonesia": "印度尼西亚",
+        "Mauritius": "毛里求斯",
+        "Eq. Guinea": "赤道几内亚",
+        "Sweden": "瑞典",
+        "Vietnam": "越南",
+        "Mali": "马里",
+        "Russia": "俄罗斯",
+        "Bulgaria": "保加利亚",
+        "United States": "美国",
+        "Romania": "罗马尼亚",
+        "Angola": "安哥拉",
+        "Chad": "乍得",
+        "South Africa": "南非",
+        "Fiji": "斐济",
+        "Liechtenstein": "列支敦士登",
+        "Malaysia": "马来西亚",
+        "Austria": "奥地利",
+        "Mozambique": "莫桑比克",
+        "Uganda": "乌干达",
+        "Japan": "日本",
+        "Niger": "尼日尔",
+        "Brazil": "巴西",
+        "Kuwait": "科威特",
+        "Panama": "巴拿马",
+        "Guyana": "圭亚那",
+        "Madagascar": "马达加斯加",
+        "Luxembourg": "卢森堡",
+        "American Samoa": "美属萨摩亚",
+        "Andorra": "安道尔",
+        "Ireland": "爱尔兰",
+        "Italy": "意大利",
+        "Nigeria": "尼日利亚",
+        "Turks and Caicos Is.": "特克斯和凯科斯群岛",
+        "Ecuador": "厄瓜多尔",
+        "U.S. Virgin Is.": "美属维尔京群岛",
+        "Brunei": "文莱",
+        "Australia": "澳大利亚",
+        "Iran": "伊朗",
+        "Algeria": "阿尔及利亚",
+        "El Salvador": "萨尔瓦多",
+        "C?te d'Ivoire": "科特迪瓦",
+        "Chile": "智利",
+        "Puerto Rico": "波多黎各",
+        "Belgium": "比利时",
+        "Thailand": "泰国",
+        "Haiti": "海地",
+        "Iraq": "伊拉克",
+        "S?o Tomé and Principe": "圣多美和普林西比",
+        "Sierra Leone": "塞拉利昂",
+        "Georgia": "格鲁吉亚",
+        "Denmark": "丹麦",
+        "Philippines": "菲律宾",
+        "S. Geo. and S. Sandw. Is.": "南乔治亚岛和南桑威奇群岛",
+        "Moldova": "摩尔多瓦",
+        "Morocco": "摩洛哥",
+        "Namibia": "纳米比亚",
+        "Malta": "马耳他",
+        "Guinea-Bissau": "几内亚比绍",
+        "Kiribati": "基里巴斯",
+        "Switzerland": "瑞士",
+        "Grenada": "格林纳达",
+        "Seychelles": "塞舌尔",
+        "Portugal": "葡萄牙",
+        "Estonia": "爱沙尼亚",
+        "Uruguay": "乌拉圭",
+        "Antigua and Barb.": "安提瓜和巴布达",
+        "Lebanon": "黎巴嫩",
+        "Uzbekistan": "乌兹别克斯坦",
+        "Tunisia": "突尼斯",
+        "Djibouti": "吉布提",
+        "Greenland": "格陵兰",
+        "Timor-Leste": "东帝汶",
+        "Dominica": "多米尼克",
+        "Colombia": "哥伦比亚",
+        "Burundi": "布隆迪",
+        "Bosnia and Herz.": "波斯尼亚和黑塞哥维那",
+        "Cyprus": "塞浦路斯",
+        "Barbados": "巴巴多斯",
+        "Qatar": "卡塔尔",
+        "Palau": "帕劳",
+        "Bhutan": "不丹",
+        "Sudan": "苏丹",
+        "Nepal": "尼泊尔",
+        "Micronesia": "密克罗尼西亚",
+        "Bermuda": "百慕大",
+        "Suriname": "苏里南",
+        "Venezuela": "委内瑞拉",
+        "Israel": "以色列",
+        "St. Pierre and Miquelon": "圣皮埃尔和密克隆群岛",
+        "Central African Rep.": "中非",
+        "Iceland": "冰岛",
+        "Zambia": "赞比亚",
+        "Senegal": "塞内加尔",
+        "Papua New Guinea": "巴布亚新几内亚",
+        "Trinidad and Tobago": "特立尼达和多巴哥",
+        "Zimbabwe": "津巴布韦",
+        "Jordan": "约旦",
+        "Gambia": "冈比亚",
+        "Kazakhstan": "哈萨克斯坦",
+        "Poland": "波兰",
+        "Eritrea": "厄立特里亚",
+        "Kyrgyzstan": "吉尔吉斯斯坦",
+        "Montserrat": "蒙特塞拉特",
+        "New Caledonia": "新喀里多尼亚",
+        "Macedonia": "马其顿",
+        "Paraguay": "巴拉圭",
+        "Latvia": "拉脱维亚",
+        "Hungary": "匈牙利",
+        "Syria": "叙利亚",
+        "Honduras": "洪都拉斯",
+        "Myanmar": "缅甸",
+        "Mexico": "墨西哥",
+        "Egypt": "埃及",
+        "Nicaragua": "尼加拉瓜",
+        "Cuba": "古巴",
+        "Serbia": "塞尔维亚",
+        "Comoros": "科摩罗",
+        "United Kingdom": "英国",
+        "Fr. S. Antarctic Lands": "南极洲",
+        "Congo": "刚果（布）",
+        "Greece": "希腊",
+        "Sri Lanka": "斯里兰卡",
+        "Croatia": "克罗地亚",
+        "Botswana": "博茨瓦纳",
+        "Siachen Glacier": "锡亚琴冰川地区"
+    }
     var option = {
-        color: ['#006cff', '#60cda0', '#ed8884', '#ff9f7f', '#0096ff', '#9fe6b8', '#32c5e9', '#1d9dff'],
+        title: {
+            text: '全球各国确诊情况',
+            // subtext: '累计确诊人数（截止至北京时间2020-06-09 08:30）',
+            left: 'center',
+            textStyle: {
+                color: 'white'
+            },
+            top: 'top'
+        },
         tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
+            formatter: function(params) {
+                var value = params.value + '';
+                return params.seriesName + '<br/>' + params.name + ' : ' + value + '人';
+            }
         },
-        legend: {
-            left: 'center',
-            top: 'bottom',
-            data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5', 'rose6', 'rose7', 'rose8']
+        visualMap: {
+            min: 0,
+            max: 1000000,
+            text: ['High', 'Low'],
+            realtime: false,
+            calculable: false,
+            textStyle: {
+                color: 'white'
+            },
+            color: ['#481380', '#7f78d2', '#efb1ff', '#ffe2ff']
         },
         series: [{
-            name: '面积模式',
-            type: 'pie',
-            //饼图大小
-            radius: ['10%', '70%'],
-            center: ['50%', '50%'],
-            //饼图显示模式area面积模式radius半径模式
-            roseType: 'radius',
-            // 文本标签控制饼形图文字的相关样式
-            label: {
-                fontSize: 10
+            name: '累计确诊人数',
+            type: 'map',
+            mapType: 'world',
+            roam: true,
+            itemStyle: {
+                normal: {
+                    areaColor: '#fce8d5',
+                    borderColor: 'rgb(0,108,255)',
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        color: 'black'
+                    },
+                    areaColor: '#fce8d5'
+                }
             },
-            // 引导线调整
-            labelLine: {
-                // 连接扇形图线长
-                length: 6,
-                // 连接文字线长
-                length2: 8
-            },
-            data: [
-                { value: 10, name: '广东' },
-                { value: 5, name: '北京' },
-                { value: 15, name: '武汉' },
-                { value: 25, name: '浙江' },
-                { value: 20, name: '上海' },
-                { value: 35, name: '江苏' },
-                { value: 30, name: '云南' },
-                { value: 40, name: '河北' }
-            ]
+            nameMap: nameMap,
+            // data: 
         }]
     };
+    // 把配置和数据给实例对象
+    myChart.setOption(option);
+    var virus = []
+    var ajax = function() {
+        $.ajax({
+            url: 'http://111.231.75.86:8000/api/countries/',
+            type: 'get',
+            // data: {},
+            dataType: 'json',
+            success: function(data) {
+                var num = data
+                for (var i = 0; i < num.length; i++) {
+                    virus.push({ name: num[i].countryName, value: num[i].confirmedCount })
+                }
+                // console.log(virus)
+                // console.log(virus)
+                // myChart.hideLoading()
+                //必须在这里在设置一遍，这里涉及到的问题不太懂，只知道如不再设置，而在ajax外赋值是没有作用的
+                myChart.setOption({ //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        data: virus
+                    }]
+                })
+            }
+        })
+    }
+    ajax()
+    setInterval(ajax, 3600000) //设定定时器，循环运行;
 
-    myChart.setOption(option)
     window.addEventListener('resize', function() {
         myChart.resize()
     })

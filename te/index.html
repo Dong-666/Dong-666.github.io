@@ -4,21 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>中国疫情地图</title>
+    <title>全球疫情地图</title>
     <!--     <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"> -->
     <!--     <script src="Bootstrap/js/bootstrap.min.js"></script> -->
     <script src="js/echarts.min.js"></script>
     <!-- arcgis模块 -->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css">
-    <script src="https://js.arcgis.com/4.15/"></script>
+    <!--     <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.15/"></script> -->
     <script src="js/jquery.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
     <header>
-        <h1> 中国疫情地图 </h1>
+        <h1> 全球疫情地图 </h1>
         <div class="showTime"></div>
+        <div class="data">数据来源于丁香园、腾讯</div>
         <script>
         var formaDate = function() {
             var d = new Date()
@@ -45,17 +46,12 @@
         <!-- 左 -->
         <div class="column">
             <div class="panel bar">
-                <h2>各省疫情状况</h2>
+                <h2>各洲累计确诊分布</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
             </div>
             <div class="panel line">
-                <h2>各省疫情状况</h2>
-                <div class="chart"></div>
-                <div class="panelFooter"></div>
-            </div>
-            <div class="panel pie">
-                <h2>各省疫情状况</h2>
+                <h2>全球疫情趋势</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
             </div>
@@ -66,14 +62,14 @@
             <div class="no">
                 <div class="no-hd">
                     <ul>
-                        <li>12566</li>
-                        <li>10000</li>
+                        <li></li>
+                        <li></li>
                     </ul>
                 </div>
                 <div class="no-bd">
                     <ul>
-                        <li>当前确诊人数</li>
                         <li>累计确诊人数</li>
+                        <li>累计治愈人数</li>
                     </ul>
                 </div>
             </div>
@@ -82,32 +78,39 @@
                 <div class="map1"></div>
                 <div class="map2"></div>
                 <div class="map3"></div>
-                <div class="chart" id="viewDiv"></div>
+                <div class="chart" id="viewDiv">
+                </div>
             </div>
         </div>
         <!-- 右 -->
         <div class="column">
             <div class="panel bar1">
-                <h2>各省疫情状况</h2>
-                <div class="chart"></div>
-                <div class="panelFooter"></div>
-            </div>
-            <div class="panel line1">
-                <h2>各省疫情状况</h2>
-                <div class="chart"></div>
-                <div class="panelFooter"></div>
-            </div>
-            <div class="panel pie1">
-                <h2>各省疫情状况</h2>
+                <h2>各国疫情确诊情况</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
             </div>
         </div>
     </section>
     <script src="js/flexible.js"></script>
+    <script src="js/world.js"></script>
     <!-- <script src="js/echarts.min.js"></script> -->
-    <script src="js/arcgis.js"></script>
+    <!--     <script src="js/arcgis.js"></script> -->
     <script src="js/index.js"></script>
+    <script>
+    $.ajax({
+        url: 'http://111.231.75.86:8000/api/statistics/latest/',
+        type: 'get',
+        // data: {},
+        dataType: 'json',
+        success: function(data) {
+            // console.log(data)
+            var sum = data.globalStatistics.confirmedCount
+            var cureSum = data.globalStatistics.curedCount
+            $(".no-hd li:first").text(sum)
+            $(".no-hd li:nth-child(2)").text(cureSum)
+        }
+    })
+    </script>
 </body>
 
 </html>
