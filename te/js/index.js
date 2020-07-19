@@ -28,7 +28,7 @@
     var count = [];
     var ajax = function() {
         $.ajax({
-            url: 'http://111.231.75.86:8000/api/countries/',
+            url: 'https://111.231.75.86:8000/api/countries/',
             type: 'get',
             // data: {},
             dataType: 'json',
@@ -376,7 +376,7 @@
     var count1 = []
     var ajax = function() {
         $.ajax({
-            url: 'http://111.231.75.86:8000/api/countries/daily/',
+            url: 'https://111.231.75.86:8000/api/countries/daily/',
             type: 'get',
             // data: {},
             dataType: 'json',
@@ -710,7 +710,7 @@
     var virus = []
     var ajax = function() {
         $.ajax({
-            url: 'http://111.231.75.86:8000/api/countries/',
+            url: 'https://111.231.75.86:8000/api/countries/',
             type: 'get',
             // data: {},
             dataType: 'json',
