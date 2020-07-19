@@ -67,11 +67,11 @@ header h1 {
 .mainbox .column {
     flex: 3;
 }
-
 .column:nth-child(2) {
     flex: 6;
     margin: 0 0.125rem 0.1875rem;
     overflow: hidden;
+    /* position: relative; */
 }
 
 .panel {
@@ -84,7 +84,8 @@ header h1 {
     margin-bottom: 0.3rem;
 }
 
-.panel::before {
+/* 蓝色小框 */
+.bl::before {
     position: absolute;
     top: 0;
     /* 要给内容 */
@@ -96,7 +97,7 @@ header h1 {
     border-left: 2px solid #02a6b5;
 }
 
-.panel::after {
+.bl::after {
     position: absolute;
     top: 0;
     /* 要给内容 */
@@ -158,11 +159,11 @@ header h1 {
 }
 
 .bar1 {
-    height: 10rem;
+    height: 10.3rem;
 }
 
 .bar1 .chart {
-    height: 10rem;
+    height: 10.3rem;
 }
 
 .no {
@@ -235,7 +236,7 @@ header h1 {
 }
 
 .map {
-    height: 10rem;
+    height: 8.95rem;
     position: relative;
     /* border: 2px solid #02a6b5; */
 }
@@ -282,7 +283,8 @@ header h1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 8rem;
+    height: 8.95rem;
+    border: 1px solid rgba(25, 186, 139, 0.17);
 }
 
 @keyframes rotate {

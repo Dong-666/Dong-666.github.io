@@ -23,7 +23,7 @@ var china = function() {
             text: '南丁格尔玫瑰图',
             x: 'center'
         },
-        color: ['#37a2da', '#9fe6b8', '#ffdb5c', '#ff9f7f', '#fb7293', '#8378ea'],
+        color: ['#37a2da', '#9fe6b8', '#ffdb5c', '#ff9f7f', '#fb7293', '#8378ea', '#00d887'],
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -100,9 +100,9 @@ var china = function() {
                 })
             }
         })
+        setInterval(ajax, 3600000) //设定定时器，循环运行;
     }
     ajax()
-    // setInterval(ajax, 3600000) //设定定时器，循环运行;
 
     //图表跟随屏幕自适应
     window.addEventListener('resize', function() {
@@ -215,9 +215,9 @@ var china = function() {
                 })
             }
         })
+        setInterval(ajax, 3600000) //设定定时器，循环运行;
     }
     ajax()
-    setInterval(ajax, 3600000) //设定定时器，循环运行;
 
     window.addEventListener("resize", function() {
         myChart.resize();
@@ -425,11 +425,9 @@ var china = function() {
                 })
             }
         })
+        setInterval(ajax, 3600000) //设定定时器，循环运行;
     }
-
     ajax()
-    setInterval(ajax, 3600000) //设定定时器，循环运行;
-
     window.addEventListener('resize', function() {
         myChart.resize()
     })
@@ -715,13 +713,13 @@ var china = function() {
             success: function(data) {
                 var res = data.data || "";
                 res = JSON.parse(res).chinaTotal.confirm;
-        virus.push({ name: '中国', value: res })
-        myChart.setOption({ //加载数据图表
-            series: [{
-                // 根据名字对应到相应的系列
-                data: virus
-            }]
-        })
+                virus.push({ name: '中国', value: res })
+                myChart.setOption({ //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        data: virus
+                    }]
+                })
             }
         });
         $.ajax({

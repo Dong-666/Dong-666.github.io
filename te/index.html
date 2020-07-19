@@ -19,7 +19,7 @@
     <header>
         <h1> 全球疫情地图 </h1>
         <div class="showTime"></div>
-        <div class="data">数据来源于丁香园、腾讯</div>
+        <div class="data">数据来源于腾讯</div>
         <script>
         var formaDate = function() {
             var d = new Date()
@@ -45,12 +45,12 @@
     <section class="mainbox">
         <!-- 左 -->
         <div class="column">
-            <div class="panel bar">
+            <div class="panel bl bar">
                 <h2>各洲累计确诊分布（海外）</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
             </div>
-            <div class="panel line">
+            <div class="panel bl line">
                 <h2>全球疫情趋势（海外）</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
@@ -78,13 +78,14 @@
                 <div class="map1"></div>
                 <div class="map2"></div>
                 <div class="map3"></div>
-                <div class="chart" id="viewDiv">
-                </div>
+                <div class="chart" id="viewDiv"></div>
+                <div class="panelFooter"></div>
+
             </div>
         </div>
         <!-- 右 -->
         <div class="column">
-            <div class="panel bar1">
+            <div class="panel bl bar1">
                 <h2>世界疫情确诊情况前十五</h2>
                 <div class="chart"></div>
                 <div class="panelFooter"></div>
