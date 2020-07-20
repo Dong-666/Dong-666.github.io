@@ -1,13 +1,13 @@
     require([
-        //require写什么，后面require必须按require的顺序写
+        //require写什么，后面参数必须按require的顺序写
         "esri/WebMap",
         // "esri/Map", //地图模块
         "esri/views/MapView", //地图查看器模块
         "esri/layers/FeatureLayer", //要素图层
         // "dojo/domReady!"
         "esri/layers/TileLayer"
-    ], function(WebMap,MapView, FeatureLayer,TileLayer) {
-        
+    ], function(WebMap, MapView, FeatureLayer, TileLayer) {
+
         //基础底图
         // var map = new Map({
         //     basemap: "streets-night-vector" //底图样式

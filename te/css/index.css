@@ -12,7 +12,6 @@
 }
 
 body {
-    /* background: url('../images/bg.jpg') no-repeat top center; */
     /* 覆盖整个页面 */
     background-size: cover;
     margin: 0;
@@ -251,42 +250,6 @@ header h1 {
     /* border: 2px solid #02a6b5; */
 }
 
-/* .map .map1 {
-    position: absolute;
-    height: 6.475rem;
-    width: 6.475rem;
-    opacity: 0.3;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: url('../images/map.png') no-repeat;
-    background-size: 100% 100%;
-}
-
-.map .map2 {
-    position: absolute;
-    height: 6.475rem;
-    width: 6.475rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: url('../images/lbx.png') no-repeat;
-    background-size: 100% 100%;
-    animation: rotate 15s linear infinite;
-}
-
-.map .map3 {
-    position: absolute;
-    height: 6.475rem;
-    width: 6.475rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: url('../images/jt.png') no-repeat;
-    background-size: 100% 100%;
-    animation: rotate1 10s linear infinite;
-}
- */
 .map .chart {
     /* background-color: #151965; */
     position: absolute;
