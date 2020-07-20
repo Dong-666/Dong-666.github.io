@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2020-07-20T07:10:07.663Z</updated>
+  <updated>2020-07-20T09:29:01.781Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -15,6 +15,249 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>格网统计图</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/</id>
+    <published>2020-07-20T09:08:55.000Z</published>
+    <updated>2020-07-20T09:29:01.781Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验思路"><a href="#实验思路" class="headerlink" title="实验思路"></a>实验思路</h1><ol><li><p>创建渔网</p></li><li><p>连接</p></li><li><p>裁剪</p></li><li><p>符号化</p></li></ol><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><p>本次实验选择深圳市以及深圳市的餐饮点数据</p><p>将其加载进ArcMap中</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/ebc83d957299d255c21878bdcf474dee.png" alt></p><h2 id="创建渔网"><a href="#创建渔网" class="headerlink" title="创建渔网"></a>创建渔网</h2><p>利用<em>【数据管理工具】|【要素类】|【创建渔网】</em></p><p>输入深圳行政区域</p><p>【像元高度和像元宽度】设为0.05</p><p>【几何类型】选择面类型</p><p>创建标注点可不勾（个人认为没有必要勾选，实验不会用到，浪费处理时间，但勾了也没问题）</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/8fb0aea8b6d90d1007afd4d25e509435.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/cc88f918801a3777c9ed7decbf5b793e.png" alt></p><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>在连接之前一定要确保餐饮点数据和生成的渔网数据的投影坐标系一致</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/240d4a498c91ceaf0eda915f8783490e.png" alt></p><p>PS：不一致可以利用坐标系工具将其投影成一样的（参考实验08 坐标系总结）</p><p>进行餐饮点和渔网的连接</p><ol><li>在渔网图层上右键单击【连接和关联】|【连接】</li><li>选择【基于空间位置的另一图层的数据】</li><li>选择‘餐饮点’</li><li>汇总属性勾选‘总和’</li><li>选择输出路径</li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/272cc18c276117ba9364842432715071.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/b4f38f68e6b13b6a1f8654a69439cab8.png" alt></p><ol start="6"><li>将count为0的选中并删除</li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/e7a0cdf877d788ee50fc94fd76888adc.png" alt></p><h2 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h2><p>利用<strong>【分析工具】|【提取分析】|【裁剪】</strong></p><p>将渔网按照深圳范围裁剪</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/28aeea9483cc5e0fb3bf70136a552499.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/a9171d3c962ea68978cd459cb4c438af.png" alt></p><h2 id="符号化"><a href="#符号化" class="headerlink" title="符号化"></a>符号化</h2><p>右键图层【属性】|【符号系统】|【数量】|【分级色彩】</p><p>【值】选择Count</p><p>分为9个类别</p><p>选择色带</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/4de63888586d5eecd58efeef55198091.png" alt></p><p>利用查询工具进行检验</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%A0%BC%E7%BD%91%E7%BB%9F%E8%AE%A1%E5%9B%BE/a3d95207682be373d484077ef38574f1.png" alt></p><p>可以看到颜色最红的代表着这里的餐饮点数较多，越绿则比较少</p><p>实验结束，可以进行制图</p>]]></content>
+    
+    <summary type="html">
+    
+      本次实验选择深圳市以及深圳市的餐饮点数据来进行格网数据分析
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>坐标系总结</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E5%9D%90%E6%A0%87%E7%B3%BB%E6%80%BB%E7%BB%93/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E5%9D%90%E6%A0%87%E7%B3%BB%E6%80%BB%E7%BB%93/</id>
+    <published>2020-07-20T09:08:43.000Z</published>
+    <updated>2020-07-20T09:27:41.985Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><ol><li><p>分清地理坐标系和投影坐标系</p></li><li><p>什么地区选什么带号</p></li><li><p>如何使用有关坐标系的三个工具</p></li></ol><h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><h2 id="两种坐标系"><a href="#两种坐标系" class="headerlink" title="两种坐标系"></a>两种坐标系</h2><ul><li><p><strong>地理坐标：用经纬度表示地面点位的球面坐标。</strong></p></li><li><p><strong>地理坐标系进行地图投影后就变成了了投影坐标系</strong></p></li><li><p>地图投影：是按照一定的数学法则将地球椭球面上的经纬网转换到平面上，使地面点位的地理坐标与地图上相应的点位的平面直角坐标或平面极坐标间，建立起一一对应的函数关系，能够实现由地球椭球面向地图平面的科学转变。</p></li><li><p><strong>坐标系是数据或地图的属性</strong></p></li><li><p><strong>投影是坐标系的属性</strong></p></li></ul><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9D%90%E6%A0%87%E7%B3%BB%E6%80%BB%E7%BB%93/e9f5a040120548905840b41552afa207.png" alt></p><ul><li><p><strong>地理坐标系经过投影后变成投影坐标系，立体向平面的转变</strong></p></li><li><p><strong>投影坐标因此由地理坐标系和投影组成，所以投影坐标系必然包括有一个地理坐标系</strong></p></li><li><p><strong>一个数据或一张地图一定有坐标系，而一个坐标系可以有投影可以没有投影，但有投影坐标系就一定有地理坐标系</strong></p></li></ul><p>比如WGS_1984_UTM_Zone_46N</p><p>WGS_1984指出了其地理坐标系为GCS_WGS_1984</p><p>UTM_Zone_46N使用的投影名为横轴墨卡托（UTM）其投影带为N北半球第46带</p><h2 id="3°分带和6°分带"><a href="#3°分带和6°分带" class="headerlink" title="3°分带和6°分带"></a>3°分带和6°分带</h2><p>我国基本比例尺地形图除1:100万采用兰伯特投影（Lambert）外，其他采用高斯-克吕格投影</p><p>而高斯-克吕格投影又分为3度或6度带投影</p><p>带号 = （经度整数位/6）整数部分 + 31</p><p>表：</p><table><thead><tr><th>带号</th><th>经度范围（东经）（°）</th><th>中央经线经度（°）</th></tr></thead><tbody><tr><td>43N</td><td>72-78</td><td>75</td></tr><tr><td>44N</td><td>78-84</td><td>81</td></tr><tr><td>45N</td><td>84-90</td><td>87</td></tr><tr><td>46N</td><td>90-96</td><td>93</td></tr><tr><td>47N</td><td>96-102</td><td>99</td></tr><tr><td>48N</td><td>102-108</td><td>105</td></tr><tr><td>49N</td><td>108-114</td><td>111</td></tr><tr><td>50N</td><td>114-120</td><td>117</td></tr><tr><td>51N</td><td>120-126</td><td>123</td></tr><tr><td>52N</td><td>126-132</td><td>129</td></tr><tr><td>53N</td><td>132-138</td><td>135</td></tr></tbody></table><p>我国通常有：</p><ol><li><p>CGCS2000_3_Degree_GK_CM_105E</p></li><li><p>CGCS2000_3_Degree_GK_Zone_35</p></li><li><p>CGCS2000_GK_CM_105E</p></li><li><p>CGCS2000_GK_Zone_18</p></li></ol><p>在我国标准地形图上，X坐标的前两位代表所在分度带带号，其余的表示X坐标</p><p>3度带带号 = （经度 + 1.5°）/3 取整</p><p>6度带带号 = （经度 + 6°）/6 取整</p><p>1:1万比例尺采用3°分带</p><p>1:2.5万~1:50万采用6°分带</p><table><thead><tr><th>3°带号</th><th>东经范围（°）</th><th>中央经度（°）</th></tr></thead><tbody><tr><td>24</td><td>70.5-73.5</td><td>72</td></tr><tr><td>25</td><td>73.5-76.5</td><td>75</td></tr><tr><td>26</td><td>76.5-79.5</td><td>78</td></tr><tr><td>27</td><td>79.5-82.5</td><td>81</td></tr><tr><td>28</td><td>82.5-85.5</td><td>84</td></tr><tr><td>29</td><td>85.5-88.5</td><td>87</td></tr><tr><td>30</td><td>88.5-91.5</td><td>90</td></tr><tr><td>31</td><td>91.5-94.5</td><td>93</td></tr><tr><td>32</td><td>94.5-97.5</td><td>96</td></tr><tr><td>33</td><td>97.5-100.5</td><td>99</td></tr><tr><td>34</td><td>100.5-103.5</td><td>102</td></tr><tr><td>35</td><td>103.5-106.5</td><td>105</td></tr><tr><td>36</td><td>106.5-109.5</td><td>108</td></tr><tr><td>37</td><td>109.5-112.5</td><td>111</td></tr><tr><td>38</td><td>112.5-115.5</td><td>114</td></tr><tr><td>39</td><td>115.5-118.5</td><td>117</td></tr><tr><td>40</td><td>118.5-121.5</td><td>120</td></tr><tr><td>41</td><td>1215-1245</td><td>123</td></tr><tr><td>42</td><td>1245-127</td><td>126</td></tr><tr><td>43</td><td>127-1305</td><td>129</td></tr><tr><td>44</td><td>1305-133</td><td>132</td></tr><tr><td>45</td><td>133.5-136.5</td><td>135</td></tr><tr><td>6°带号</td><td>东经范围（°）</td><td>中央经度（°）</td></tr><tr><td>13</td><td>72-78</td><td>75</td></tr><tr><td>14</td><td>78-84</td><td>81</td></tr><tr><td>15</td><td>84-90</td><td>87</td></tr><tr><td>16</td><td>90-96</td><td>93</td></tr><tr><td>17</td><td>96-102</td><td>99</td></tr><tr><td>18</td><td>102-108</td><td>105</td></tr><tr><td>19</td><td>108-114</td><td>111</td></tr><tr><td>20</td><td>114-120</td><td>117</td></tr><tr><td>21</td><td>120-126</td><td>123</td></tr><tr><td>22</td><td>126-132</td><td>129</td></tr><tr><td>23</td><td>132-138</td><td>135</td></tr></tbody></table><h2 id="ArcGIS工具"><a href="#ArcGIS工具" class="headerlink" title="ArcGIS工具"></a>ArcGIS工具</h2><ol><li><p>定义投影（未知坐标系）</p><p>【数据管理工具】|【定义投影】</p><p>此工具用于定义位置坐标系的数据集（栅格矢量均可），使用要知道该数据集的正确坐标系</p></li></ol><p>​    （CAD的dxg等数据加载到ArcGIS里面是没有坐标系的，可以通过此工具定义）</p><ol start="2"><li><p>投影（矢量）</p><p>【数据管理工具】|【要素】|【投影】</p><p>矢量数据专用</p><p>从一种坐标系投影到另一种坐标系</p><p>这里的矢量数据必须要有坐标系</p></li><li><p>投影栅格（栅格）</p><p>【数据管理工具】|【栅格】|【投影栅格】</p><p>栅格数据专用</p><p>从一种投影变换到另一种投影</p><p>这里的栅格数据必须要有坐标系</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      对坐标系进行总结
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于围棋视角下肯德基麦当劳分布特点可视化---厦门为例</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/</id>
+    <published>2020-07-20T09:08:30.000Z</published>
+    <updated>2020-07-20T09:26:15.092Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><ol><li><strong>实验数据准备</strong></li></ol><p>厦门市行政区划.shp、厦门肯德基和麦当劳POI数据<em>（注意：在导入XY数据时，不要选择投影坐标系）</em></p><ol start="2"><li><strong>概念与理论</strong></li></ol><p><strong>渔网：</strong></p><p><strong>叠加分析-相交：</strong></p><p><strong>邻域分析-近邻分析：</strong></p><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><ol><li><strong>创建渔网</strong></li></ol><p>利用【数据管理工具】|【要素类】|【创建渔网】生成棋盘</p><p>【像元高度】2000</p><p>【像元宽度】2000</p><p>不要勾选创建标注点，否则会产生多余的标注点</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/700ec75f2ccfdcb996b87f22cdd78a52.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/d432916d5b87d3021e02483b7d9d63dd.png" alt></p><p>利用【分析工具】|【提取分析】|【裁剪】对矢量要素进行裁剪</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/a14281765c0a6a88e56ebbd462bc5000.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/d2f06c0b00050eea9828a681fa238e95.png" alt></p><ol start="2"><li><p><strong>创建相交点</strong></p><p>利用【分析工具】|【叠加分析】|【相交】生成渔网线（围棋线）的交点</p><p>输出类型选择POINT</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/0f2e253bdf72a2bf7696492b25b93c47.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/4974c2e49795fe3098cb56a1ba0c1d1a.png" alt></p></li><li><p><strong>近邻分析</strong></p><p>利用<em>【分析工具】|【邻域分析】|【近邻分析】</em>对肯德基POI和交点进行匹配</p><p>【输入要素】选择肯德基</p><p>【邻近要素】选择交点</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/725451b1e972dd5aa44508860ed69493.png" alt></p><p>打开肯德基的属性表，可以看到新增了NEAR_FID和NEAR_DIST两个字段</p><p>即肯德基与交点的匹配字段码和距离</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/5ea8ee5f45909033307e2944b01bbe0d.png" alt></p><p>可以利用查询工具进行检验</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/678231b0f32875542058e64d3d861be4.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/2390184660a5a71490172a1056e2e881.png" alt></p><p>在相交点的图层上右键单击【连接与关联】|【连接】</p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/88ca81c670fbcd20275c571e2e42e8b2.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/92b50dececd409a323f8a4708cd691e2.png" alt></p><p>​    打开该图层的的属性表，可以看到已经完成连接，但是有空值的出现，直接删除掉就可以了（匹配不到）</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/02a26b76c46e91a8cb74c3ad0888b380.png" alt></p><p>​    最后肯德基的图层右键【属性】|【定义查询】</p><p>​    输入”肯德基.FID &gt; 0”即可将肯德基的点吸附到相交的棋盘点上</p><p>​    <img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/445ba7e311120157615d9b67cd2a1605.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/3355a50fa6c5edf8050226225a08240b.png" alt></p><p>​    麦当劳的可视化过程一样，这里不再赘述</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/b5f100485ee3b100eb48a5fa1cfbd859.png" alt></p><ol start="4"><li><p><strong>符号化</strong></p><p>将棋盘线颜色设为RGB(75,32,0)</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/1b611fd3149888419201b3435ae528d9.png" alt></p><p>将厦门行政区颜色设置RGB(176,133,89)</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/f1a141996a09ea0be5817c3af389a900.png" alt></p><p>成果图如下：</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%9B%B4%E6%A3%8B%E8%A7%86%E8%A7%92%E4%B8%8B%E8%82%AF%E5%BE%B7%E5%9F%BA%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9%E5%8F%AF%E8%A7%86%E5%8C%96-%E5%8E%A6%E9%97%A8%E4%B8%BA%E4%BE%8B/0e27d85fb56d0d8af24b177ad7603cdd.png" alt="0e27d85fb56d0d8af24b177ad7603cdd"></p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      这是一个有趣的实验，采用围棋视角下表达肯德基麦当劳的分布特点，以厦门市为例
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>不同坡度植被覆盖率分析</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/</id>
+    <published>2020-07-20T09:08:17.000Z</published>
+    <updated>2020-07-20T09:24:11.114Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><h2 id="实验思路"><a href="#实验思路" class="headerlink" title="实验思路"></a>实验思路</h2><h3 id="实验数据准备"><a href="#实验数据准备" class="headerlink" title="实验数据准备"></a>实验数据准备</h3><p>梅江区DEM高程数据及梅江区植被覆盖（草地、耕地、林地）矢量数据</p><h3 id="理论概念"><a href="#理论概念" class="headerlink" title="理论概念"></a>理论概念</h3><p><strong>坡度：</strong></p><ul><li><p>地表面任一点的坡度是指过该点的切平面与水平地面的夹角，坡度表示了地表面在该点的倾斜程度</p></li><li><p>实际应用中，坡度有两种表示方法</p><p>①坡度，即水平面与地形面之间夹角</p><p>②坡度百分比：即高程增量与水平增量之间的百分数</p></li></ul><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/e985eeb8d878c964cb3178c13274b610.png" alt></p><p><strong>坡度分析：</strong></p><p>工具：【Spacil Analyst】|【表面分析】|【坡度】</p><p>【坡度表示方法】默认为DEGREE</p><p>【Z因子】输入高程变换系数，一般用于平面度量单位与高程度量单位不一致的情况</p><p><strong>重分类：</strong></p><p>基于原有数值，对原有数值重新进行分类整理从而得到一组新值并输出</p><p>工具：【Spacil Analyst】|【重分类】|【重分类】</p><p><strong>叠加分析-标识：</strong></p><p>输入图层进行叠加，是在图层交迭的区域，表示图层的属性将赋给输入图层在该区域内的底图要素，同时交迭区域也有部分的图形的变化</p><p>工具：【分析工具】|【叠加分析】|【标识】</p><p>需注意在ArcGIS中标识图层必须是多边形图层</p><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><ol><li><strong>坡度分析</strong></li></ol><p>利用<em>【Spacial Analyst】|【表面分析】|【坡度】</em>输出梅江区的坡度数据</p><p>其中参数设置为：</p><ul><li><p>【输出测量单位】为DEGREE(百分比)</p></li><li><p>【Z因子】为0.0001</p></li></ul><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/b5d04bf7c9cdecd30bce8d3aab0b92ba.png" alt></p><ol start="2"><li><p><strong>重分类</strong></p><p>由于直接计算坡度，数据会比较离散，后面无法进行分区统计，因此利用重分类把坡度分成若干要统计的类别</p><p>实验数据范围为10-85，可以将其分为9类</p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/a1ab2ac16aac20572b8aaab0f9bc923f.png" alt></p><ol start="3"><li><p><strong>栅格转面</strong></p><p>要把栅格数据转换为矢量（这里也可以把矢量的数据转换栅格，反正要进行叠加分析，数据纬度要进行统一）</p><p>利用<em>【转换工具】|【由栅格转出】|【栅格转面】</em></p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/11c4126fef305292dda8cda3f00d9ea3.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/00158b09c5820d6f80ef7bfef5ae7640.png" alt></p><ol start="4"><li><p><strong>叠加分析-标识</strong></p><p>接下来利用<em>【分析工具】|【叠加分析】|【标识】</em>将梅江区的植被覆盖数据和坡度数据进行标识</p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/2b20af0a5dba6101c5ccb99674f9cbc4.png" alt></p><p>​    查看叠加分析后图层的属性表</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/b905f457368455200f27b0fe848ecca1.png" alt></p><ol start="5"><li><strong>汇总统计</strong></li></ol><p>利用<em>【分析工具】|【统计分析】|【汇总统计数据】</em>将相同的面积进行加和</p><p>【统计字段】选择Area，【统计类型】为SUM</p><p>【案例分组字段】选择gridcode和class_name</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/3eb372814ebbcbba40590fa0971e0f2a.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/33468625cf9f4e072f1e713c55d2aa9d.png" alt></p><ol start="6"><li><p><strong>Excel之图表</strong></p><p>将该属性表导出为dbf格式</p><p>然后再excel中打开</p><p>并进行制图表</p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/55cac0d13a512137fcfdd924eabea8a7.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/fbb51c84473bcb0c4d4759a296a796d2.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/c4da4ccdfc14f093a21e9a86ab31f6e8.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/f0c108a38196227d342eaa07b3d42125.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/716f803ed55b6538663f7de0323cb7d3.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/ffe0700d628f9ee56b3a4b6a833cb9b5.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/b73e2e2ea8891d07c26f527d5cb143c2.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/f90be1c024978dd730af5440bf8c0306.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E4%B8%8D%E5%90%8C%E5%9D%A1%E5%BA%A6%E6%A4%8D%E8%A2%AB%E8%A6%86%E7%9B%96%E7%8E%87%E5%88%86%E6%9E%90/6774d280d4915baddb73779000270554.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      掌握不同坡度植被覆盖率分析，本实验以梅州市梅江区为研究区
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于厦门景点POI 的核密度分析（平面及三维显示）</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/</id>
+    <published>2020-07-20T09:08:04.000Z</published>
+    <updated>2020-07-20T09:23:03.403Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>掌握<strong>核密度分析</strong>研究厦门旅游空间分布特征。本实验基于POI数据对厦门全域旅游空间格局进行分析</p><h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p>由规划云中的POI查询工具获取到厦门市的旅游景点POI数据（原是通过高德地图开方平台获取到POI数据然后进行清洗整理，这部分内容到后面有时间再来补充，本实验直接采用规划云中POI景点数据，共151个景点）</p><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><ol><li>将收集到的文本数据在Excel中打开，在菜单栏上选择【数据】|【获取外部数据】|【自文本】</li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/83618a09faaa7ce6e4e9d12e4e804f19.png" alt></p><ol start="2"><li>然后以逗号为分隔符，将数据导入Excel表</li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/5e9d07fb37a77dc84a70bb7cb6722547.png" alt></p><ol start="3"><li>打开ArcMap，右键单击属性，查看图层的坐标系</li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/5f70f5ce3ff35c8e731b98f98d748467.png" alt></p><ol start="4"><li>可以看到数据为地理坐标系，我们需要给它们设置投影坐标系</li></ol><h2 id="投影坐标系"><a href="#投影坐标系" class="headerlink" title="投影坐标系"></a>投影坐标系</h2><ol><li>利用<em>【数据管理工具】|【投影与变换】|【要素】|【投影】</em>进行设置</li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/5ba922ba41782107e4f6f70c9afad978.png" alt></p><ol start="2"><li>由于更改投影是临时的，我们需要将数据重新导出再打开，查看图层的属性，可以看到已经投影成功</li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/0706647d1f81eab36b520a857f84a92d.png" alt></p><h2 id="核密度分析"><a href="#核密度分析" class="headerlink" title="核密度分析"></a>核密度分析</h2><ol><li><strong>处理环境设置</strong></li></ol><p>利用<em>【Spacial Analyst】|【密度分析】|【核密度分析】</em>进行核密度分析</p><p>打开对话框后，首先设置【环境】，将【处理范围】和【栅格分析】处理为一致的厦门行政区，其他默认，OK</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/f31532d9f5b16869fabd9beb7f127bc9.png" alt></p><ol start="2"><li><strong>拉伸设置</strong></li></ol><p>在图层右键图层属性，选择【符号系统】|【拉伸】，选择合适的颜色进行美化拉伸</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/f37d7b9460b6ab9b34c0d617101545b4.png" alt></p><p>因为点不够密集，做出来的效果不太明显</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/f957c1f9c174eebc15d4991edc9ff3e9.png" alt></p><h2 id="三维显示"><a href="#三维显示" class="headerlink" title="三维显示"></a>三维显示</h2><p>打开ArcScene，将核密度分析的平面栅格打开</p><p>右键图层属性【符号系统】|【分类】</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/eaec32987199751b24073a9d340ebfcf.png" alt></p><p>选择【基本高度】|【在自定义表面上浮动】</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/b80ffca260ef83df4ffadd9ace987c1a.png" alt></p><p>然后再菜单栏上选择【视图】|【场景属性】|【基于范围进行计算】OK</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/ec966c789f4a35fa012e6d92790bc86d.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/b80ffca260ef83df4ffadd9ace987c1a.png" alt></p><p>由于本次实验的数据数量太少，效果不突出，不过流程步骤是可以的（或者你可以在进行核密度处理的时候，将【搜索半径】调大或调小来适应你的数据）</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9F%BA%E4%BA%8E%E5%8E%A6%E9%97%A8%E6%99%AF%E7%82%B9POI-%E7%9A%84%E6%A0%B8%E5%AF%86%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E5%B9%B3%E9%9D%A2%E5%8F%8A%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%EF%BC%89/9d6bb80417d13ec27b5dff56f336588f.png" alt="9d6bb80417d13ec27b5dff56f336588f"></p>]]></content>
+    
+    <summary type="html">
+    
+      掌握核密度分析研究厦门旅游空间分布特征。本实验基于POI数据对厦门全域旅游空间格局进行分析
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>水文分析与表面分析</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/</id>
+    <published>2020-07-20T09:07:50.000Z</published>
+    <updated>2020-07-20T09:20:31.900Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="水文分析"><a href="#水文分析" class="headerlink" title="水文分析"></a>水文分析</h1><h2 id="1-拼接DEM"><a href="#1-拼接DEM" class="headerlink" title="1.拼接DEM"></a>1.拼接DEM</h2><ol><li><p>选择【数据管理工具】|【栅格】|【栅格数据集】|【镶嵌至新栅格】工具，打开对话框；</p></li><li><p>【输入栅格】中选择要拼接的栅格块；</p></li><li><p>【输出位置】|【具有拓展名的栅格数据集名称】|【像素类型】|【波段数】|【镶嵌运算符】（这里选MEAN）</p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/ac7471688897a1d7405ee31b73fdee75.jpg" alt="C:\\Users\\cjy\\Desktop\\DEM栅格数据拼接.jpg"></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/81945647cd537731d057d26ffc92a659.png" alt></p><p>​    注意点：</p><ul><li>栅格的处理注意路径一般只能用英文，否则可能出现“error99999无法复制栅格数据集”的错误；</li></ul><ul><li>波段数的输入和像素类型的选择要注意栅格图层的原有属性；</li></ul><h2 id="2-洼地填充filldem"><a href="#2-洼地填充filldem" class="headerlink" title="2.洼地填充filldem"></a>2.洼地填充filldem</h2><ol><li><p>打开【自定义】|【拓展模块】|选中【Special Analyst分析】；</p></li><li><p>选择【Special Analyst工具】|【水文分析】|【填洼】；</p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/822183d5c1eac2d1f998554f3f99086d.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\9362b9df94e1184bb1691ff5c9fa026.png"></p><h2 id="3-汇流累积量"><a href="#3-汇流累积量" class="headerlink" title="3.汇流累积量"></a>3.汇流累积量</h2><h3 id="流向fdirfill"><a href="#流向fdirfill" class="headerlink" title="流向fdirfill"></a>流向fdirfill</h3><p>选择【Special Analyst工具】|【水文分析】|【流向】；</p><p>【输入】：无洼地DEM</p><p>【输出】无洼地水流流向数据fdirfill</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/3cc664c03b6aaadaf46b5f6d641ab19f.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\927c42e4c0157810104ed2dc0513c8c.png"></p><h3 id="计算汇流累计量"><a href="#计算汇流累计量" class="headerlink" title="计算汇流累计量"></a>计算汇流累计量</h3><p>选择【Special Analyst工具】|【水文分析】|【流量】；</p><p>【输入】：无洼地DEM流向数据</p><p>【输出】：流量flowacc</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/31d1109fc55b9538413a47799cb555ab.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\3fbe0497e504219f6b1b33a88c9f813.png"></p><h3 id="水流长度计算"><a href="#水流长度计算" class="headerlink" title="水流长度计算"></a>水流长度计算</h3><p>【Special Analyst工具】|【水文分析】|【水流长度】</p><p>测量方法：</p><ol><li>顺流方向DOWNSTREAM— 计算沿流路径从每个像元到栅格边上的汇点或出水口的下坡距离；</li></ol><ol start="2"><li><p>溯流方向UPSTREAM— 计算沿流路径从每个像元到分水岭顶部的最长上坡距离</p><p>这里选择顺流方向进行研究。</p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/27349d10cb8f051d056ba706f919673b.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\307376efabfd6631189c25b028bf392.png"></p><h2 id="河网提取"><a href="#河网提取" class="headerlink" title="河网提取"></a>河网提取</h2><h3 id="河网生成"><a href="#河网生成" class="headerlink" title="河网生成"></a>河网生成</h3><p>【Special Analyst工具】|【地图代数】|【栅格计算器】</p><h4 id="（1）根据流量提取河网（根据不同的沟谷设置不同的阈值）"><a href="#（1）根据流量提取河网（根据不同的沟谷设置不同的阈值）" class="headerlink" title="（1）根据流量提取河网（根据不同的沟谷设置不同的阈值）"></a>（1）根据流量提取河网（根据不同的沟谷设置不同的阈值）</h4><p>​    这里阈值取2000</p><p>​    输入“flowacc&gt;2000”</p><p>​    输出为streamnet2000</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/21d5a123ba172339c9f66411eaf4acf4.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\9f21801fb72a150aef38459c41f2390.png"></p><h4 id="（2）重分类河网栅格数据（关键）"><a href="#（2）重分类河网栅格数据（关键）" class="headerlink" title="（2）重分类河网栅格数据（关键）"></a>（2）重分类河网栅格数据（关键）</h4><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/89fe055be264420bb5c0141951ba52dc.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\c9e748d65abf2968f79f6ef8e960e52.png"></p><h4 id="（3）数量化栅格河网"><a href="#（3）数量化栅格河网" class="headerlink" title="（3）数量化栅格河网"></a>（3）数量化栅格河网</h4><p>【Special Analyst工具】|【水文分析】|【栅格河网矢量化】</p><p>【输入】：重分类后的河网栅格数据、河流流向数据</p><p>【输出】：河网矢量数据</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/d96e82ebe7964429c6e6447556e25b16.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\61f762f75472b54d2aa88786937ecff.png"></p><h3 id="Stream-link生成（河网的连接点、包括弧段的起点和终点）"><a href="#Stream-link生成（河网的连接点、包括弧段的起点和终点）" class="headerlink" title="Stream link生成（河网的连接点、包括弧段的起点和终点）"></a>Stream link生成（河网的连接点、包括弧段的起点和终点）</h3><h4 id="（1）根据河网栅格数据提取连接点"><a href="#（1）根据河网栅格数据提取连接点" class="headerlink" title="（1）根据河网栅格数据提取连接点"></a>（1）根据河网栅格数据提取连接点</h4><p>【Special Analyst工具】|【水文分析】|【河流连接】</p><p>【输入】：重分类后的河流栅格数据、河流流向数据</p><p>【输出】：河流连接栅格数据（弧段和结点）</p><h4 id="（2）矢量化streamlink数据"><a href="#（2）矢量化streamlink数据" class="headerlink" title="（2）矢量化streamlink数据"></a>（2）矢量化streamlink数据</h4><p>【Special Analyst工具】|【水文分析】|【栅格河网矢量化】</p><p>【输入】：streanmlink栅格数据、河流流向数据</p><p>【输出】：streamlink矢量数据</p><h3 id="河网分级生成"><a href="#河网分级生成" class="headerlink" title="河网分级生成"></a>河网分级生成</h3><p>分级方法</p><ol><li>STRAHLER：仅当级别相同的河流交汇时，河网分级才会升高。因此，一级连接线与二级连接线相交会保留二级连接线，而不会创建三级连接线。这是默认设置；</li></ol><ol start="2"><li>SHREVE：所有没有支流的连接线的量级（分级）将被指定为一。量级是指可相加的河流下坡坡度。当两个连接线相交时，将它们的量级相加，然后将其指定为下坡连接线。</li></ol><h4 id="（1）将河网栅格数据进行河网分级"><a href="#（1）将河网栅格数据进行河网分级" class="headerlink" title="（1）将河网栅格数据进行河网分级"></a>（1）将河网栅格数据进行河网分级</h4><p>【Special Analyst工具】|【水文分析】|【河网分级】</p><p>【输入】：河网栅格数据（重分类前后均可）、河流流向数据、</p><p>【输出】：河网分级数据</p><p>这里采用STRAHLER方法</p><h4 id="（2）矢量化且符号化分级河网结果"><a href="#（2）矢量化且符号化分级河网结果" class="headerlink" title="（2）矢量化且符号化分级河网结果"></a>（2）矢量化且符号化分级河网结果</h4><p>【Special Analyst工具】|【水文分析】|【栅格河网矢量化】</p><p>将字段grid_code作为分类依据</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/1a990e46824f38ca42e6783415d96c35.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\29d53d607feaa17a6d5932c1d599c08.png"></p><h2 id="5-流域的分割"><a href="#5-流域的分割" class="headerlink" title="5.流域的分割"></a>5.流域的分割</h2><h3 id="流域盆地的确定"><a href="#流域盆地的确定" class="headerlink" title="流域盆地的确定"></a>流域盆地的确定</h3><p>（1）【Special Analyst工具】|【水文分析】|【流域分析】；</p><p>【输入】：河流流向数据；</p><p>【输出】：流域数据</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/ed359d2a4167608b5db0c4e0a91676c5.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\421e9893af58bb7583b4df6f92c3563.png"></p><h3 id="汇水区出水口的确定"><a href="#汇水区出水口的确定" class="headerlink" title="汇水区出水口的确定"></a>汇水区出水口的确定</h3><p>（可以使用streamlink代替）</p><p>【Special Analyst工具】|【水文分析】|【捕捉倾斜点】</p><p>【输入】：将要捕捉的输入倾斜点位置（这里输入streamlink数据）；</p><p>【入蓄积栅格数据】：流量数据；</p><p>【输出】：汇水区出水口数据</p><h3 id="集水流域的生成"><a href="#集水流域的生成" class="headerlink" title="集水流域的生成"></a>集水流域的生成</h3><p>【Special Analyst工具】|【水文分析】|【分水岭】</p><p>【输入】：流向栅格数据</p><p>【输入栅格数据或要素倾斜点数据】：要素倾泻点数据或者streamlink数据</p><p>【输出】：集水流域；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/b205229867552be9838cf6fc7aa8ec58.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\1913243efd70a587cca520ea57bbd8a.png"></p><h1 id="表面分析"><a href="#表面分析" class="headerlink" title="表面分析"></a>表面分析</h1><h2 id="坡度Slope"><a href="#坡度Slope" class="headerlink" title="坡度Slope"></a>坡度Slope</h2><ol><li><strong>坡度生成</strong></li></ol><p>选择【Special Analyst工具】|【表面分析】|【坡度】；</p><p>其中Z因子设为0.00003（Z因子设置越小，结果越精细，默认为1）</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/bc410c04eb0b310c3d34bc6ffcb69204.jpg" alt="C:\\Users\\cjy\\Desktop\\专题图\\梅州市坡度.jpg"></p><ol start="2"><li><p><strong>重分类reclassslope</strong></p><p>目的：由于山地坡度分类存在等级差别，固将其值进行重分类</p><ol><li>选择【Special Analyst工具】|【重分类】|【重分类】；</li><li>将其按如下分类为6类，分为5,15,25,35,45,83；</li></ol><table><thead><tr><th>山地坡度分类</th><th></th></tr></thead><tbody><tr><td>&lt;5°平坦坡</td><td>5°~15°缓坡</td></tr><tr><td>16°~25°斜坡</td><td>26°~35°陡坡</td></tr><tr><td>36°~45°急坡</td><td>&gt;45°险坡</td></tr></tbody></table><ol start="3"><li>打开重分类的栅格图层的属性表，添加【area】字段，并利用【字段计算器】输入“count*30*30”计算各级坡度所占的面积（其中count表示栅格个数，30*30是每个栅格的面积，可在原先DEM图层属性中找到）</li></ol></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/85d43c8cae0393c6d912fdfa20027d16.png" alt="C:\\Users\\cjy\\Desktop\\专题图\\9f2862488d6605a7272c3cf49eb3975.png"></p><h2 id="2-地表粗糙度"><a href="#2-地表粗糙度" class="headerlink" title="2.地表粗糙度"></a>2.地表粗糙度</h2><p>打开【Spatial Analysis工具】|【代数计算】|【栅格计算器】</p><p>输入公式：1 / Cos（[Slope of DEM]*3.14159/180）</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/bc7acaff5e72c6fb27afc66edca39a29.jpg" alt="C:\\Users\\cjy\\Desktop\\专题图\\梅州市地表粗糙度专题图.jpg"></p><h2 id="3-剖面曲率Slope-slope"><a href="#3-剖面曲率Slope-slope" class="headerlink" title="3.剖面曲率Slope_slope"></a>3.剖面曲率Slope_slope</h2><p>选择【3D Analyst工具】|【栅格表面】|【坡度】</p><p>【输入】：上一步的坡度的结果；</p><p>【输出】：slope_slope</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/ea2ca508e7e771530c84adaf480f423d.jpg" alt="C:\\Users\\cjy\\Desktop\\专题图\\梅州市剖面曲率.jpg"></p><h2 id="4-坡向Aspect"><a href="#4-坡向Aspect" class="headerlink" title="4.坡向Aspect"></a>4.坡向Aspect</h2><p>选择【Special Analyst工具】|【表面分析】|【坡向】；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/78b04283ccd828ef00f38fdd59698c20.jpg" alt="C:\\Users\\cjy\\Desktop\\专题图\\梅州市坡向专题图.jpg"></p><p>其中Z因子设为0.00003（Z因子设置越小，结果越精细，默认为1）</p><h2 id="5-平面曲率Slope-aspect"><a href="#5-平面曲率Slope-aspect" class="headerlink" title="5.平面曲率Slope_aspect"></a>5.平面曲率Slope_aspect</h2><p>选择【3D Analyst工具】|【栅格表面】|【坡度】</p><p>【输入】：上一步得到的坡向数据；</p><p>【输出】：Slope_aspect</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/87a834545a20dc3825344ee5fd6e12cf.jpg" alt="C:\\Users\\cjy\\Desktop\\专题图\\梅州市平面曲率.jpg"></p><h2 id="6-提取等高线"><a href="#6-提取等高线" class="headerlink" title="6.提取等高线"></a>6.提取等高线</h2><p>选择【3D Analyst工具】|【栅格表面】|【等值线】</p><p>【输入】：mz_dem</p><p>【等值线间距】：300</p><p>【Z因子】：1</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/665519ac0fd5a9cbae4e6160e05661f7.jpg" alt="C:\\Users\\cjy\\Desktop\\专题图\\梅州市等高线.jpg"></p><h2 id="7-提取地形表面的阴影图"><a href="#7-提取地形表面的阴影图" class="headerlink" title="7.提取地形表面的阴影图"></a>7.提取地形表面的阴影图</h2><p>选择【3D Analyst工具】|【栅格表面】|【山体阴影】</p><p>生成地表阴影栅格Hillsha</p><p>进行DEM渲染</p><p>关闭除了mz_dem和hillsha以外所有图层的显示，将hillsha置于mz_dem之上</p><p>并对mz_dem图层属性进行符号化，拉伸如下：</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/b2da0bb4f6fb0ff7f06b6e6f0082e69b.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\5fb586860e970032fd80956d0abac6c.png"></p><p>在工具栏空白处右键，打开【效果】工具栏，设置栅格图层mz_dem的透明度为45%左右，结果如图：</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/dc7cdc71157645a0093ead394a0712e9.jpg" alt="C:\\Users\\cjy\\Desktop\\专题图\\梅州市地形表面阴影.jpg"></p><h2 id="8-剖面图"><a href="#8-剖面图" class="headerlink" title="8.剖面图"></a>8.剖面图</h2><p>在工具栏空白处右键，打开【3D<br>Analyst】工具栏，点击【线插值】工具，跟踪一条线段，点击【剖面图】按钮，可得到要求的剖面图；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/a5a2ba3ac65325d8f083252a33819e77.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\8ac295a45a6d09f4bd0828e27859dc1.png"></p><h2 id="9-起伏度"><a href="#9-起伏度" class="headerlink" title="9.起伏度"></a>9.起伏度</h2><p>选择【Special Analyst工具】|【领域分析】|【焦点统计】</p><ol><li><p>A</p><p>设置统计类型为最大值maximum；</p><p>领域类型为矩形；</p><p>领域大小为7x7；</p><p>得到一个领域为7x7的矩形最大值层面；</p></li><li><p>B</p><p>设置统计类型为最小值minimum；</p><p>领域类型为矩形；</p><p>领域大小为7x7；</p><p>得到一个领域为7x7的矩形最小值层面；</p></li><li><p>在【Special Analyst工具】|【栅格计算器】中输入A-B，</p></li></ol><p>得到一个新层面，其每个栅格的值是以这个栅格为中心的确定领域的地形起伏值。</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%88%86%E6%9E%90/0d654d3a4a0bfbb5bf804c0b7f0b1730.jpg" alt="C:\\Users\\cjy\\Desktop\\专题图\\梅州市地势起伏度.jpg"></p><p>注意点：</p><p>①坐标系统为CGCS-2000</p>]]></content>
+    
+    <summary type="html">
+    
+      掌握水文分析和表面分析的相关操作
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>地形梯度效果生成</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/</id>
+    <published>2020-07-20T09:07:35.000Z</published>
+    <updated>2020-07-20T09:19:26.954Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验思路"><a href="#实验思路" class="headerlink" title="实验思路"></a>实验思路</h1><p>关键词：重分类；栅格转面；Shp-sketchup插件；</p><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><p>打开ArcScene，在目录树下在所在DEM数据集下右键单击属性，查看坐标系</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/0f356b9136499b61484f06601903f0c8.png" alt="0f356b9136499b61484f06601903f0c8"></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/3985ef0bafb14d0a057e057157965a96.png" alt="3985ef0bafb14d0a057e057157965a96"></p><p>由图可知，该数据坐标系为经纬度的地理坐标系，而高程处理一般要转换为投影坐标</p><p>这里我们进行重新设置坐标系</p><p>利用<em>【数据管理工具】|【投影与变换】|【投影栅格】</em></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/06cea2a3c2208ec524ac5b2910ee2688.png" alt="06cea2a3c2208ec524ac5b2910ee2688"></p><p>打开图层属性，可看到已经转换成功</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/b043bc5aee934f344c3da8da90fe4ea7.png" alt="b043bc5aee934f344c3da8da90fe4ea7"></p><h2 id="符号化"><a href="#符号化" class="headerlink" title="符号化"></a>符号化</h2><p>打开图层属性，选择【符号系统】下的【已分类】，打开【分类】对话框，方法设置为【定义的间隔】，【间隔大小】这里设置为200（间隔大小视源数据的高程大小而定，如果不想要太密集，就把值调大，如果本身数据的高程很小，可以把值调小）</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/47f426f8f2eeb40091f6e64fd9572443.png" alt="47f426f8f2eeb40091f6e64fd9572443"></p><p>选择好看的颜色进行渲染</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/7523d1075a9ccc90d23c5a849f0cc6ca.png" alt="7523d1075a9ccc90d23c5a849f0cc6ca"></p><h2 id="重分类"><a href="#重分类" class="headerlink" title="重分类"></a>重分类</h2><p>利用<em>【Spacial Analyst】|【重分类】|【重分类】</em>对数据选择value字段进行重分类</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/0361978fda20ec97b4b7e6031d70bd80.png" alt="0361978fda20ec97b4b7e6031d70bd80"></p><h2 id="栅格转面"><a href="#栅格转面" class="headerlink" title="栅格转面"></a>栅格转面</h2><p>利用<em>【转换工具】|【由栅格转出】|【栅格转面】</em>将分类好的栅格转为面要素</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/d7535fc1f1ef9fc71a7e200260fe7434.png" alt="d7535fc1f1ef9fc71a7e200260fe7434"></p><h2 id="高程计算"><a href="#高程计算" class="headerlink" title="高程计算"></a>高程计算</h2><p>打开面要素的属性表，利用【添加字段】为该图层添加一个名为Height的实际高程字段，利用【字段计算器】输入‘gridcode<br>* 200（上文的间隔大小）’</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/271b5e4e542e3280d7ef6523b4ce2946.png" alt="271b5e4e542e3280d7ef6523b4ce2946"></p><h2 id="拉伸"><a href="#拉伸" class="headerlink" title="拉伸"></a>拉伸</h2><p>打开图层属性中的【拉伸】| 勾选【拉伸图层中的要素·····】</p><p>打开【表达式】，点击Height</p><p>将拉伸方式选为【将其添加到各要素的基本高度】</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/5c5f480be9ed4dd0dd7c32b2fc08a14d.png" alt="5c5f480be9ed4dd0dd7c32b2fc08a14d"></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/75be29199ff5d9e2b25fe31eba8e7f7a.png" alt="75be29199ff5d9e2b25fe31eba8e7f7a"></p><h2 id="导出SketchUp格式"><a href="#导出SketchUp格式" class="headerlink" title="导出SketchUp格式"></a>导出SketchUp格式</h2><p>下载SketchUp插件</p><p>在Arcscene菜单栏上选择【自定义模式】|【从文件添加】| 添加SketchUp插件</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/3bfaee6d0f8f73efab6cc03810596888.png" alt="3bfaee6d0f8f73efab6cc03810596888"></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/c71f13fc8dfe28a2d5ade6d49a5df2c0.png" alt="c71f13fc8dfe28a2d5ade6d49a5df2c0"></p><p>在【自定义模式】中勾选SketchUp插件，可看到图4.14的工具栏</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/ffb256902cb8bf2be21da279caf43983.png" alt="ffb256902cb8bf2be21da279caf43983"></p><p>在工具栏上；利用【选择】工具将整个模型选中，然后双击SketchUp工具。打开Options对话框，选择输出路径及参数</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/52921a6efc30eb59e1694890033bfaac.png" alt="52921a6efc30eb59e1694890033bfaac"></p><h2 id="在SketchUp中操作"><a href="#在SketchUp中操作" class="headerlink" title="在SketchUp中操作"></a>在SketchUp中操作</h2><p>打开SketchUp，点击【打开文件】将skp格式的地形梯度打开，可利用SketchUp的编辑工具进行修正分析等</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%9C%B0%E5%BD%A2%E6%A2%AF%E5%BA%A6%E6%95%88%E6%9E%9C%E7%94%9F%E6%88%90/91f976c97255b236bd36e1b4016a3599.png" alt="91f976c97255b236bd36e1b4016a3599"></p><h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1>]]></content>
+    
+    <summary type="html">
+    
+      地形梯度效果的生成
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>制作阴影效果总结</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/</id>
+    <published>2020-07-20T09:07:21.000Z</published>
+    <updated>2020-07-20T09:18:10.937Z</updated>
+    
+    <content type="html"><![CDATA[<p>注意：</p><p>在制作阴影前，一定要注意先把要做阴影的要素类导入到地理数据库中，才能够进行制图表达</p><h1 id="纯色阴影"><a href="#纯色阴影" class="headerlink" title="纯色阴影"></a>纯色阴影</h1><ol><li><p><strong>将要素类的符号转为制图表达</strong></p><ol><li>在内容列表中，右键要素类图层，单击【将符号系统转换为制图表达】</li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/2f5d0045d457c6f62a7cbafa76b91103-1595217620622.png" alt="2f5d0045d457c6f62a7cbafa76b91103"></p></li><li><p><strong>使用移动几何的方式</strong></p><ol><li><p>右键点击转为制图表达的图层打开属性框，在符号选项卡上，在【单色模式】将颜色改为灰度70%</p></li><li><p>点击右上角的+号按钮添加几何效果并选择【移动】，点击【确定】</p></li><li><p>将X、Y的偏移值分别改为3pt，-3pt</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/1ecba16b3c78898a26a72c338e040a3f.png" alt="1ecba16b3c78898a26a72c338e040a3f"></p></li></ol></li><li><p>在内容列表中，将原要素图层转为制图表达后的图层叠加显示（注意制图表达图层在下边），便出现了阴影的效果</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/a0dcc7e00c65e03888dd7843746acb68.png" alt="a0dcc7e00c65e03888dd7843746acb68"></p></li></ol><h1 id="渐变阴影"><a href="#渐变阴影" class="headerlink" title="渐变阴影"></a>渐变阴影</h1><ol><li><p><strong>将制图表达的符号改为渐变模式</strong></p></li><li><p>在内容列表中，右键点击带有制图表达的图层并点击属性，在符号选项卡中，在【单色模式】右上角点击黑色小箭头并选择【渐变】模式；<img src= "/img/loading.gif" data-src="/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/d70408ed43aab285523768c0063749c9.png" alt="d70408ed43aab285523768c0063749c9"></p></li><li><p>将【颜色1】改为灰度10%，将【颜色2】改为黑色，使用HSV算法，样式选择【缓冲区】，修改间隔为100，百分比为5，角度为0；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/8208152b3fe329c20083f35a74182497.png" alt="8208152b3fe329c20083f35a74182497"></p></li><li><p>这样，边缘的阴影效果就会变得比较柔和，不过，这种方法对于较小的多边形效果不明显，这时可以使用【】的方式修正</p></li><li><p>使用方式修正阴影</p></li><li><p>在内容列表中，修改查看方式为【按选择列出】，对转为制图表达的要素类，点击第一个图标最后使这个图层为选中状态；<img src= "/img/loading.gif" data-src="/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/a2c7bad4b5f8a50b04d16655e922392b.png" alt="a2c7bad4b5f8a50b04d16655e922392b"></p></li><li><p>调出制图表达工具条和编辑工具条；</p></li><li><p>点击【开始编辑】这个要素类；</p></li><li><p>在制图表达工具条上，使用箭头选择阴影效果不正确的多边形；</p></li><li><p>在制图表达工具条上，点击制图表达属性来显示被选中的多边性的值表达规则，属性表会在左侧的内容列表中出现；</p></li><li><p>修改百分比值，小多边形需要将该值调大，本实验中，改为60-90；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/2c360324dd04e1fca67a807847438bb5.png" alt="2c360324dd04e1fca67a807847438bb5"></p></li><li><p>在编辑工具条上，停止编辑并进行保存。</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      掌握ArcGIS制作阴影效果的步骤
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>矢量数据分析方法及典型应用实例</title>
+    <link href="http://dong-666.github.io/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/"/>
+    <id>http://dong-666.github.io/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/</id>
+    <published>2020-07-20T09:07:02.000Z</published>
+    <updated>2020-07-20T09:15:47.255Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>矢量数据不同于栅格数据，一般不存在模式化的分析处理方法。在ArcGIS中，矢量数据的空间分析主要集中于缓冲分析、叠置分析、网络分析和追踪分析等方面。通过该实验掌握缓冲区的基本原理、缓冲区建立和缓冲区分析的基本方法；理解矢量数据空间叠加分析的基本原理、掌握常用的空间叠加分析方法；通过具体应用实例进行市区择房分析和大型超市选址综合应用，进一步掌握和理解叠置分析和缓冲分析。</p><p>关键词：空间分析；缓冲分析；叠置分析；选址问题</p><h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><p>1.掌握缓冲区的基本原理；</p><p>2.掌握缓冲区建立和缓冲区分析的基本方法；</p><p>3.掌握矢量数据空间叠加分析的基本原理；</p><p>4.掌握常用的空间叠加分析方法；</p><p>5.掌握具体的应用实例—-选址问题；</p><h1 id="缓冲区分析"><a href="#缓冲区分析" class="headerlink" title="缓冲区分析"></a>缓冲区分析</h1><h2 id="1-实验内容"><a href="#1-实验内容" class="headerlink" title="1.实验内容"></a>1.实验内容</h2><p>某房地产商准备开发一个住宅小区，需要对城市噪声进行分析，拟通过计算各地的噪声强度找出受噪声影响较小的区域。</p><h2 id="2-实验步骤"><a href="#2-实验步骤" class="headerlink" title="2.实验步骤"></a>2.实验步骤</h2><p>1）打开ArcMap，加载城市路网数据streets；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/0eb09d8135f0aceceb76392d0eea014d.png" alt="0eb09d8135f0aceceb76392d0eea014d"></p><p>​                                                            图一 路网数据</p><p>2）加载缓冲区工具</p><p>在菜单栏下选择【自定义】|【自定义模式】|【命令】|【工具】|【缓冲向导】|<br>将其拖拉到任意工具条空白处；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/67be73a54bb1c3b66eea54bb627563af.png" alt="67be73a54bb1c3b66eea54bb627563af"></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/80e70ff1c0b38241ea4e8b65db6c995f-1595216817760.png" alt="80e70ff1c0b38241ea4e8b65db6c995f"></p><p>​                                                                    图二 调出缓冲向导工具</p><p>3）根据道路噪声衰减的特点并研究路网数据的空间范围，确定适宜的缓冲距离及缓冲区数量；</p><p>①缓冲区距离：100米；</p><p>②缓冲区数量：20个；</p><p>4）点击第2步中添加的缓冲向导按钮，打开对话框，选择需要建立缓冲区的数据strees图层</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/802d8699df59f627ca83996472ebd734.png" alt="802d8699df59f627ca83996472ebd734"></p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/deec726beed03e100130259f721779e9.png" alt="deec726beed03e100130259f721779e9"></p><p>图三 设置缓冲向导图层及参数</p><p>5）生成缓冲区</p><p>设置缓冲区的合并及保存路径，单击【确定】生成多环缓冲区</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/64514417d372859b7e223fbce0479c62.png" alt="64514417d372859b7e223fbce0479c62"></p><p>图四 多环缓冲区图</p><p>6）在缓冲区数据的属性表中添加一个长整型类型的字段MeanDist（平均距离），打开字段选择器，在文本框中输入‘([FromBufDist]</p><ul><li>[ToBufDist]) / 2’;</li></ul><p>7）在属性表中再添加一个双精度类型的字段Noise，打开字段选择器，在文本框中输入‘100<br>^ (1 – [MeanDist] / 2000)’</p><p>（100指假设每个道路产生噪声为100，2000指噪声影响的最大距离）</p><p>8）将噪声数据转换成栅格数据</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/99849d0397cd3a1942146890b1c0a45a.png" alt="99849d0397cd3a1942146890b1c0a45a"></p><p>图五 多环缓冲区图栅格化</p><h1 id="叠加分析"><a href="#叠加分析" class="headerlink" title="叠加分析"></a>叠加分析</h1><h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><p>根据规划道路的中心线及道路红线宽度（100m），确定各村将被征用的各类土地，并完成面积的分类统计表。</p><p>多边形与多边形叠加：</p><ol><li><p>图形之间要产生切割；</p></li><li><p>属性之间要产生继承；</p></li></ol><h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><p>1）打开ArcMap，加载数据，调整图层顺序，浏览数据；</p><p>2）打开‘道路用地统计表.xls’了解需要统计的数据；</p><p>3）以road为输入数据，以50米（缓冲区半径采用道路红线宽度的一半）建立缓冲区，产生道路用地范围数据，【分析工具】|【领域分析】|【缓冲区】；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/bf2f2d02fd1dd1b65f8fde3c8e3b8d96.png" alt="bf2f2d02fd1dd1b65f8fde3c8e3b8d96"></p><p>​                                                                        图一 缓冲区工具</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/5b5218162010667ea1579970525ee49e.png" alt="5b5218162010667ea1579970525ee49e"></p><p>​                                                                    图二 生成道路缓冲区</p><p>4）将缓冲区道路与土地利用信息空间叠加，【分析工具】|【领域分析】|【相交】得到道路用地范围的土地利用数据；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/6ed6f4217abeef958afb15a17af02737.png" alt="6ed6f4217abeef958afb15a17af02737"></p><p>​                                                                        图三 将土地进行叠加—-相交</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/4ac7ec8204518ee1744d6ffa4bb1b4c1.png" alt="4ac7ec8204518ee1744d6ffa4bb1b4c1"></p><p>​                                                                    图四 叠加—-相交</p><p>5）利用【分析工具】|【叠加分析】|【标识】将得到的用地范围内的土地再与village进行叠加；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/219723d9927c1595da532555306f4bb9.png" alt="219723d9927c1595da532555306f4bb9"></p><p>​                                                                                图五 将村落标识叠加</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/8f422cd33eb97573b68a63b247a29baa.png" alt="8f422cd33eb97573b68a63b247a29baa"></p><p>​                                                                                图六 村落标识</p><p>6）在经过叠加后的属性表上添加一个双精度类型的新字段newArea，单击右键【计算几何】，重新计算面积；</p><p>7）重算土地类型代码，在属性表上添加一个长整型的新字段newCODE，右键【字段计算器】在文本框输入‘left([CODE],1)’提取各类土地的一级代码；</p><p>8）面积分类汇总，打开【分析工具】|【统计分析】|【频数】统计各村各类土地的面积；</p><p>9）将表格输出；</p><p>10）在EXCEL表中整理并按表格的要求进行单位换算与填写。</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/15993cf6ccf0b70d163421f4efb4e7f4.png" alt="15993cf6ccf0b70d163421f4efb4e7f4"></p><p>​                                                                图七 道路用地分村统计表</p><h1 id="应用实例一-市区择房分析"><a href="#应用实例一-市区择房分析" class="headerlink" title="应用实例一 市区择房分析"></a>应用实例一 市区择房分析</h1><h2 id="实验内容-1"><a href="#实验内容-1" class="headerlink" title="实验内容"></a>实验内容</h2><p>所寻求的市区是噪声要小，距离盛业中心和各大名牌高中要近，环境优雅离名胜古迹较近，给预定一个定量限定如下：</p><p>（1）离主要市区交通要道200m之外，交通要到的车流量大，噪声产生的主要源于此（ST为道路类型中的只要市区交通要道）；</p><p>（2）距大型商业中心的影响，以商业中心的代销来确定影响区域，具体是以属性字段YUZHI；</p><p>（3）距名牌高中在750m之内，以便小孩上学便捷；</p><p>（4）距名胜古迹500m之内；</p><p>最后分别将满足上诉条件的其中一个条件的取值为1，不满足的取值为0，即如果满足距主要市区交通要道200m之内，取值为1，反之为0；其他亦是如此，最后将其累加得到分级。即满足三个条件累加得到3，满足2个条件的得到2，最后将全部分为4级。</p><h2 id="实验步骤-1"><a href="#实验步骤-1" class="headerlink" title="实验步骤"></a>实验步骤</h2><p><strong>一、缓冲区分析</strong></p><p>1.主干道噪声缓冲区的建立</p><p>（1）选择交通网络图层（network.shp）打开图层属性表，左上角【表选项】|【按属性选择】输入‘TYPE=ST’，选择出市区主要道路出来；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/c728c5cbbc4f8c4d9a120a630978dac0.png" alt="c728c5cbbc4f8c4d9a120a630978dac0"></p><p>​                                                                图一 交通道路图通过属性选择要素</p><p>（2）调出缓冲向导</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/e4cce71d3c12609edd91adad9e6bf3ec.png" alt="e4cce71d3c12609edd91adad9e6bf3ec"></p><p>【自定义】|【自定义模式】|【命令】|【工具】|【缓冲向导】将其拖到菜单栏空白处；</p><p>（3）【缓冲向导】对话框，按照需求选择；</p><p>2.完成交通（噪声）、商业中心、学校、名胜古迹的缓冲分布图</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/1133f718f0aae28106eb737963939d64.png" alt="1133f718f0aae28106eb737963939d64"></p><p>​                                                                        图二 市区交通要道200m之外缓冲区</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/1397f59a4abc76388f6daa7f7825379c.png" alt="1397f59a4abc76388f6daa7f7825379c"></p><p>​                                                            图三 商业中心影响范围缓冲区</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/158ef3cc7a8d299f16af9117cdcd2661.png" alt="158ef3cc7a8d299f16af9117cdcd2661"></p><p>​                                                                                        图四 名牌高中的覆盖范围</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/90699aa4a8af34678ae6fa146254c93c.png" alt="90699aa4a8af34678ae6fa146254c93c"></p><p>​                                                                    图五 名胜古迹的周边覆盖影响范围</p><p><strong>二、叠置分析</strong></p><p>1.对商业中心、名牌高中、名胜古迹进行【叠置分析】中的【交集】操作，具体如下：</p><p>【分析工具】|【叠加分析】|【相交】| three.shp</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/627365e3a600349085425493d566bbf3.png" alt="627365e3a600349085425493d566bbf3"></p><p>​                                                                    图六 满足三个条件的区域</p><p>2.利用交通（噪声）缓冲分布图对生成的three.shp进行擦除处理，具体如下：</p><p>【分析工具】|【叠加分析】|【擦除】| four.shp</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/04992b9010c425f663f8df53f833fad5.png" alt="04992b9010c425f663f8df53f833fad5"></p><p>​                                                                        图七 购房者的最佳选择区域</p><p>3.分级别</p><p>满足四个条件为第一等级，以此类推</p><ol><li><p>分别打开商业中心、名牌高中、名胜古迹的缓冲区图层添加market、school、famous字段，全部赋值1；</p></li><li><p>打开交通（噪声）缓冲区图层添加voice字段，赋值-1（这里取-1的原因是噪声缓冲区之外才是满足要求的）；</p></li><li><p>【分析工具】|【叠加分析】|【联合】| union.shp</p></li></ol><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/e4cc9a02c582455a4d3bf88b8ff6a761.png" alt="e4cc9a02c582455a4d3bf88b8ff6a761"></p><p>​                                                                        图八 四个缓冲区的叠加图</p><ol><li><p>打开生成的union.shp的属性表，添加class字段，右键【字段计算器】输入“class=market+voice+school+famous”；</p></li><li><p>符号化</p></li></ol><p>根据class进行分级表达；</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/8a12b4144887e44c2d88054f56d8acbf.png" alt="8a12b4144887e44c2d88054f56d8acbf"></p><p>​                                                                    图九 区域居住适宜性分级</p><h1 id="应用实例二-大型商场选址"><a href="#应用实例二-大型商场选址" class="headerlink" title="应用实例二 大型商场选址"></a>应用实例二 大型商场选址</h1><h2 id="实验内容-2"><a href="#实验内容-2" class="headerlink" title="实验内容"></a>实验内容</h2><p>要求</p><p>待寻找地区的区位条件为：</p><ol><li><p>离城市主要交通线路50m以内，以保证商场交通的通达性；</p></li><li><p>保证在居民区100m范围内，便于居民步行到达商场；</p></li><li><p>距停车场100m范围内，便于顾客停车；</p></li><li><p>距已经存在的商场500m范围之外，减少竞争压力。</p></li></ol><h2 id="实验步骤-2"><a href="#实验步骤-2" class="headerlink" title="实验步骤"></a>实验步骤</h2><p>说明：由于此实验与实验三步骤一致，此处不再赘述。</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/4801a99f49b3f326a55e3061e3d66927-1595217223005.png" alt="4801a99f49b3f326a55e3061e3d66927"></p><p>​                                                                    图一 离城市主要交通线路50m以内</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/9ce289ab19ab7582206173ff8613a425.png" alt="9ce289ab19ab7582206173ff8613a425"></p><p>​                                                            图二 在居民区100m范围内</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/28d6a77328d4e569c9402628284cb30b.png" alt="28d6a77328d4e569c9402628284cb30b"></p><p>​                                                                图三 距停车场100m范围内</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/98d69051ee6eb927a968a044910a2476.png" alt="98d69051ee6eb927a968a044910a2476"></p><p>​                                                            图四 已经存在的商场500m范围</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/1ed6a9659883511bc7793b3502c559fd.png" alt="1ed6a9659883511bc7793b3502c559fd"></p><p>​                                                                            图五 相交结果</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/bb3d6f4ba884f3782b9751040a23922b.png" alt="bb3d6f4ba884f3782b9751040a23922b"></p><p>​                                                                            图六 擦除结果</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/d0cf4d2d306fee794741c8381e352eab.png" alt="d0cf4d2d306fee794741c8381e352eab"></p><p>​                                                                        图七 联合结果</p><p><img src= "/img/loading.gif" data-src="/2020/07/20/%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/bffab35aaf89e0642df334b0de856cc2.jpg" alt="bffab35aaf89e0642df334b0de856cc2"></p><p>​                                                                            图八 商场选址适宜性分析结果</p><h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>通过本实验，了解到了矢量数据不同于栅格数据，一般不存在模式化的分析处理方法。在ArcGIS中，矢量数据的空间分析主要集中于缓冲分析、叠置分析、网络分析和追踪分析等方面。通过该实验掌握缓冲区的基本原理、缓冲区建立和缓冲区分析的基本方法；理解矢量数据空间叠加分析的基本原理、掌握常用的空间叠加分析方法；通过具体应用实例进行市区择房分析和大型超市选址综合应用，进一步掌握和理解叠置分析和缓冲分析。</p>]]></content>
+    
+    <summary type="html">
+    
+      通过该实验掌握缓冲区的基本原理、缓冲区建立和缓冲区分析的基本方法；理解矢量数据空间叠加分析的基本原理、掌握常用的空间叠加分析方法
+    
+    </summary>
+    
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
   
   <entry>
     <title>异步编程</title>
@@ -80,14 +323,6 @@
     </summary>
     
     
-      <category term="空间分析" scheme="http://Dong-666.github.io/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-      <category term="空间分析" scheme="http://Dong-666.github.io/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
@@ -274,231 +509,6 @@
     <updated>2020-07-13T02:41:17.003Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>了解专题地图的组成要素</p><p>掌握专题电子地图的制作方法</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>制作中国人口密度电子地图</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>专题地图突出反映一种或几种主体要素或现象</p></li><li><p>专题地图由图形要素、数学要素和辅助要素等构成</p></li><li><p>图形要素包括地理底图要素和专题要素两大类</p></li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><ol><li><p>浏览并加载数据</p></li><li><p>新建字段（用于存放人口密度）</p></li><li><p>属性连接</p></li><li><p>计算人口密度（人/km²）</p></li><li><p>对人口密度进行符号化</p><p>（小技巧：标注&gt;格式化标注）</p></li><li><p>加载基础地理要素并符号化，设置合理的图层叠置顺序</p></li><li><p>添加标注</p></li><li><p>地图布局与整饰</p><p>（1）页面设置</p><p>（2）调整数据框的大小和位置</p><p>（3）标注经纬度</p><p>（4）插入图名、图例、比例尺、指北针等</p></li><li><p>添加南海诸岛附图</p></li><li><p>保存地图并输出</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验26地图符号的制作与应用</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C26%E5%9C%B0%E5%9B%BE%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E5%BA%94%E7%94%A8/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C26%E5%9C%B0%E5%9B%BE%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%88%B6%E4%BD%9C%E4%B8%8E%E5%BA%94%E7%94%A8/</id>
-    <published>2020-07-13T02:36:05.000Z</published>
-    <updated>2020-07-13T02:37:38.419Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>了解不同类型地图符号的各项属性，掌握地图符号的制作方法，学会应用地图符号制作专题地图</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>创建与制作点状符号、线状符号、面状符号、文字符号等</p><p>应用地图符号制图</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>制图符号通过样式管理器来进行管理</p></li><li><p>每个样式采用一个style文件管理，包括了点状符号、线状符号、面状符号、文字符号等22个符号子库</p></li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><ol><li><p>浏览数据</p></li><li><p>新建样式</p><p>【自定义】|【样式管理器】|【样式】|【创建新样式】</p></li><li><p>点状符号的制作与应用</p><p>（1）点状符号的创建</p><p>【标记符号】| 右键【新建】|【图片标记符号等】</p><p>（2）符号属性的设置</p><p>（3）创建更多的点状符号</p><p>（4）制作符合点状符号</p><p>（5）点状符号的应用</p></li><li><p>线状符号的制作与应用</p><p>【线符号】| 右键【新建】|【制作线符号等】</p></li><li><p>面状符号的制作与应用</p><p>【填充符号】</p></li><li><p>文本符号的制作与应用</p><p>【文字符号】</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验24 三维显示和三维动画制作</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C24-%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%E5%92%8C%E4%B8%89%E7%BB%B4%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C24-%E4%B8%89%E7%BB%B4%E6%98%BE%E7%A4%BA%E5%92%8C%E4%B8%89%E7%BB%B4%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C/</id>
-    <published>2020-07-13T02:31:53.000Z</published>
-    <updated>2020-07-13T02:35:48.797Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>理解<strong>三维显示的原理</strong></p><p>掌握<strong>在场景中进行三维立体显示和制作三维动画的基本方法</strong></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>根据DEM数据，对地形进行三维立体显示，并制作不同的三维动画</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>三维可视化是一种计算机图形生成技术，它首先在计算机中构造显示所需的几何模型，然后根据一定的光照条件，计算显示屏幕上可见的各景物的表面光线亮度，使产生的视觉效果给人以身临其境的感觉</p></li><li><p>三维动画是将不同角度、不同高度下的三维场景进行连续动态展示的结果</p></li></ul><h3 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h3><ol><li><p>加载并浏览数据</p><p> ArcScene</p></li><li><p>对高程进行符号化</p></li><li><p>三维显示</p><p>【属性】|【基本高度】|【在自定义表面上浮动】|【选择DEM】</p></li><li><p>阴影创建</p><p>【3D Analyst】|【栅格表面】|【山体阴影】</p></li><li><p>立体增强</p><p>在hillshade图层属性中完成高程设置（栅格）+ 透明度50%</p><p>在elevation中设置透明度50%</p></li><li><p>浏览并分析</p></li><li><p>加载飞行路径数据path，对其进行符号化三维显示，设置高程</p></li><li><p>打开path图层属性表，选中飞行路线</p></li><li><p>打开动画工具条并设置参数</p><p>根据路径创建飞行动画&gt;垂直偏移（拔高、离地距离）1500米&gt;简化因子中间&gt;播放</p></li><li><p>打开动画控件，播放飞行动画</p></li><li><p>输出为AVI视频文件</p></li><li><p>在视频播放器上播放AVI视频文件</p></li><li><p>采用屏幕捕捉工具，生成新的连续动画过程并进行播放</p></li><li><p>场景流浪过程录制并播放</p></li><li><p>比较以上三种三维动画制作方法的特点</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验23 DEM的生成与应用</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C23-DEM%E7%9A%84%E7%94%9F%E6%88%90%E4%B8%8E%E5%BA%94%E7%94%A8/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C23-DEM%E7%9A%84%E7%94%9F%E6%88%90%E4%B8%8E%E5%BA%94%E7%94%A8/</id>
-    <published>2020-07-13T02:29:16.000Z</published>
-    <updated>2020-07-13T02:31:37.107Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>了解DEM<strong>表面创建的基本过程，熟悉DEM</strong>分析与应用的基本方法</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>采用等高线和高程点生成DEM，并通过对坡度的分析，在某一地区中找出适宜退耕还林的区域，统计各村可以退耕还林的面积</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>根据生态建设的需要，陡坡耕地西药退耕还林</p></li><li><p>退耕区域需要符合两个条件：</p><ul><li><p>地形坡度大于25°</p></li><li><p>土地类型为耕地</p></li></ul></li></ul><h1 id="四、实验步骤"><a href="#四、实验步骤" class="headerlink" title="四、实验步骤"></a>四、实验步骤</h1><h2 id="1-加载高程点和等高线数据（BSGC字段）"><a href="#1-加载高程点和等高线数据（BSGC字段）" class="headerlink" title="1.加载高程点和等高线数据（BSGC字段）"></a>1.加载高程点和等高线数据（BSGC字段）</h2><h2 id="2-打开空间分析扩展功能"><a href="#2-打开空间分析扩展功能" class="headerlink" title="2.打开空间分析扩展功能"></a>2.打开空间分析扩展功能</h2><p>勾选3D Analyst和Spacial Analyst模块</p><h2 id="3-设置分析环境"><a href="#3-设置分析环境" class="headerlink" title="3.设置分析环境"></a>3.设置分析环境</h2><h2 id="4-创建TIN"><a href="#4-创建TIN" class="headerlink" title="4.创建TIN"></a>4.创建TIN</h2><p>由高程点和等高线上的点构成不规则三角网</p><p>利用【3D Analyst】|【数据管理】|【TIN】|【创建TIN】</p><h2 id="5-生成DEM"><a href="#5-生成DEM" class="headerlink" title="5.生成DEM"></a>5.生成DEM</h2><p>利用【3D Analyst】|【转换】|【由TIN转出】|【转为栅格】</p><h2 id="6-计算坡度"><a href="#6-计算坡度" class="headerlink" title="6.计算坡度"></a>6.计算坡度</h2><p>利用【3D Analyst】|【栅格表面】|【坡度】</p><h2 id="7-提取陡坡区域"><a href="#7-提取陡坡区域" class="headerlink" title="7.提取陡坡区域"></a>7.提取陡坡区域</h2><p>通过对坡度数据进行重分类，提取陡坡区域</p><p>分为2类</p><p>0-25  1</p><p>&gt;25  nodata</p><h2 id="8-提取耕地"><a href="#8-提取耕地" class="headerlink" title="8.提取耕地"></a>8.提取耕地</h2><p>DLDM字段所有类型耕地的代码都以11开头</p><p>导出</p><h2 id="9-将耕地数据转换为像元大小为5m的栅格数据"><a href="#9-将耕地数据转换为像元大小为5m的栅格数据" class="headerlink" title="9.将耕地数据转换为像元大小为5m的栅格数据"></a>9.将耕地数据转换为像元大小为5m的栅格数据</h2><p>【转换工具】|【转为栅格】</p><h2 id="10．运用栅格计算器生成退耕区域"><a href="#10．运用栅格计算器生成退耕区域" class="headerlink" title="10．运用栅格计算器生成退耕区域"></a>10．运用栅格计算器生成退耕区域</h2><p>陡坡地 * 耕地</p><p>若无重叠会为空值，得到重叠部分即为所需</p><h2 id="11-统计各村退耕面积"><a href="#11-统计各村退耕面积" class="headerlink" title="11.统计各村退耕面积"></a>11.统计各村退耕面积</h2><p>【Spacial Analyst】|【区域分析】|【以表格显示分区几何统计】</p>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验22 空间插值</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C22-%E7%A9%BA%E9%97%B4%E6%8F%92%E5%80%BC/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C22-%E7%A9%BA%E9%97%B4%E6%8F%92%E5%80%BC/</id>
-    <published>2020-07-13T02:26:42.000Z</published>
-    <updated>2020-07-13T02:28:52.825Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>理解<strong>空间插值的基本原理</strong>，掌握<strong>常用的空间插值方法</strong></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>根据某月的降水观测点数据，采用多种方法进行空间插值，生成中国陆地范围内的降水表面，比较各种方法所得结果之间的差异并制作专题地图</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li><p>空间插值是利用已知点的和数据来估算其他邻近未知点的数据的过程，用于将离散的点数据转换成连续的栅格表面</p></li><li><p>常用的空间插值方法有<strong>反距离权重插值法（IDW）、样条插值法（Spline）和克里金插值法（Kriging）</strong></p></li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h2 id="1-加载数据并设置图层"><a href="#1-加载数据并设置图层" class="headerlink" title="1.加载数据并设置图层"></a>1.加载数据并设置图层</h2><h2 id="2-打开空间分析扩展功能"><a href="#2-打开空间分析扩展功能" class="headerlink" title="2.打开空间分析扩展功能"></a>2.打开空间分析扩展功能</h2><h2 id="3-设置分析环境"><a href="#3-设置分析环境" class="headerlink" title="3.设置分析环境"></a>3.设置分析环境</h2><p>工作环境：本实验目录下</p><p>栅格分析：‘如下面的指定’、10000（10公里）</p><h2 id="4-IDW插值"><a href="#4-IDW插值" class="headerlink" title="4.IDW插值"></a>4.IDW插值</h2><p>利用【Spatial Analyst】|【插值分析】|【反距离权重法】</p><h2 id="5-设置环境二次IDW插值"><a href="#5-设置环境二次IDW插值" class="headerlink" title="5.设置环境二次IDW插值"></a>5.设置环境二次IDW插值</h2><p>由于全国有部分未被覆盖处理到</p><p>环境设置&gt;处理范围&gt;与全国范围一致</p><p>利用【Spatial Analyst】|【插值分析】|【反距离权重法】</p><h2 id="6-设置环境和掩膜三次IDW插值"><a href="#6-设置环境和掩膜三次IDW插值" class="headerlink" title="6.设置环境和掩膜三次IDW插值"></a>6.设置环境和掩膜三次IDW插值</h2><p>有些范围要素不要的会占用空间资源、消耗处理时间，利用掩膜去掉</p><p>环境设置&gt;处理范围&gt;与全国范围一致</p><p>栅格分析&gt;Pinvece裁切</p><h2 id="7、IDW插值、IDW二次插值、IDW三次插值进行比较"><a href="#7、IDW插值、IDW二次插值、IDW三次插值进行比较" class="headerlink" title="7、IDW插值、IDW二次插值、IDW三次插值进行比较"></a>7、IDW插值、IDW二次插值、IDW三次插值进行比较</h2><h2 id="8-样条插值"><a href="#8-样条插值" class="headerlink" title="8.样条插值"></a>8.样条插值</h2><p>利用【Spatial Analyst】|【插值分析】|【样条插值】</p><h2 id="9-克里金插值"><a href="#9-克里金插值" class="headerlink" title="9.克里金插值"></a>9.克里金插值</h2><p>利用【Spatial Analyst】|【插值分析】|【克里金插值】</p><h2 id="10-数据对比"><a href="#10-数据对比" class="headerlink" title="10.数据对比"></a>10.数据对比</h2><p>利用空间查询工具进行对比</p><h2 id="11-统计分析"><a href="#11-统计分析" class="headerlink" title="11.统计分析"></a>11.统计分析</h2><p>利用【Spatial Analyst】|【局部分析】|【像元统计】range</p><p>或者采用【栅格计算器】算出平均值</p><h2 id="12-结果制作"><a href="#12-结果制作" class="headerlink" title="12.结果制作"></a>12.结果制作</h2><h2 id="13-制图"><a href="#13-制图" class="headerlink" title="13.制图"></a>13.制图</h2>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验21 基于栅格的最低层面路径分析</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C21-%E5%9F%BA%E4%BA%8E%E6%A0%85%E6%A0%BC%E7%9A%84%E6%9C%80%E4%BD%8E%E5%B1%82%E9%9D%A2%E8%B7%AF%E5%BE%84%E5%88%86%E6%9E%90/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C21-%E5%9F%BA%E4%BA%8E%E6%A0%85%E6%A0%BC%E7%9A%84%E6%9C%80%E4%BD%8E%E5%B1%82%E9%9D%A2%E8%B7%AF%E5%BE%84%E5%88%86%E6%9E%90/</id>
-    <published>2020-07-13T02:25:09.000Z</published>
-    <updated>2020-07-13T02:26:24.028Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>理解距离制图的基本原理，掌握基于栅格数据的最低成本路径分析方法</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>采用<strong>距离分析</strong>方法，寻找一条从起点到终点的最低成本路径</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><p>栅格像元之间的连通性受摩擦系数的影响，对某一分析目标而言，它具体体现为在某一空间位置上所需要的开销，即成本。通过计算累积成本和成本方向，可以找出从源到目标点的最低成本路径</p><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h2 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1.前期准备"></a>1.前期准备</h2><p>启动ArcMap，激活Spatial Analyst扩展工具</p><p>加载数据、合理调整图层顺序并进行符号化</p><p>打开ArcToolbox，设置空间分析环境</p><p>利用HillShade工具生成杀你阴影，并将其透明叠加到elevation数据之上</p><h2 id="2-创建成本栅格数据"><a href="#2-创建成本栅格数据" class="headerlink" title="2.创建成本栅格数据"></a>2.创建成本栅格数据</h2><p>确定成本因子及其权重：</p><p>地形坡度为0.6</p><p>地表起伏度为0.4</p><p>利用【Spatial Analyst】|【表面分析】|【坡度】生成坡度数据</p><p>利用【Spatial Analyst】|【重分类】|【重分类】对坡度数据进行重分类&gt;10类</p><p>利用【Spatial Analyst】|【邻域分析】|【焦点统计】生成起伏度数据7×7、矩形、Range，并进行重分类&gt;10类</p><p>利用【Spatial Analyst】|【地图代数】|【栅格计算器】计算成本栅格</p><p><code>Cost = rec_slope * 0.6 + rec_qfd * 0.4</code></p><h2 id="3-创建成本距离和成本方向栅格数据"><a href="#3-创建成本距离和成本方向栅格数据" class="headerlink" title="3.创建成本距离和成本方向栅格数据"></a>3.创建成本距离和成本方向栅格数据</h2><p>利用【Spatial Analyst】|【距离分析】|【成本距离】</p><h2 id="4-计算最低成本路径"><a href="#4-计算最低成本路径" class="headerlink" title="4.计算最低成本路径"></a>4.计算最低成本路径</h2><p>利用【Spatial Analyst】|【距离分析】|【成本路径】</p><h2 id="5-结果浏览与分析"><a href="#5-结果浏览与分析" class="headerlink" title="5.结果浏览与分析"></a>5.结果浏览与分析</h2><h2 id="6-制图"><a href="#6-制图" class="headerlink" title="6.制图"></a>6.制图</h2>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验20 地形特征点的提取</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C20-%E5%9C%B0%E5%BD%A2%E7%89%B9%E5%BE%81%E7%82%B9%E7%9A%84%E6%8F%90%E5%8F%96/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C20-%E5%9C%B0%E5%BD%A2%E7%89%B9%E5%BE%81%E7%82%B9%E7%9A%84%E6%8F%90%E5%8F%96/</id>
-    <published>2020-07-13T02:21:15.000Z</published>
-    <updated>2020-07-13T02:24:37.184Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>掌握<strong><em>邻域统计分析、等高线的生成与显示、栅格计算</em></strong>等空间分析方法</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>根据DEM数据提取区域内的地形特征点——以提取山顶点为例</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><p>根据DEM中相邻像元之间的相互关系，采用GIS的邻域统计等方法进行提取地形特征点</p><p><img src= "/img/loading.gif" data-src="/2020/07/13/%E5%AE%9E%E9%AA%8C20-%E5%9C%B0%E5%BD%A2%E7%89%B9%E5%BE%81%E7%82%B9%E7%9A%84%E6%8F%90%E5%8F%96/clip_image002.png" alt="img">)<img src= "/img/loading.gif" data-src="/2020/07/13/%E5%AE%9E%E9%AA%8C20-%E5%9C%B0%E5%BD%A2%E7%89%B9%E5%BE%81%E7%82%B9%E7%9A%84%E6%8F%90%E5%8F%96/clip_image004.png" alt="img">)<img src= "/img/loading.gif" data-src="/2020/07/13/%E5%AE%9E%E9%AA%8C20-%E5%9C%B0%E5%BD%A2%E7%89%B9%E5%BE%81%E7%82%B9%E7%9A%84%E6%8F%90%E5%8F%96/clip_image006.png" alt="img">)<img src= "/img/loading.gif" data-src="/2020/07/13/%E5%AE%9E%E9%AA%8C20-%E5%9C%B0%E5%BD%A2%E7%89%B9%E5%BE%81%E7%82%B9%E7%9A%84%E6%8F%90%E5%8F%96/clip_image008.png" alt="img">)<img src= "/img/loading.gif" data-src="/2020/07/13/%E5%AE%9E%E9%AA%8C20-%E5%9C%B0%E5%BD%A2%E7%89%B9%E5%BE%81%E7%82%B9%E7%9A%84%E6%8F%90%E5%8F%96/clip_image010.png" alt="img"></p><p>  （1）山顶    （2）山脊    （3）山谷    （4）洼地    （5）鞍部</p><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h2 id="1-前提处理"><a href="#1-前提处理" class="headerlink" title="1.前提处理"></a>1.前提处理</h2><p>启动ArcMap，激活Spacial Analyst扩展工具，设置空间分析环境</p><p>加载DEM数据，对其进行符号化</p><p>打开ArcToolbox，设置空间分析环境</p><h2 id="2-根据DEM生成等高线"><a href="#2-根据DEM生成等高线" class="headerlink" title="2.根据DEM生成等高线"></a>2.根据DEM生成等高线</h2><p>利用Contour【Spacial Analyst】|【表面分析】|【等值线】，分别生成等高距为10m、50m的等高线</p><h2 id="3-生成山体阴影，增强地形立体效果"><a href="#3-生成山体阴影，增强地形立体效果" class="headerlink" title="3.生成山体阴影，增强地形立体效果"></a>3.生成山体阴影，增强地形立体效果</h2><p>利用【Spacial Analyst】|【表面分析】|【山体阴影】工具，生成山体阴影，并设置60%的透明显示，将等值线50、等值线10、Hillshade、DEM四个图层按从上到下的顺序设置，生成地形立体效果图</p><h2 id="4-对DEM求邻域最大值"><a href="#4-对DEM求邻域最大值" class="headerlink" title="4.对DEM求邻域最大值"></a>4.对DEM求邻域最大值</h2><p>利用【Spacial Analyst】|【邻域分析】|【焦点统计】工具，对DEM进行邻域统计，邻域窗口为11×11的矩形，统计类型为MAX</p><h2 id="5-提取山顶顶点"><a href="#5-提取山顶顶点" class="headerlink" title="5.提取山顶顶点"></a>5.提取山顶顶点</h2><p>栅格计算器：’MaxDEM - DEM’</p><p>重分类：将值为0的<strong>像元赋值为1</strong>，不为0的设为nodata</p><h2 id="6-顶点栅格转换为矢量数据"><a href="#6-顶点栅格转换为矢量数据" class="headerlink" title="6.顶点栅格转换为矢量数据"></a>6.顶点栅格转换为矢量数据</h2>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验19 栅格数据的统计分析</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C19-%E6%A0%85%E6%A0%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C19-%E6%A0%85%E6%A0%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/</id>
-    <published>2020-07-13T02:18:18.000Z</published>
-    <updated>2020-07-13T02:20:13.665Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>理解<strong>栅格数据统计的原理</strong>，掌握常用的<strong>栅格数据统计分析方法</strong></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>统计各类土地的平均坡度，分析三个降水表面数据的差异，提取土地利用数据的地类界限*</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><p>栅格运算有三种主要模式——<strong>局域计算、邻域运算、分区运算</strong>。像元统计、领域统计、分区统计是这三种运算模式的典型方法。像元统计用于计算多层栅格数据中具有相同空间位置的像元的统计值；邻域统计用于计算某一像元周围一定范围内像元的统计值；分区统计用于计算个各类区中被统计栅格像元的统计值。</p><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h2 id="1-环境设置"><a href="#1-环境设置" class="headerlink" title="1.环境设置"></a>1.环境设置</h2><p>设置空间分析模块，勾选Spacial Analyst；</p><p>设置空间分析环境</p><h2 id="2-统计各类土地的平均坡度"><a href="#2-统计各类土地的平均坡度" class="headerlink" title="2.统计各类土地的平均坡度"></a>2.统计各类土地的平均坡度</h2><p>加载高程数据和土地利用数据</p><p>利用【Spacial Analyst】|【表面分析】|【坡度】计算坡度</p><p>利用【Spacial Analyst】|【区域分析】|【以表格显示分区统计】分区统计坡度</p><p>MIN、MAX、Range、Mean、Std（标准差）、Sum（总和） </p><p>分析各类土地的平均坡度特征</p><h2 id="3-分析数据之间的差异"><a href="#3-分析数据之间的差异" class="headerlink" title="3.分析数据之间的差异"></a>3.分析数据之间的差异</h2><p>加载数据Rain1、Rain2、Rain3</p><p>（1）利用【Spacial Analyst】|【区域分析】|【像元统计】统计类型为Mean</p><p>（2）利用【Spacial Analyst】|【区域分析】|【像元统计】统计类型为Range</p><p>分析差异可得到：图像越亮差异越大</p><h2 id="4-提取地类界线"><a href="#4-提取地类界线" class="headerlink" title="4.提取地类界线"></a>4.提取地类界线</h2><p>加载landuse2</p><p>利用【Spacial Analyst】|【邻域分析】|【焦点统计】统计类型为Variety（表示根据类型数量进行统计）</p><p>利用【Spacial Analyst】|【重分类】|【重分类】，提取地类界线像元</p><p>边界外：nodata</p><p>边界内：1</p><h2 id="5-细化栅格线"><a href="#5-细化栅格线" class="headerlink" title="5.细化栅格线"></a>5.细化栅格线</h2><p>利用【Spacial Analyst】|【栅格综合】|【细化】细化栅格线</p><p>矢量化</p>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验18 空间网络分析</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C18-%E7%A9%BA%E9%97%B4%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C18-%E7%A9%BA%E9%97%B4%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90/</id>
-    <published>2020-07-13T02:16:17.000Z</published>
-    <updated>2020-07-13T02:18:01.886Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>理解<strong>空间网络分析的基本原理</strong></p><p>掌握常用的<strong>网络分析方法</strong>，并能开展<strong>最佳路径分析</strong></p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>根据城市路网、学校、车站等数据，基于几何网络、模拟网络运行，确定不同类型的最佳路径</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li>网络分析是通过研究网络的状态，模拟分析资源（物质、能源和信息）在网络上的流动和分配，以实现网络上资源的优化配置</li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><h2 id="1-添加字段"><a href="#1-添加字段" class="headerlink" title="1.添加字段"></a>1.添加字段</h2><p>短整型的Speed字段</p><p>双精度的Passtime字段</p><h2 id="2-计算属性"><a href="#2-计算属性" class="headerlink" title="2.计算属性"></a>2.计算属性</h2><p>采用【字段计算器】，输入平均行车速度和通行时间</p><p>（1）   平均行车速度</p><p>Type 1、3、5、7、9依次对应Speed为80、70、60、50、40</p><p>（2）   通行时间</p><p>Passtime=shape_length/(Speed*1000/60)</p><p>其中1000/60属于单位换算</p><h2 id="3-建立几何网络"><a href="#3-建立几何网络" class="headerlink" title="3.建立几何网络"></a>3.建立几何网络</h2><p>打开ArcCatalog，【新建】<strong>|</strong>【几何网络】| 选street</p><h2 id="4-设置几何网路（网络和网络节点）"><a href="#4-设置几何网路（网络和网络节点）" class="headerlink" title="4.设置几何网路（网络和网络节点）"></a>4.设置几何网路（网络和网络节点）</h2><p>设置几何网络的名称、基础数据、权重等</p><p>权重：</p><p>通行时间：指定字段Passtime</p><p>通行距离：指定字段shape_length</p><h2 id="5-对数据进行符号化"><a href="#5-对数据进行符号化" class="headerlink" title="5.对数据进行符号化"></a>5.对数据进行符号化</h2><p>道路等级：利用宽度大小与颜色深浅</p><h2 id="6-设置网络障碍"><a href="#6-设置网络障碍" class="headerlink" title="6.设置网络障碍"></a>6.设置网络障碍</h2><p>（1）障碍：</p><p>添加边障碍工具（通道障碍）</p><p>添加交汇点障碍工具（节点障碍）</p><p>清除障碍</p><p>（2）添加标记</p><p>起点</p><p>终点</p><p>（3）网络路径分析</p><p>（4）求解</p><p>（5）根据权重</p><p>【分析选项】|【权重】</p><p>最短路径？</p><p>最短时间？</p><p>（6）输出</p><p>【分析选项】|【结果格式】</p>]]></content>
-    
-    <summary type="html">
-    
-      ArcGIS实验整理
-    
-    </summary>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/categories/ArcGIS/"/>
-    
-    
-      <category term="ArcGIS" scheme="http://Dong-666.github.io/tags/ArcGIS/"/>
-    
-      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验17 叠加分析</title>
-    <link href="http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C17-%E5%8F%A0%E5%8A%A0%E5%88%86%E6%9E%90/"/>
-    <id>http://dong-666.github.io/2020/07/13/%E5%AE%9E%E9%AA%8C17-%E5%8F%A0%E5%8A%A0%E5%88%86%E6%9E%90/</id>
-    <published>2020-07-13T02:13:57.000Z</published>
-    <updated>2020-07-13T07:52:14.564Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 实验目的"></a>一、 实验目的</h1><p>理解矢量数据空间<strong>叠加分析</strong>的基本原理，掌握常用的<strong>空间叠加分析</strong>方法</p><h1 id="二、-实验内容"><a href="#二、-实验内容" class="headerlink" title="二、 实验内容"></a>二、 实验内容</h1><p>根据规划道路的中心线及道路红线宽度（100m），确定各村将被征用的各类土地，并完成面积的分类统计表</p><h1 id="三、-实验原理"><a href="#三、-实验原理" class="headerlink" title="三、 实验原理"></a>三、 实验原理</h1><ul><li>叠加分析是将<strong>两个或两个以上具有重叠关系的空间数据进行空间叠加</strong>的过程。叠加的结果不仅生成了<strong>新的空间关系</strong>，还将输入的多个数据层的属性联系起来产生<strong>新的属性关系</strong>。多边形之间的叠加来说，<strong>叠加后多边形之间相互切割</strong>，新生成的多边形的属性表中将继承参与叠加的数据的属性字段。</li></ul><h1 id="四、-实验步骤"><a href="#四、-实验步骤" class="headerlink" title="四、 实验步骤"></a>四、 实验步骤</h1><p>1.打开ArcMap，加载数据，调整图层顺序，浏览数据</p><p>2.打开‘道路用地统计表’以了解需要统计的数据</p><p>3.以road为输入数据，以50m为缓冲距离，建立缓冲区，产生道路用地范围数据（缓冲区半径采用道路宽度的一半）【分析工具】<strong>|</strong>【领域分析】|【缓冲区】</p><p>4.将缓冲区道路与土地利用信息空间叠加</p><p>利用【分析工具】<strong>|</strong>【叠加分析】|【相交】进行叠加，产生道路用地范围的土地利用数据</p><p>5.再与village进行叠加</p><p>利用【分析工具】<strong>|</strong>【叠加分析】|【标识】</p><p>6.面积重计算</p><p>在属性表中，重算土地面积，新建字段new_area右击【计算几何】</p><p>7.重算土地类型代码</p><p>利用【字段计算器】根据叠加后数据的类型代码，提取出各类土地的一级代码。输入‘Left(,1)’1表示取第一个</p><p>8.面积分类汇总统计</p><p>【分析工具】|<strong>【统计分析】|</strong>【频数】| 统计各村各类土地的面积</p><p>9.表格输出与打开</p><p>10.单位换算与填表</p><p>11.制图</p>]]></content>
     
     <summary type="html">
     
