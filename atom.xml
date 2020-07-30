@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2020-07-30T04:20:17.178Z</updated>
+  <updated>2020-07-30T06:40:39.155Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github.com部分页面访问不了 </title>
+    <link href="http://dong-666.github.io/2020/07/30/github-com%E9%83%A8%E5%88%86%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E4%B8%8D%E4%BA%86/"/>
+    <id>http://dong-666.github.io/2020/07/30/github-com%E9%83%A8%E5%88%86%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E4%B8%8D%E4%BA%86/</id>
+    <published>2020-07-30T05:10:51.000Z</published>
+    <updated>2020-07-30T06:40:39.155Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在某一天，我那基于Github创建的博客网站突然访问不了了，art-template的官方文档也访问不了，我一度以为是github的原因，想着过几天会好，然而不是，是网络的问题（这一切都是在我从电信网络切换到移动网络后出现的问题，会不会有关系……）</p><p>要么弹出这个错误</p><p><img src= "/img/loading.gif" data-src="/2020/07/30/github-com%E9%83%A8%E5%88%86%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E4%B8%8D%E4%BA%86/image-20200730131826525.png" alt="image-20200730131826525"></p><p>要么弹出这个错误</p><p><img src= "/img/loading.gif" data-src="/2020/07/30/github-com%E9%83%A8%E5%88%86%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E4%B8%8D%E4%BA%86/image-20200730131835559.png" alt="image-20200730131835559"></p><p>然后，我就查阅了关于这个的问题，解决方案如下</p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><ol><li><p>打开<a href="https://link.jianshu.com/?t=http%3A%2F%2Ftool.chinaz.com%2Fdns" target="_blank" rel="noopener">Dns查询 - 站长工具</a></p></li><li><p>在这里输入你的域名地址</p><p><img src= "/img/loading.gif" data-src="/2020/07/30/github-com%E9%83%A8%E5%88%86%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E4%B8%8D%E4%BA%86/image-20200730132555472.png" alt="image-20200730132555472"></p></li><li><p>将TTL值最小的ip复制一下</p></li><li><p>以管理员身份运行记事本，【文件】→【打开】</p><p><img src= "/img/loading.gif" data-src="/2020/07/30/github-com%E9%83%A8%E5%88%86%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E4%B8%8D%E4%BA%86/image-20200730143738654.png" alt="image-20200730143738654"></p><p>输入以下地址：C:\Windows\System32\drivers\etc</p><p>选择hosts文件打开，如果没有的话在这里将【所有文件.】选上</p><p><img src= "/img/loading.gif" data-src="/2020/07/30/github-com%E9%83%A8%E5%88%86%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E4%B8%8D%E4%BA%86/image-20200730143442283.png" alt="image-20200730143442283"></p></li><li><p>在记事本中将ip地址填上并加上网址域名，如下</p><p><img src= "/img/loading.gif" data-src="/2020/07/30/github-com%E9%83%A8%E5%88%86%E9%A1%B5%E9%9D%A2%E8%AE%BF%E9%97%AE%E4%B8%8D%E4%BA%86/image-20200730143550217.png" alt="image-20200730143550217"></p></li><li><p>保存，退出，打开网址试试吧</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      解决github.com拒绝我们的连接请求，无法访问网址内容的问题
+    
+    </summary>
+    
+    
+      <category term="web" scheme="http://Dong-666.github.io/categories/web/"/>
+    
+    
+      <category term="web" scheme="http://Dong-666.github.io/tags/web/"/>
+    
+  </entry>
   
   <entry>
     <title>art-template搭配dateFormat实现将时间戳格式化为你想要的日期格式</title>
@@ -478,29 +501,6 @@
         &lt;h1 id=&quot;原理简介&quot;&gt;&lt;a href=&quot;#原理简介&quot; class=&quot;headerlink&quot; title=&quot;原理简介&quot;&gt;&lt;/a&gt;原理简介&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;由于表单 POST 请求可能会携带大量的数据，所以在进行请求提交的时候会分为多次提交，具体分为多少
       
-    
-    </summary>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>npm script配置</title>
-    <link href="http://dong-666.github.io/2020/07/28/npm-script%E9%85%8D%E7%BD%AE/"/>
-    <id>http://dong-666.github.io/2020/07/28/npm-script%E9%85%8D%E7%BD%AE/</id>
-    <published>2020-07-28T14:04:32.000Z</published>
-    <updated>2020-07-28T14:07:02.091Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>通过配置package.json中的代码，即可在命令行通过npm执行模块命令，如启动服务或转码处理</p><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol><li><p>通过在项目中安装nodemon后，即可在其他无nodemon的开发者电脑中安装并通过npm执行该项目了</p><p>安装格式</p></li></ol><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm --save-dev nodemon</span><br></pre></td></tr></table></figure><ol start="2"><li><p>package.json中配置启动项</p><p>格式：<code>&quot;命令名&quot;: &quot;nodemon 执行文件相对路径&quot;</code>  启动某个服务</p><p>下面为示例</p></li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"edu"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"app.js"</span>,</span><br><span class="line">   <span class="comment">//代码配置格式↓</span></span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"babel src -d dist"</span>, <span class="comment">//开发代码转为生产代码</span></span><br><span class="line">    <span class="string">"prestart"</span>: <span class="string">"npm run build"</span>,</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"nodemon main.js"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure><ol start="3"><li>然后在命令行中就可以直接<code>npm run prestart</code>或者<code>npm run build</code>去执行命令了，这里有一个特殊点，<code>start</code>的话可以直接<code>npm start</code></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      通过配置package.json中的代码，即可在命令行通过npm执行模块命令，如启动服务或转码处理
     
     </summary>
     
