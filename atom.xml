@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2020-07-29T12:10:12.993Z</updated>
+  <updated>2020-07-30T04:20:17.178Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>art-template搭配dateFormat实现将时间戳格式化为你想要的日期格式</title>
+    <link href="http://dong-666.github.io/2020/07/30/art-template%E6%90%AD%E9%85%8DdateFormat%E5%AE%9E%E7%8E%B0%E5%B0%86%E6%97%B6%E9%97%B4%E6%88%B3%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%BA%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F/"/>
+    <id>http://dong-666.github.io/2020/07/30/art-template%E6%90%AD%E9%85%8DdateFormat%E5%AE%9E%E7%8E%B0%E5%B0%86%E6%97%B6%E9%97%B4%E6%88%B3%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%BA%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F/</id>
+    <published>2020-07-30T04:18:54.000Z</published>
+    <updated>2020-07-30T04:20:17.178Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>art-template搭配dateFormat实现将时间戳格式化为你想要的日期格式</p><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol><li><p>npm下载对应模块</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save dateformat</span><br></pre></td></tr></table></figure></li><li><p>页面代码（注意art-template默认渲染的页面后缀名为art，time为渲染的时间数据，’yyyy-mm-dd’为你要定义的时间格式）</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; dateFormat(time, 'yyyy-mm-dd')&#125;&#125;</span><br></pre></td></tr></table></figure></li><li><p>node引用</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> template = <span class="built_in">require</span>(<span class="string">'art-template'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> dateFormat = <span class="built_in">require</span>(<span class="string">'dateformat'</span>);</span><br></pre></td></tr></table></figure></li><li><p>配置模板引擎</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template.defaults.imports.dateFormat = dateFormat;</span><br></pre></td></tr></table></figure></li><li><p>渲染页面并打出在cmd控制台</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> html = template(<span class="string">'06.art'</span>, &#123;</span><br><span class="line">    time: <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(html)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;art-template搭配dateFormat实现将时间戳格式化为你想要的日期格式&lt;/p&gt;
+&lt;h1 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步
+      
+    
+    </summary>
+    
+    
+      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
+    
+    
+      <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
+    
+  </entry>
   
   <entry>
     <title>QGIS迁徙图制作</title>
@@ -440,9 +467,9 @@
     <link href="http://dong-666.github.io/2020/07/28/body-parser%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/"/>
     <id>http://dong-666.github.io/2020/07/28/body-parser%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/</id>
     <published>2020-07-28T14:10:57.000Z</published>
-    <updated>2020-07-28T14:14:05.372Z</updated>
+    <updated>2020-07-30T03:42:00.958Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h1><blockquote><p>由于表单 POST 请求可能会携带大量的数据，所以在进行请求提交的时候会分为多次提交，具体分为多少次进行提交不一定，取决于数据量的大小<br>在 Node 中，对于处理这种不确定的数据，使用事件的形式处理<br>这里可以监听 req 对象的 data 事件，然后通过对应的回调处理函数中的参数 chunk 拿到每一次接收到的数据data，当数据接收完毕之后，会自动触发 req 对象的 end 事件，然后就可以在 end 事件中使用接收到的表单 POST 请求体</p></blockquote><h1 id="代码原理"><a href="#代码原理" class="headerlink" title="代码原理"></a>代码原理</h1><p>记得先引入<code>querystring</code>模块</p><p><code>querystring</code>用作分割请求体内容并转化为对象格式</p><p>因为有时候会用到文件上传，所以这里要判断数据请求头的<code>content-type</code>，如果是<code>multipart/form-data</code>，则让<code>formidable</code>中间件去处理，否则自己处理</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="string">``</span></span><br><span class="line">    <span class="keyword">if</span> (req.method.toLowerCase() === <span class="string">'get'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> next()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果是有文件的表单POST，则不处理</span></span><br><span class="line">    <span class="keyword">if</span> (req.headers[<span class="string">'content-type'</span>].startsWith(<span class="string">'multipart/form-data'</span>)) &#123;</span><br><span class="line">        req.on(<span class="string">'data'</span>, chunk =&gt; &#123;</span><br><span class="line">            data += chunk</span><br><span class="line">        &#125;)</span><br><span class="line">        req.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">            req.body = queryString.parse(data)</span><br><span class="line">            next()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h1><blockquote><p>由于表单 POST 请求可能会携带大量的数据，所以在进行请求提交的时候会分为多次提交，具体分为多少次进行提交不一定，取决于数据量的大小<br>在 Node 中，对于处理这种不确定的数据，使用事件的形式处理<br>这里可以监听 req 对象的 data 事件，然后通过对应的回调处理函数中的参数 chunk 拿到每一次接收到的数据data，当数据接收完毕之后，会自动触发 req 对象的 end 事件，然后就可以在 end 事件中使用接收到的表单 POST 请求体</p></blockquote><h1 id="代码原理"><a href="#代码原理" class="headerlink" title="代码原理"></a>代码原理</h1><p>记得先引入<code>querystring</code>模块</p><p><code>querystring</code>用作分割请求体内容并转化为对象格式</p><p>因为有时候会用到文件上传，所以这里要判断数据请求头的<code>content-type</code>，如果是<code>multipart/form-data</code>，则让<code>formidable</code>中间件（涉及到文件提交的，可以参考这篇<a href="https://ypigy.gitee.io/2020/07/29/form%E8%A1%A8%E5%8D%95%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4/" target="_blank" rel="noopener">博客</a>）去处理，否则自己处理</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="string">``</span></span><br><span class="line">    <span class="keyword">if</span> (req.method.toLowerCase() === <span class="string">'get'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> next()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果是有文件的表单POST，则不处理</span></span><br><span class="line">    <span class="keyword">if</span> (req.headers[<span class="string">'content-type'</span>].startsWith(<span class="string">'multipart/form-data'</span>)) &#123;</span><br><span class="line">        req.on(<span class="string">'data'</span>, chunk =&gt; &#123;</span><br><span class="line">            data += chunk</span><br><span class="line">        &#125;)</span><br><span class="line">        req.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">            req.body = queryString.parse(data)</span><br><span class="line">            next()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -474,29 +501,6 @@
     <summary type="html">
     
       通过配置package.json中的代码，即可在命令行通过npm执行模块命令，如启动服务或转码处理
-    
-    </summary>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nodejs之请求日志和错误日志</title>
-    <link href="http://dong-666.github.io/2020/07/28/nodejs%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97/"/>
-    <id>http://dong-666.github.io/2020/07/28/nodejs%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97/</id>
-    <published>2020-07-28T13:40:39.000Z</published>
-    <updated>2020-07-28T13:44:45.215Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="请求日志"><a href="#请求日志" class="headerlink" title="请求日志"></a>请求日志</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> log = <span class="string">`请求方法: <span class="subst">$&#123;req.method&#125;</span>, 请求路径: <span class="subst">$&#123;req.url&#125;</span>, 请求时间: <span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span>\n`</span>;</span><br><span class="line">    fs.appendFile(<span class="string">'option.txt'</span>, log, <span class="string">'utf8'</span>, err =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'记录日志失败'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>打印结果为一个txt文件</p><p><img src= "/img/loading.gif" data-src="/2020/07/28/nodejs%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97/image-20200725215740007.png" alt="image-20200725215740007"></p><h2 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function">(<span class="params">err, req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> errLog = <span class="string">`</span></span><br><span class="line"><span class="string">错误名: <span class="subst">$&#123;err.name&#125;</span></span></span><br><span class="line"><span class="string">错误信息: <span class="subst">$&#123;err.message&#125;</span></span></span><br><span class="line"><span class="string">错误堆栈: <span class="subst">$&#123;err.stack&#125;</span></span></span><br><span class="line"><span class="string">错误时间: <span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span></span></span><br><span class="line"><span class="string">\n\n\n`</span></span><br><span class="line">fs.appendFile(<span class="string">'errlog.txt'</span>, errLog,(err)=&gt;&#123;</span><br><span class="line">res.writeHead(<span class="number">500</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain;charset=utf-8'</span>&#125;)<span class="comment">//响应头返回状态码500</span></span><br><span class="line">res.end(<span class="string">'500 服务器正忙，请稍后重试'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>打印日志在txt文件上</p><p><img src= "/img/loading.gif" data-src="/2020/07/28/nodejs%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97/image-20200725220109233.png" alt="image-20200725220109233"></p>]]></content>
-    
-    <summary type="html">
-    
-      利用txt记录客户端的请求日志以及服务端响应过程的错误日志
     
     </summary>
     
