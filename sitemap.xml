@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dong-666.github.io/2020/07/01/Hexo/</loc>
+    
+    <lastmod>2020-07-31T01:35:11.460Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://dong-666.github.io/categories/index.html</loc>
     
     <lastmod>2020-07-30T12:37:19.862Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://dong-666.github.io/music/index.html</loc>
     
     <lastmod>2020-07-30T12:36:44.525Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dong-666.github.io/2020/07/01/Hexo/</loc>
-    
-    <lastmod>2020-07-30T12:21:42.986Z</lastmod>
     
   </url>
   
