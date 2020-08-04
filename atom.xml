@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2020-07-30T06:40:39.155Z</updated>
+  <updated>2020-08-02T09:07:37.005Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -15,6 +15,106 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>QGIS制作等高面</title>
+    <link href="http://dong-666.github.io/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/"/>
+    <id>http://dong-666.github.io/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/</id>
+    <published>2020-08-02T08:56:23.000Z</published>
+    <updated>2020-08-02T09:07:37.005Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><p>本实验将介绍两种等高面的制作方法，旨在掌握等高面的可视化表达，掌握DEM数据转等高线及等高线的提取、转面、拆分及配色。</p><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><ol><li><p><strong>提取等高线</strong></p><p>利用DEM数据提取等高线，打开菜单栏上【栅格】|【提取】|【等值线】提取等高线</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/532c402f41f09b897e1dea69de0ccfb0.png" alt></p><p>设置好参数，点击运行</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/2d96307bf7ab7a0a5a50e4b7adf8b781.png" alt></p><p>提取等高线效果：</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/3442b4386d540c680249f79c03b3725e.png" alt></p></li><li><p><strong>等高线转面</strong></p><p>利用菜单栏上【矢量】|【几何图形工具】|【线条到多边形】或者处理工具箱中【矢量几何图形】|【线条到多边形】将等高线转换为等高面</p><p>设置好相应参数运行</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/8e4ea8f60d04a58d6ec73b776634c39b.png" alt></p><p>将等高面符号化，在图层样式上将图层设置为【渐进】，VALUE取ELEV，然后点击【分类】，选择合适的渐变色进行表达</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/ec2caede439aa10e887815b043a3c642.png" alt></p><p>完成之后，可以看到有些面数据会被覆盖掉，我们打开图层属性通过【高级】|【符号水平】调整数据绘制顺序，数值越大的在越上面</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/ad7c6e7fde17062100271a922823b32f.png" alt></p></li><li><p><strong>拆分等高面</strong></p><p>拆分等高面，将等高面按照高程属性划分为对个图层数据，因为需要设置多个表达式进行筛选，我们利用批处理的方式进行，在处理工具箱<br>|【矢量选择】|【按属性提取】</p><p>右键【以批处理方式执行】</p><p>设置好表达式后，点击运行</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/694eba74a19888a26da19a79451824cb.png" alt></p><p>生成多个数据图层，分别在每个图层属性选中简单填充，勾选【绘制效果】，然后点击<img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/d7cd73c01c870103bddf90307d3c1d77.png" alt>符号后，勾选【阴影】显示等高线凸出的效果</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/6c1ae054acb23f2bc8a18aa00d4d5d36.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/63cbcf8319079ef8609b5d5b03dc1950.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/cf12a58a22e39b488ba7f137a6c50fd8.png" alt></p><p>若想要显示等高面凹陷的效果，可以将上述绘制效果改为【内阴影】</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/867c7dc8ac0ace82340243397825fe9e.png" alt></p></li><li><p>等高面配色</p><p>等高面凸出效果：</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/4e9db38ea92432bfb0c6c77922ecefc2.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\9b7adb5a980ca38070c08270bbd75f6.png"></p><p>等高面凹陷效果：</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/84e537ada855868cd906b5b7c2baebe2.png" alt="C:\\Users\\cjy\\AppData\\Local\\Temp\\WeChat Files\\4c2e3b2edebcdc36127a9eaaf6b1c86.png"></p></li><li><p><strong>小技巧</strong></p><p>使用axismaps网站提供的等高线数据，进行快速等高面绘制 <a href="https://contours.axismaps.com/#9/27.990458/86.934165" target="_blank" rel="noopener">https://contours.axismaps.com/#9/27.990458/86.934165</a> </p><p>打开百度坐标拾取系统，拾取你要研究区域的坐标点（这里以珠穆朗玛峰为例）</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/d8b102e2c6f620d1593357f410847ee0.png" alt></p><p>然后根据经纬度大小相应的改动网址，等待绘制等高线</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/d726f046c7ed6799bc4dc7304f9fe846.png" alt></p><p>加载完后，将等高线的单位改为meter</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/ca371af8a73eb72176ede2abd3a69839.png" alt></p><p>切换下载界面进行下载【下载GeoJSON】</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/2eef308b898bdcacfc27c112a8bb112f.png" alt></p><p>将文件直接拖进QGIS中，并重新导出为shapefile</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/91001d5560dba3ef280f081f98351ebb.png" alt></p><p>进行符号化，将描边线宽改为0.06</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/da12ce8cf6682e94f0dcc23cd1cbddf7.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/963dc1b844ee517f17fb40a62c9cd357.png" alt></p><p>然后按照上述【绘制效果】进行设置</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/33e1d9ff99f38827261a69d6be70c036.png" alt></p><p>珠穆朗玛峰等高面效果图：</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%88%B6%E4%BD%9C%E7%AD%89%E9%AB%98%E9%9D%A2/b8ffc475370a6daf756596d3b141c616.png" alt></p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      本实验将介绍两种等高面的制作方法，旨在掌握等高面的可视化表达，掌握DEM数据转等高线及等高线的提取、转面、拆分及配色。
+    
+    </summary>
+    
+    
+      <category term="QGIS" scheme="http://Dong-666.github.io/categories/QGIS/"/>
+    
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="QGIS入门" scheme="http://Dong-666.github.io/tags/QGIS%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QGIS半透明立体影像图</title>
+    <link href="http://dong-666.github.io/2020/08/02/QGIS%E5%8D%8A%E9%80%8F%E6%98%8E%E7%AB%8B%E4%BD%93%E5%BD%B1%E5%83%8F%E5%9B%BE/"/>
+    <id>http://dong-666.github.io/2020/08/02/QGIS%E5%8D%8A%E9%80%8F%E6%98%8E%E7%AB%8B%E4%BD%93%E5%BD%B1%E5%83%8F%E5%9B%BE/</id>
+    <published>2020-08-02T08:55:12.000Z</published>
+    <updated>2020-08-02T08:55:59.652Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><p>根据DEM数据和影像数据制作半透明立体影像图</p><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><p>加载DEM数据并进行符号化</p><p>选择【单坡段伪色彩】然后选择自己喜欢的颜色，为了符合实际，这里进行反转颜色</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%8D%8A%E9%80%8F%E6%98%8E%E7%AB%8B%E4%BD%93%E5%BD%B1%E5%83%8F%E5%9B%BE/208dbffe15d274e17f76094f2d7576a5.png" alt></p><p>复制一个DEM数据图层，在DEM图层上右键【创建图层副本】，然后进行符号化，设为山体阴影，如果你的高程数据差异足够大，可以调高【垂直夸张因子】使得数据更具有立体效果</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%8D%8A%E9%80%8F%E6%98%8E%E7%AB%8B%E4%BD%93%E5%BD%B1%E5%83%8F%E5%9B%BE/e4559e82e3f94363c080395de251b714.png" alt></p><p>把源DEM数据的透明度降低</p><p>然后再【XYZ Tiles】中加载影像服务放到最底部</p><p>适当调一下透明度即可完成半透明立体影像图的制作</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E5%8D%8A%E9%80%8F%E6%98%8E%E7%AB%8B%E4%BD%93%E5%BD%B1%E5%83%8F%E5%9B%BE/a2f3145a56b6f9ed5a0048de33ddbeb7.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      根据DEM数据和影像数据制作半透明立体影像图
+    
+    </summary>
+    
+    
+      <category term="QGIS" scheme="http://Dong-666.github.io/categories/QGIS/"/>
+    
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="QGIS入门" scheme="http://Dong-666.github.io/tags/QGIS%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QGIS等高线艺术图</title>
+    <link href="http://dong-666.github.io/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/"/>
+    <id>http://dong-666.github.io/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/</id>
+    <published>2020-08-02T08:53:17.000Z</published>
+    <updated>2020-08-02T08:54:14.876Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><p>Mapbox上有一个十分好看的等高线服务数据，我们可以根据哪个行政区想要这个艺术效果，在QGIS中进行实现。</p><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><p>首先在QGIS浏览窗口上【XYZ Tiles】上右键单击【新建连接】</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/76c13aeec410cbd8e900da4791b608c5.png" alt></p><p>输入名称和网址<a href="https://c.tiles.mapbox.com/v3/dnomadb.hgp0dahj/{z}/{x}/{y}.png" target="_blank" rel="noopener">https://c.tiles.mapbox.com/v3/dnomadb.hgp0dahj/{z}/{x}/{y}.png</a></p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/b42259ecde605e0bf10e555bf6eb9e7c.png" alt></p><p>然后双击打开服务，即可在窗口上看到</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/0112739123a01f9a3f86d79f083d4c43.png" alt></p><p>加载你要制作艺术图的行政区域</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/0d00e61d1e5beaa593e72154f1f66f63.png" alt></p><p>然后将填充颜色改为黑色</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/9111b07d66c90a393d18e769839b3e7d.png" alt></p><p>把行政区域放到等高线底部，将混色模式改为【变亮】即可</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/7a15ac0360315bbde32babaee57ec06c.png" alt></p><p>艺术图初步即成，你可以自己再加修饰</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E7%AD%89%E9%AB%98%E7%BA%BF%E8%89%BA%E6%9C%AF%E5%9B%BE/e0de619306391bdbf7b157f8f93349f2.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      Mapbox上有一个十分好看的等高线服务数据，我们可以根据哪个行政区想要这个艺术效果，在QGIS中进行实现
+    
+    </summary>
+    
+    
+      <category term="QGIS" scheme="http://Dong-666.github.io/categories/QGIS/"/>
+    
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="QGIS入门" scheme="http://Dong-666.github.io/tags/QGIS%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QGIS添加自定义Mapbox底图</title>
+    <link href="http://dong-666.github.io/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/"/>
+    <id>http://dong-666.github.io/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/</id>
+    <published>2020-08-02T08:48:40.000Z</published>
+    <updated>2020-08-02T08:51:59.079Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><p>Mapbox发布了一个可以进行地图设计并发布的网页版工具，该网页可以根据你所导入的图片颜色进行地图设计，还可以进行样式的编辑，并最终给你一个服务地址，你可以在QGIS中添加该底图或者作为明信片导出图片等。</p><p>网址：<a href="https://apps.mapbox.com/cartogram/" target="_blank" rel="noopener">https://apps.mapbox.com/cartogram/</a></p><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><p>你可以上传不同你喜欢的照片，里面的色彩搭配是符合你的口味的，然后让它呈现在地图上</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/9614efbf385438aa80d9328a39d7c7c4.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/b8e56e9a6a05a15cdff8aa110b8b73f1.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/e5de04e9be2b40857af2f6f6e530ed12.png" alt></p><p>左下角的图片你可以选择不同的颜色初步搭配，然后再上面会出现一个【Saving】点击则会出现样式编辑面</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/49da8682f1dadd42b9ab289b6454d515.png" alt></p><p>若你想用地图制作明信片，则可以在右上方菜单栏选择【打印】或者【分享】都有生成jpg或png的向导</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/3c3bbc132c322a2693f3f4a1ab75b0a4.png" alt></p><p>或者你想用这个服务，你可以选择【分享】|【生产】|【开发人员资源】|【第三方】选择你要的类型，这里QGIS选择WMS/WMTS，复制服务地址</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/a3c8edd9f81bd7267f666aa451bea104.png" alt></p><p>打开QGIS，在浏览窗口WMS/WMTS上右键【新建连接】</p><p>输入名字和服务地址即可点击OK</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/8988125949f7f07743823cb3c3d30249.png" alt></p><p>然后再WMS/WMTS下拉菜单中找到你刚才设置的名字，双击即可在窗口显示，这个自定义的底图你就可以使用了</p><p><img src= "/img/loading.gif" data-src="/2020/08/02/QGIS%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89Mapbox%E5%BA%95%E5%9B%BE/a0aa184a461e50ef8ac082d80b6770ca.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      Mapbox发布了一个可以进行地图设计并发布的网页版工具，该网页可以根据你所导入的图片颜色进行地图设计，还可以进行样式的编辑，并最终给你一个服务地址，你可以在QGIS中添加该底图或者作为明信片导出图片等。
+    
+    </summary>
+    
+    
+      <category term="QGIS" scheme="http://Dong-666.github.io/categories/QGIS/"/>
+    
+    
+      <category term="GIS" scheme="http://Dong-666.github.io/tags/GIS/"/>
+    
+      <category term="QGIS入门" scheme="http://Dong-666.github.io/tags/QGIS%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>github.com部分页面访问不了 </title>
@@ -346,7 +446,7 @@
     <link href="http://dong-666.github.io/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/"/>
     <id>http://dong-666.github.io/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/</id>
     <published>2020-07-29T09:24:46.000Z</published>
-    <updated>2020-07-29T12:15:06.653Z</updated>
+    <updated>2020-08-02T08:51:57.317Z</updated>
     
     <content type="html"><![CDATA[<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><h2 id="矢量数据的符号化表达"><a href="#矢量数据的符号化表达" class="headerlink" title="矢量数据的符号化表达"></a>矢量数据的符号化表达</h2><ul><li><p>热力图</p></li><li><p>点聚类</p></li><li><p>2.5D三维</p></li></ul><h2 id="栅格数据的符号化表达"><a href="#栅格数据的符号化表达" class="headerlink" title="栅格数据的符号化表达"></a>栅格数据的符号化表达</h2><ul><li><p>单波段伪彩色</p></li><li><p>山体阴影</p></li><li><p>晕渲效果（单波段伪彩色+山体阴影）</p></li></ul><h1 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h1><ol><li><p><strong>热力图制作</strong></p><p>将数据加载进QGIS窗口</p><p>由于单一符号过于单调，我们要进行美化</p><p>首先是热力图的制作</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/1.png" alt></p><p>在点数据图层上右键单击【属性】|【符号化】|【热图】</p><p>选择色彩进行表达</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/2.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/3.png" alt></p><p>密集处是蓝色的，底图是红色的，不太符合认知，因此进行反转颜色</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/4.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/5.png" alt></p><p>由于底图全部被蓝色覆盖了，我们把蓝色换为透明显示</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/6.png" alt></p><p>热力图如下：</p><p>可以根据热力图分析区域的分布特点</p><p>由图可知，我国5A景点在江南地带分布最广</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/7.png" alt></p></li><li><p><strong>点聚类制作</strong></p><p>在点数据图层上右键单击【属性】|【符号化】|【点聚类】</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/8.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/9.png" alt></p></li><li><p><strong>2.5D三维</strong></p><p>由于进行简单分析，我自己建了一个矢量图层，自编辑建筑及Height字段的属性值</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/10.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/11.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/12.png" alt></p><p>在图层样式中出现【2.5D】选中之后，设置下面相关属性，阴影、角度、颜色等</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/13.png" alt></p></li><li><p>5D三维效果如下</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/14.png" alt></p></li><li><p><strong>单波段伪彩色</strong></p><p>在DEM数据层上右键单击【属性】|【符号化】|【单波段伪彩色】选择反转颜色</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/15.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/16.png" alt></p><p>在DEM数据层上右键单击【属性】|【符号化】|【山体阴影】其他参数默认或者自己编辑</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/17.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/18.png" alt></p></li><li><p><strong>晕渲效果</strong></p><p>在原来DEM上右键单击【创建副本】</p><p>根据上面将一个图层设置为山体阴影，另一个图层设置为单波段伪彩色</p><p>然后将单波段伪彩色的透明度降低，降低多少由源数据而定</p><p>要注意图层的放置顺序</p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/19.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/20.png" alt></p><p><img src= "/img/loading.gif" data-src="/2020/07/29/QGIS%E6%95%B0%E6%8D%AE%E7%BE%8E%E5%8C%96/21.png" alt></p></li></ol>]]></content>
     
@@ -413,102 +513,6 @@
       <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
     
       <category term="formidable" scheme="http://Dong-666.github.io/tags/formidable/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>根据id显示页面详情</title>
-    <link href="http://dong-666.github.io/2020/07/28/%E6%A0%B9%E6%8D%AEid%E6%98%BE%E7%A4%BA%E9%A1%B5%E9%9D%A2%E8%AF%A6%E6%83%85/"/>
-    <id>http://dong-666.github.io/2020/07/28/%E6%A0%B9%E6%8D%AEid%E6%98%BE%E7%A4%BA%E9%A1%B5%E9%9D%A2%E8%AF%A6%E6%83%85/</id>
-    <published>2020-07-28T14:48:20.000Z</published>
-    <updated>2020-07-29T00:50:04.165Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><blockquote><p>指定路径可以通过id去获取相关的资源页面</p><p>如： 每个广告都有其展示页面，这时候可以指定/:adverId去动态的创建路径</p></blockquote><ul><li>/a/:advertId 是一个模糊匹配路径</li><li>可以匹配 /a/* 的路径形式，例如：/a/1,/a/a, /a/abc 等路径</li><li>但是/one 或者 /one/a/b 是无法访问到的</li><li>处理函数中可以通过 req.params 来获取到这个路径名</li><li>在前端完成相关操作后，服务端就可以根据请求接收到的id号进行数据查询和页面渲染了</li></ul><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/a/:adverId'</span>, (req, res, next) =&gt; &#123;</span><br><span class="line"><span class="built_in">console</span>.log(req.params)<span class="comment">//获得id，进行相关操作</span></span><br><span class="line">    <span class="comment">//接下来就可以进行相关的数据库查询操作和渲染与该id匹配的广告也页面详情了</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'runing.....'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h1 id="输出打印"><a href="#输出打印" class="headerlink" title="输出打印"></a>输出打印</h1><p><img src= "/img/loading.gif" data-src="/2020/07/28/%E6%A0%B9%E6%8D%AEid%E6%98%BE%E7%A4%BA%E9%A1%B5%E9%9D%A2%E8%AF%A6%E6%83%85/image-20200727161444272.png" alt="image-20200727161444272"></p>]]></content>
-    
-    <summary type="html">
-    
-      根据/:id路径参数，服务端获得数据id并进行相关数据页面详情渲染
-    
-    </summary>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>错误处理中间件</title>
-    <link href="http://dong-666.github.io/2020/07/28/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
-    <id>http://dong-666.github.io/2020/07/28/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E4%B8%AD%E9%97%B4%E4%BB%B6/</id>
-    <published>2020-07-28T14:20:41.000Z</published>
-    <updated>2020-07-28T14:23:52.764Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>用来将错误日志记录在数据库中以及响应前端错误信息和状态码的中间件</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><ol><li><p>先连接mongo数据库以及创建集合</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>)</span><br><span class="line"></span><br><span class="line">mongoose.connect(<span class="string">'mongodb://localhost:27017/edu'</span>, &#123; <span class="attr">useNewUrlParser</span>: <span class="literal">true</span>, <span class="attr">useUnifiedTopology</span>: <span class="literal">true</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Schema = mongoose.Schema</span><br><span class="line"><span class="keyword">let</span> errorSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">    errName: &#123;</span><br><span class="line">        type: <span class="built_in">String</span>,</span><br><span class="line">        <span class="built_in">require</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    errMessage: &#123;</span><br><span class="line">        type: <span class="built_in">String</span>,</span><br><span class="line">        <span class="built_in">require</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    errStack: &#123;</span><br><span class="line">        type: <span class="built_in">String</span>,</span><br><span class="line">        <span class="built_in">require</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    errTime: &#123;</span><br><span class="line">        type: <span class="built_in">Date</span>,</span><br><span class="line">        <span class="built_in">require</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ErrData = mongoose.model(<span class="string">'ErrData'</span>, errorSchema)</span><br></pre></td></tr></table></figure></li><li><p>处理错误日志以及导出该模块</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">errlog,req,res,next</span>)=&gt;</span> &#123;</span><br><span class="line"><span class="keyword">new</span> ErrData(&#123;</span><br><span class="line">errName: errlog.name,</span><br><span class="line">errMessage: errlog.message,</span><br><span class="line">errStack: errlog.stack,</span><br><span class="line">errTime: <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">&#125;).save(<span class="function">(<span class="params">err,result</span>) =&gt;</span>&#123;</span><br><span class="line">res.status(<span class="number">500</span>).json(&#123;</span><br><span class="line">err_code: <span class="number">500</span>,</span><br><span class="line">err_message: errlog.message</span><br><span class="line">&#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>app.js导入该模块并调用，注意各个中间件的先后顺序</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> errorLog = <span class="built_in">require</span>(<span class="string">'./middlewave/errpr-log'</span>) </span><br><span class="line">app.use(errorLog)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      用来将错误日志记录在数据库中以及响应前端错误信息和状态码的中间件
-    
-    </summary>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nrm</title>
-    <link href="http://dong-666.github.io/2020/07/28/nrm/"/>
-    <id>http://dong-666.github.io/2020/07/28/nrm/</id>
-    <published>2020-07-28T14:17:50.000Z</published>
-    <updated>2020-07-28T14:19:24.165Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>nrm(npm registry manager )是npm的镜像源管理工具，可以使用这个工具快速地在不同的npm源间切换</p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>全局安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nrm</span><br></pre></td></tr></table></figure><h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><ul><li><p><code>nrm ls</code></p><p>查看可以选择的npm源</p><p><img src= "/img/loading.gif" data-src="/2020/07/28/nrm/image-20200726172330948.png" alt="image-20200726172330948"></p><p>带*的是当前使用的源</p></li><li><p><code>nrm use 源</code></p><p>这个是用来切换源的</p><p>例如：<code>nrm use taobao</code>就是使用淘宝镜像源</p></li><li><p><code>nrm del 源</code></p><p>删除某个源</p></li><li><p><code>nrm test 源</code> </p><p>测试某个源的速度</p></li><li><p><code>nrm add 源名 源路径</code></p><p>添加其它源</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      nrm的安装及常用命令
-    
-    </summary>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>body-parser原理及实现方式</title>
-    <link href="http://dong-666.github.io/2020/07/28/body-parser%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/"/>
-    <id>http://dong-666.github.io/2020/07/28/body-parser%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/</id>
-    <published>2020-07-28T14:10:57.000Z</published>
-    <updated>2020-07-30T03:42:00.958Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h1><blockquote><p>由于表单 POST 请求可能会携带大量的数据，所以在进行请求提交的时候会分为多次提交，具体分为多少次进行提交不一定，取决于数据量的大小<br>在 Node 中，对于处理这种不确定的数据，使用事件的形式处理<br>这里可以监听 req 对象的 data 事件，然后通过对应的回调处理函数中的参数 chunk 拿到每一次接收到的数据data，当数据接收完毕之后，会自动触发 req 对象的 end 事件，然后就可以在 end 事件中使用接收到的表单 POST 请求体</p></blockquote><h1 id="代码原理"><a href="#代码原理" class="headerlink" title="代码原理"></a>代码原理</h1><p>记得先引入<code>querystring</code>模块</p><p><code>querystring</code>用作分割请求体内容并转化为对象格式</p><p>因为有时候会用到文件上传，所以这里要判断数据请求头的<code>content-type</code>，如果是<code>multipart/form-data</code>，则让<code>formidable</code>中间件（涉及到文件提交的，可以参考这篇<a href="https://ypigy.gitee.io/2020/07/29/form%E8%A1%A8%E5%8D%95%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4/" target="_blank" rel="noopener">博客</a>）去处理，否则自己处理</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="string">``</span></span><br><span class="line">    <span class="keyword">if</span> (req.method.toLowerCase() === <span class="string">'get'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> next()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果是有文件的表单POST，则不处理</span></span><br><span class="line">    <span class="keyword">if</span> (req.headers[<span class="string">'content-type'</span>].startsWith(<span class="string">'multipart/form-data'</span>)) &#123;</span><br><span class="line">        req.on(<span class="string">'data'</span>, chunk =&gt; &#123;</span><br><span class="line">            data += chunk</span><br><span class="line">        &#125;)</span><br><span class="line">        req.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">            req.body = queryString.parse(data)</span><br><span class="line">            next()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;原理简介&quot;&gt;&lt;a href=&quot;#原理简介&quot; class=&quot;headerlink&quot; title=&quot;原理简介&quot;&gt;&lt;/a&gt;原理简介&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;由于表单 POST 请求可能会携带大量的数据，所以在进行请求提交的时候会分为多次提交，具体分为多少
-      
-    
-    </summary>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/categories/Node/"/>
-    
-    
-      <category term="Node" scheme="http://Dong-666.github.io/tags/Node/"/>
     
   </entry>
   
