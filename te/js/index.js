@@ -129,7 +129,7 @@ var china = function() {
                 name: '确诊人数',
                 type: 'pie',
                 clockWise: false,
-                radius: [30, 460],
+                radius: [26, 460],
                 center: ['73%', '80%'],
                 roseType: 'area',
                 encode: {
