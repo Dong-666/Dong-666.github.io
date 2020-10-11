@@ -1289,17 +1289,6 @@
     
     
     <entry>
-      <title>music</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="你被写在我的歌里"><a href="#你被写在我的歌里" class="headerlink" title="你被写在我的歌里"></a>你被写在我的歌里</h2>    <div id="aplayer-PEDDvOnH" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7468974476" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="skyblue"></div><h2 id="那年青涩"><a href="#那年青涩" class="headerlink" title="那年青涩"></a>那年青涩</h2>    <div id="aplayer-vnYKTrva" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7305029495" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="pink"></div><h2 id="吱吱吱"><a href="#吱吱吱" class="headerlink" title="吱吱吱"></a>吱吱吱</h2>    <div id="aplayer-QwfdyFfr" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="772861349" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="orange"></div>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>分类</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
@@ -1316,6 +1305,17 @@
       <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>music</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="你被写在我的歌里"><a href="#你被写在我的歌里" class="headerlink" title="你被写在我的歌里"></a>你被写在我的歌里</h2>    <div id="aplayer-yqhVtHqe" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7468974476" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="skyblue"></div><h2 id="那年青涩"><a href="#那年青涩" class="headerlink" title="那年青涩"></a>那年青涩</h2>    <div id="aplayer-WcTUiOBa" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7305029495" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="pink"></div><h2 id="吱吱吱"><a href="#吱吱吱" class="headerlink" title="吱吱吱"></a>吱吱吱</h2>    <div id="aplayer-eSPSJESB" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="772861349" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="orange"></div>]]></content>
       
     </entry>
     
