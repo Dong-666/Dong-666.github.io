@@ -11,11 +11,11 @@
     src: url(../font/DS-DIGIT.TTF);
 }
 
-body {
+.bod {
     /* 覆盖整个页面 */
     margin: 0;
     padding: 0;
-    background-color: rgba(21, 25, 101);
+    background-color: rgb(21, 25, 101);
 }
 
 header {
