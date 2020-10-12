@@ -252,6 +252,12 @@ header h1 {
     border: 1px solid rgba(25, 186, 139, 0.17);
 }
 
+/* 解决背景变色 */
+.modal-backdrop {
+  opacity: 0 !important;
+  filter: alpha(opacity=0) !important;
+}
+
 @keyframes rotate {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
@@ -282,6 +288,14 @@ header h1 {
         font-size: 10px;
     }
 }
+
+@media (max-width: 300px) {
+        .no-hd ul li{
+        font-size: 20px;
+    }
+}
+
+
 
 /* @media screen and (min-width: 1920px) {
     html {
