@@ -1289,22 +1289,22 @@
     
     
     <entry>
-      <title>gallery</title>
-      <link href="/gallery/index.html"/>
-      <url>/gallery/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[<div class="gallery-group-main">  <figure class="gallery-group">  <img class="gallery-group-img" src= "/img/loading.gif" data-src="https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg">  <figcaption>  <div class="gallery-group-name">壁纸</div>  <p>收藏的一些壁纸</p>  <a href="/gallery/%E5%A3%81%E7%BA%B8"></a>  </figcaption>  </figure>    <figure class="gallery-group">  <img class="gallery-group-img" src= "/img/loading.gif" data-src="/gallery/life/a.jpeg">  <figcaption>  <div class="gallery-group-name">生活</div>  <p>关于生活</p>  <a href="/gallery/life/"></a>  </figcaption>  </figure>  </div>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>music</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="你被写在我的歌里"><a href="#你被写在我的歌里" class="headerlink" title="你被写在我的歌里"></a>你被写在我的歌里</h2>    <div id="aplayer-NmPrOKbS" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7468974476" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="skyblue"></div><h2 id="那年青涩"><a href="#那年青涩" class="headerlink" title="那年青涩"></a>那年青涩</h2>    <div id="aplayer-QmvKwJxT" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7305029495" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="pink"></div><h2 id="吱吱吱"><a href="#吱吱吱" class="headerlink" title="吱吱吱"></a>吱吱吱</h2>    <div id="aplayer-IwJXxoaj" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="772861349" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="orange"></div>]]></content>
       
     </entry>
     
@@ -1322,11 +1322,11 @@
     
     
     <entry>
-      <title>music</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
+      <title>gallery</title>
+      <link href="/gallery/index.html"/>
+      <url>/gallery/index.html</url>
       
-        <content type="html"><![CDATA[<h2 id="你被写在我的歌里"><a href="#你被写在我的歌里" class="headerlink" title="你被写在我的歌里"></a>你被写在我的歌里</h2>    <div id="aplayer-cpBaOIEC" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7468974476" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="skyblue"></div><h2 id="那年青涩"><a href="#那年青涩" class="headerlink" title="那年青涩"></a>那年青涩</h2>    <div id="aplayer-DdDubnPi" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7305029495" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="pink"></div><h2 id="吱吱吱"><a href="#吱吱吱" class="headerlink" title="吱吱吱"></a>吱吱吱</h2>    <div id="aplayer-yxePUPAO" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="772861349" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="orange"></div>]]></content>
+        <content type="html"><![CDATA[<div class="gallery-group-main">  <figure class="gallery-group">  <img class="gallery-group-img" src= "/img/loading.gif" data-src="https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg">  <figcaption>  <div class="gallery-group-name">壁纸</div>  <p>收藏的一些壁纸</p>  <a href="/gallery/%E5%A3%81%E7%BA%B8"></a>  </figcaption>  </figure>    <figure class="gallery-group">  <img class="gallery-group-img" src= "/img/loading.gif" data-src="/gallery/life/a.jpeg">  <figcaption>  <div class="gallery-group-name">生活</div>  <p>关于生活</p>  <a href="/gallery/life/"></a>  </figcaption>  </figure>  </div>]]></content>
       
     </entry>
     
