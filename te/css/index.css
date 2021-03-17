@@ -275,33 +275,6 @@ header h1 {
 
 
 
-@keyframes rotate {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-@keyframes rotate1 {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg)
-    }
-
-    to {
-        transform: translate(-50%, -50%) rotate(-360deg)
-    }
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -318,22 +291,11 @@ header h1 {
 
 
 
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 300px) {
         .no-hd ul li{
         font-size: 20px;
     }
 }
-
 
 
 /* @media screen and (min-width: 1920px) {
