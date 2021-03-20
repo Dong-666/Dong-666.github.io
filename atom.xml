@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dong-666.github.io/"/>
-  <updated>2021-03-20T02:58:53.747Z</updated>
+  <updated>2021-03-20T03:09:14.730Z</updated>
   <id>http://dong-666.github.io/</id>
   
   <author>
@@ -17,21 +17,17 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>http协议</title>
+    <title>利用斐波拉契数列理解递归</title>
     <link href="http://dong-666.github.io/2021/03/23/%E5%88%A9%E7%94%A8%E6%96%90%E6%B3%A2%E6%8B%89%E5%A5%91%E6%95%B0%E5%88%97%E7%90%86%E8%A7%A3%E9%80%92%E5%BD%92/"/>
     <id>http://dong-666.github.io/2021/03/23/%E5%88%A9%E7%94%A8%E6%96%90%E6%B3%A2%E6%8B%89%E5%A5%91%E6%95%B0%E5%88%97%E7%90%86%E8%A7%A3%E9%80%92%E5%BD%92/</id>
     <published>2021-03-23T02:30:52.000Z</published>
-    <updated>2021-03-20T02:58:53.747Z</updated>
+    <updated>2021-03-20T03:09:14.730Z</updated>
     
     <content type="html"><![CDATA[<p>递归是啥，你可以去谷歌一下，没有解答，你就会一直循环下去，直到你了解了递归是啥，这便是递归，哈哈哈哈哈，我自己都不相信自己说的自己能不能理解，怎么来和你们讲呢，好的，就让我们直接用实例去理解递归吧</p><p>可以看看这个<a href="https://www.zhihu.com/zvideo/1219550997229522944" target="_blank" rel="noopener">视频</a>先，形象了解下</p><h2 id="斐波拉契数列"><a href="#斐波拉契数列" class="headerlink" title="斐波拉契数列"></a>斐波拉契数列</h2><p>什么是斐波拉契数列，如下数字所示</p><p>1、1、2、3、5、8、13、21、34、55、…</p><p>看到规律了有没有，从第三个开始，他的值总会等于它前两个值相加，像这样→<strong>f(n - 1) + f(n - 2)(n &gt;= 3)</strong>，好的，目前看起来这个原理很容易理解，让我们来点难的，现在我直接问你，当n = 11时，对应的斐波拉契数是多少，啊这这这这，让我拿出一张纸先，好的你开始了推演，计算第11的斐波拉契数，它等于第10的斐波拉契数加第9的斐波拉契数，第10的斐波拉契数是啥，是第9＋第8的斐波拉契数…..最终我们来到了1，所以我需要从1开始算起，算到第11个数：继续1，然后1+1，然后(1+1)+1，接着((1+1)+1)+(1+1)，如下图所示</p><p><img src= "/img/loading.gif" data-src="/2021/03/23/%E5%88%A9%E7%94%A8%E6%96%90%E6%B3%A2%E6%8B%89%E5%A5%91%E6%95%B0%E5%88%97%E7%90%86%E8%A7%A3%E9%80%92%E5%BD%92/image-20210311212046966.png" alt="image-20210311212046966"></p><p>最后我们来到了11这边，答案出来啦，就是89，这便是递归的过程，从哪里开始，从哪里结束，中间经历着一堆同样规则的计算</p><p>用网上的一个例子：你用你手中的钥匙（f(n - 1) + f(n - 2)）打开一扇门（n = 11），结果去发现前方还有一扇门（n=10)，紧接着你又用钥匙打开了这扇门，然后你又看到一扇门（n=9)，…，当你开到某扇门时（n = 2），发现前方是一堵墙(f(n) = 1(n = 1、2))无路可走了，你选择原路返回（(((((1+1)+1)+1)+1)+1)…）,最后返回最开始的门（n = 11）。</p><p>钥匙便是这个过程的规律（通用的关系式），第一个门就是你所需要求的值的索引，开过一个又一个需要相同钥匙开的门，墙便是终止条件，然后重新回去你就知道了你所求的值是什么，这便是整个过程了，这也就是递归</p><p>也可以通过下面的代码理解</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fac = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n == <span class="number">1</span> || n == <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fac(n<span class="number">-1</span>) + fac(n<span class="number">-2</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算斐波拉契数</span></span><br><span class="line"><span class="built_in">console</span>.log(fac(<span class="number">8</span>))</span><br></pre></td></tr></table></figure><p>在哪里使用递归，你可以按以下三点进行分析</p><ol><li><p>你想完成一个怎样的功能</p><p>斐波拉契数列</p></li><li><p>终止条件 </p><p>1</p></li><li><p>找出关系式 </p><p>fac(n-1) + fac(n-2)</p></li></ol><h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><p>接下来就让我们用递归解决阶乘的代码编写问题，按以下三点进行</p><ol><li><p>你想完成一个怎样的功能</p><p>当我给一个数字n时，计算出n以及n-1,n-2直到1时相乘的值</p></li><li><p>终止条件</p><p>1</p></li><li><p>找出关系式</p><p>n * f(n-1) </p></li></ol><p>开始编写代码</p><p>定义一个函数</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> jie = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>编写终止条件</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(n == <span class="number">1</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>计算关系式</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> n * jie(n<span class="number">-1</span>)</span><br></pre></td></tr></table></figure><p>完整代码</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> jie = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> jie(n<span class="number">-1</span>) * n</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这便是我所理解的递归，与循环不同，循环是按照一个规律一直进行下去，直到终止条件发生，便停止循环，简单来说，即有去无回。而递归便是有去有回，就是从哪里开始，就从哪里结束。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;递归是啥，你可以去谷歌一下，没有解答，你就会一直循环下去，直到你了解了递归是啥，这便是递归，哈哈哈哈哈，我自己都不相信自己说的自己能不能理解，怎么来和你们讲呢，好的，就让我们直接用实例去理解递归吧&lt;/p&gt;
-&lt;p&gt;可以看看这个&lt;a href=&quot;https://www.zhih
-      
+      递归是个啥，首先你得了解下递归
     
     </summary>
     
