@@ -140,7 +140,7 @@
       
       <categories>
           
-          <category> 数据库 </category>
+          <category> PostgreSQL </category>
           
       </categories>
       
@@ -149,7 +149,7 @@
             
             <tag> GIS </tag>
             
-            <tag> 数据库 </tag>
+            <tag> PostgreSQL </tag>
             
         </tags>
       
