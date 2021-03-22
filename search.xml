@@ -63,12 +63,14 @@
       
       <categories>
           
-          <category> ES6 </category>
+          <category> JavaScript </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> JavaScript </tag>
             
             <tag> ES6 </tag>
             
@@ -95,9 +97,9 @@
       
         <tags>
             
-            <tag> ES6 </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ES6 </tag>
             
         </tags>
       
@@ -788,14 +790,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -946,14 +948,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -1295,14 +1297,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -1320,7 +1322,7 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
@@ -1329,7 +1331,7 @@
             
             <tag> Ajax </tag>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
             <tag> formidable </tag>
             
@@ -1349,14 +1351,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -1374,14 +1376,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -1399,14 +1401,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -1424,14 +1426,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -1449,14 +1451,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -1474,14 +1476,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
         </tags>
       
@@ -1526,12 +1528,14 @@
       
       <categories>
           
-          <category> ES6 </category>
+          <category> JavaScript </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> JavaScript </tag>
             
             <tag> ES6 </tag>
             
@@ -1812,14 +1816,18 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> JavaScript </category>
+          
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> JavaScript </tag>
+            
+            <tag> Node.js </tag>
             
             <tag> 异步编程 </tag>
             
@@ -1839,7 +1847,7 @@
       
       <categories>
           
-          <category> web </category>
+          <category> JavaScript </category>
           
       </categories>
       
@@ -1847,6 +1855,12 @@
         <tags>
             
             <tag> Ajax </tag>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> JQuery </tag>
+            
+            <tag> Promise </tag>
             
         </tags>
       
@@ -1920,12 +1934,14 @@
       
       <categories>
           
-          <category> ES6 </category>
+          <category> JavaScript </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> JavaScript </tag>
             
             <tag> ES6 </tag>
             
@@ -1947,14 +1963,14 @@
           
           <category> MongoDB </category>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
             <tag> MongoDB </tag>
             
@@ -1974,14 +1990,14 @@
       
       <categories>
           
-          <category> Node </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Node </tag>
+            <tag> Node.js </tag>
             
             <tag> MongoDB </tag>
             
@@ -2026,7 +2042,7 @@
       
       <categories>
           
-          <category> Git </category>
+          <category> web </category>
           
       </categories>
       
@@ -2053,7 +2069,7 @@
       
       <categories>
           
-          <category> Hexo </category>
+          <category> web </category>
           
       </categories>
       
@@ -2063,6 +2079,10 @@
             <tag> Hexo </tag>
             
             <tag> 博客 </tag>
+            
+            <tag> gitee </tag>
+            
+            <tag> github </tag>
             
         </tags>
       
@@ -2104,6 +2124,17 @@
     
     
     <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>gallery</title>
       <link href="/gallery/index.html"/>
       <url>/gallery/index.html</url>
@@ -2119,18 +2150,7 @@
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
       
-        <content type="html"><![CDATA[<h2 id="你被写在我的歌里"><a href="#你被写在我的歌里" class="headerlink" title="你被写在我的歌里"></a>你被写在我的歌里</h2>    <div id="aplayer-SlYzGRPw" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7468974476" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="skyblue"></div><h2 id="那年青涩"><a href="#那年青涩" class="headerlink" title="那年青涩"></a>那年青涩</h2>    <div id="aplayer-tZwSTSOy" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7305029495" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="pink"></div><h2 id="吱吱吱"><a href="#吱吱吱" class="headerlink" title="吱吱吱"></a>吱吱吱</h2>    <div id="aplayer-KjwsMiRQ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="772861349" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="orange"></div>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="你被写在我的歌里"><a href="#你被写在我的歌里" class="headerlink" title="你被写在我的歌里"></a>你被写在我的歌里</h2>    <div id="aplayer-swjmWCow" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7468974476" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="skyblue"></div><h2 id="那年青涩"><a href="#那年青涩" class="headerlink" title="那年青涩"></a>那年青涩</h2>    <div id="aplayer-PuPCwhhc" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="7305029495" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="pink"></div><h2 id="吱吱吱"><a href="#吱吱吱" class="headerlink" title="吱吱吱"></a>吱吱吱</h2>    <div id="aplayer-krWcVfLc" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="772861349" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="none" data-theme="orange"></div>]]></content>
       
     </entry>
     
