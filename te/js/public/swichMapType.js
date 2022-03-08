@@ -9,20 +9,20 @@ let btn = document.querySelector('#switchMapType');
 let mapType = 'world';
 btn.addEventListener('click', () => {
   if (mapType == 'world') {
-    centerMapOption.series[0]['mapType'] = 'china';
-    resetMapOption(centerMap, centerMapOption, chinaVirus, 10000);
     mapType = 'china';
+    resetMapOption(centerMap, centerMapOption, chinaVirus, mapType);
   } else if (mapType == 'china') {
-    centerMapOption.series[0]['mapType'] = 'world';
-    resetMapOption(centerMap, centerMapOption, worldVirus, 500000);
     mapType = 'world';
+    resetMapOption(centerMap, centerMapOption, worldVirus, mapType);
   }
 });
 
-function resetMapOption(chart, option, data, visualMapMax) {
-  option['visualMap']['max'] = visualMapMax;
+function resetMapOption(chart, option, data, type) {
   data.length == 0 && alert('数据加载失败');
-  option.series[0]['data'] = data;
+  option['series'][0]['mapType'] = type;
+  option['visualMap']['max'] = type == 'china' ? 10000 : 500000;
+  option['title']['text'] = type == 'china' ? '国内确诊情况' : '全球各国确诊情况';
+  option['series'][0]['data'] = data;
   chart.clear();
   chart.setOption(centerMapOption);
 }
