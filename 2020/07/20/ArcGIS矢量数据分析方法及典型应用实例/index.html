@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ArcGIS矢量数据分析方法及典型应用实例 | Dong</title><meta name="description" content="通过该实验掌握缓冲区的基本原理、缓冲区建立和缓冲区分析的基本方法；理解矢量数据空间叠加分析的基本原理、掌握常用的空间叠加分析方法"><meta name="keywords" content="ArcGIS,GIS,空间分析"><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon3.png"><link rel="canonical" href="http://dong-666.github.io/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="ArcGIS矢量数据分析方法及典型应用实例"><meta property="og:url" content="http://dong-666.github.io/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/"><meta property="og:site_name" content="Dong"><meta property="og:description" content="通过该实验掌握缓冲区的基本原理、缓冲区建立和缓冲区分析的基本方法；理解矢量数据空间叠加分析的基本原理、掌握常用的空间叠加分析方法"><meta property="og:image" content="http://dong-666.github.io/img/ArcGIS.jpg"><meta property="article:published_time" content="2020-07-20T09:07:02.000Z"><meta property="article:modified_time" content="2020-07-29T10:34:17.799Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="ArcGIS制作阴影效果总结" href="http://dong-666.github.io/2020/07/20/ArcGIS%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/"><link rel="next" title="异步编程" href="http://dong-666.github.io/2020/07/20/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"languages":{"author":"作者: 天际线上的猪","link":"链接: ","source":"来源: Dong","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: false,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-07-29 18:34:17'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">97</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实验要求"><span class="toc-number">2.</span> <span class="toc-text">实验要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#缓冲区分析"><span class="toc-number">3.</span> <span class="toc-text">缓冲区分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-实验内容"><span class="toc-number">3.1.</span> <span class="toc-text">1.实验内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-实验步骤"><span class="toc-number">3.2.</span> <span class="toc-text">2.实验步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#叠加分析"><span class="toc-number">4.</span> <span class="toc-text">叠加分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实验内容"><span class="toc-number">4.1.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验步骤"><span class="toc-number">4.2.</span> <span class="toc-text">实验步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#应用实例一-市区择房分析"><span class="toc-number">5.</span> <span class="toc-text">应用实例一 市区择房分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实验内容-1"><span class="toc-number">5.1.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验步骤-1"><span class="toc-number">5.2.</span> <span class="toc-text">实验步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#应用实例二-大型商场选址"><span class="toc-number">6.</span> <span class="toc-text">应用实例二 大型商场选址</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实验内容-2"><span class="toc-number">6.1.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验步骤-2"><span class="toc-number">6.2.</span> <span class="toc-text">实验步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结束语"><span class="toc-number">7.</span> <span class="toc-text">结束语</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/ArcGIS.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Dong</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">ArcGIS矢量数据分析方法及典型应用实例</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-07-20 17:07:02"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-07-20</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-07-29 18:34:17"><i class="fas fa-history fa-fw"></i> 更新于 2020-07-29</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/ArcGIS/">ArcGIS</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">2.3k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 6 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>矢量数据不同于栅格数据，一般不存在模式化的分析处理方法。在ArcGIS中，矢量数据的空间分析主要集中于缓冲分析、叠置分析、网络分析和追踪分析等方面。通过该实验掌握缓冲区的基本原理、缓冲区建立和缓冲区分析的基本方法；理解矢量数据空间叠加分析的基本原理、掌握常用的空间叠加分析方法；通过具体应用实例进行市区择房分析和大型超市选址综合应用，进一步掌握和理解叠置分析和缓冲分析。</p>
+<p>关键词：空间分析；缓冲分析；叠置分析；选址问题</p>
+<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><p>1.掌握缓冲区的基本原理；</p>
+<p>2.掌握缓冲区建立和缓冲区分析的基本方法；</p>
+<p>3.掌握矢量数据空间叠加分析的基本原理；</p>
+<p>4.掌握常用的空间叠加分析方法；</p>
+<p>5.掌握具体的应用实例—-选址问题；</p>
+<h1 id="缓冲区分析"><a href="#缓冲区分析" class="headerlink" title="缓冲区分析"></a>缓冲区分析</h1><h2 id="1-实验内容"><a href="#1-实验内容" class="headerlink" title="1.实验内容"></a>1.实验内容</h2><p>某房地产商准备开发一个住宅小区，需要对城市噪声进行分析，拟通过计算各地的噪声强度找出受噪声影响较小的区域。</p>
+<h2 id="2-实验步骤"><a href="#2-实验步骤" class="headerlink" title="2.实验步骤"></a>2.实验步骤</h2><p>1）打开ArcMap，加载城市路网数据streets；</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/0eb09d8135f0aceceb76392d0eea014d.png" alt="0eb09d8135f0aceceb76392d0eea014d"></p>
+<p>​                                                            图一 路网数据</p>
+<p>2）加载缓冲区工具</p>
+<p>在菜单栏下选择【自定义】|【自定义模式】|【命令】|【工具】|【缓冲向导】|<br>将其拖拉到任意工具条空白处；</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/67be73a54bb1c3b66eea54bb627563af.png" alt="67be73a54bb1c3b66eea54bb627563af"></p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/80e70ff1c0b38241ea4e8b65db6c995f-1595216817760.png" alt="80e70ff1c0b38241ea4e8b65db6c995f"></p>
+<p>​                                                                    图二 调出缓冲向导工具</p>
+<p>3）根据道路噪声衰减的特点并研究路网数据的空间范围，确定适宜的缓冲距离及缓冲区数量；</p>
+<p>①缓冲区距离：100米；</p>
+<p>②缓冲区数量：20个；</p>
+<p>4）点击第2步中添加的缓冲向导按钮，打开对话框，选择需要建立缓冲区的数据strees图层</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/802d8699df59f627ca83996472ebd734.png" alt="802d8699df59f627ca83996472ebd734"></p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/deec726beed03e100130259f721779e9.png" alt="deec726beed03e100130259f721779e9"></p>
+<p>图三 设置缓冲向导图层及参数</p>
+<p>5）生成缓冲区</p>
+<p>设置缓冲区的合并及保存路径，单击【确定】生成多环缓冲区</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/64514417d372859b7e223fbce0479c62.png" alt="64514417d372859b7e223fbce0479c62"></p>
+<p>图四 多环缓冲区图</p>
+<p>6）在缓冲区数据的属性表中添加一个长整型类型的字段MeanDist（平均距离），打开字段选择器，在文本框中输入‘([FromBufDist]</p>
+<ul>
+<li>[ToBufDist]) / 2’;</li>
+</ul>
+<p>7）在属性表中再添加一个双精度类型的字段Noise，打开字段选择器，在文本框中输入‘100<br>^ (1 – [MeanDist] / 2000)’</p>
+<p>（100指假设每个道路产生噪声为100，2000指噪声影响的最大距离）</p>
+<p>8）将噪声数据转换成栅格数据</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/99849d0397cd3a1942146890b1c0a45a.png" alt="99849d0397cd3a1942146890b1c0a45a"></p>
+<p>图五 多环缓冲区图栅格化</p>
+<h1 id="叠加分析"><a href="#叠加分析" class="headerlink" title="叠加分析"></a>叠加分析</h1><h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><p>根据规划道路的中心线及道路红线宽度（100m），确定各村将被征用的各类土地，并完成面积的分类统计表。</p>
+<p>多边形与多边形叠加：</p>
+<ol>
+<li><p>图形之间要产生切割；</p>
+</li>
+<li><p>属性之间要产生继承；</p>
+</li>
+</ol>
+<h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><p>1）打开ArcMap，加载数据，调整图层顺序，浏览数据；</p>
+<p>2）打开‘道路用地统计表.xls’了解需要统计的数据；</p>
+<p>3）以road为输入数据，以50米（缓冲区半径采用道路红线宽度的一半）建立缓冲区，产生道路用地范围数据，【分析工具】|【领域分析】|【缓冲区】；</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/bf2f2d02fd1dd1b65f8fde3c8e3b8d96.png" alt="bf2f2d02fd1dd1b65f8fde3c8e3b8d96"></p>
+<p>​                                                                        图一 缓冲区工具</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/5b5218162010667ea1579970525ee49e.png" alt="5b5218162010667ea1579970525ee49e"></p>
+<p>​                                                                    图二 生成道路缓冲区</p>
+<p>4）将缓冲区道路与土地利用信息空间叠加，【分析工具】|【领域分析】|【相交】得到道路用地范围的土地利用数据；</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/6ed6f4217abeef958afb15a17af02737.png" alt="6ed6f4217abeef958afb15a17af02737"></p>
+<p>​                                                                        图三 将土地进行叠加—-相交</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/4ac7ec8204518ee1744d6ffa4bb1b4c1.png" alt="4ac7ec8204518ee1744d6ffa4bb1b4c1"></p>
+<p>​                                                                    图四 叠加—-相交</p>
+<p>5）利用【分析工具】|【叠加分析】|【标识】将得到的用地范围内的土地再与village进行叠加；</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/219723d9927c1595da532555306f4bb9.png" alt="219723d9927c1595da532555306f4bb9"></p>
+<p>​                                                                                图五 将村落标识叠加</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/8f422cd33eb97573b68a63b247a29baa.png" alt="8f422cd33eb97573b68a63b247a29baa"></p>
+<p>​                                                                                图六 村落标识</p>
+<p>6）在经过叠加后的属性表上添加一个双精度类型的新字段newArea，单击右键【计算几何】，重新计算面积；</p>
+<p>7）重算土地类型代码，在属性表上添加一个长整型的新字段newCODE，右键【字段计算器】在文本框输入‘left([CODE],1)’提取各类土地的一级代码；</p>
+<p>8）面积分类汇总，打开【分析工具】|【统计分析】|【频数】统计各村各类土地的面积；</p>
+<p>9）将表格输出；</p>
+<p>10）在EXCEL表中整理并按表格的要求进行单位换算与填写。</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/15993cf6ccf0b70d163421f4efb4e7f4.png" alt="15993cf6ccf0b70d163421f4efb4e7f4"></p>
+<p>​                                                                图七 道路用地分村统计表</p>
+<h1 id="应用实例一-市区择房分析"><a href="#应用实例一-市区择房分析" class="headerlink" title="应用实例一 市区择房分析"></a>应用实例一 市区择房分析</h1><h2 id="实验内容-1"><a href="#实验内容-1" class="headerlink" title="实验内容"></a>实验内容</h2><p>所寻求的市区是噪声要小，距离盛业中心和各大名牌高中要近，环境优雅离名胜古迹较近，给预定一个定量限定如下：</p>
+<p>（1）离主要市区交通要道200m之外，交通要到的车流量大，噪声产生的主要源于此（ST为道路类型中的只要市区交通要道）；</p>
+<p>（2）距大型商业中心的影响，以商业中心的代销来确定影响区域，具体是以属性字段YUZHI；</p>
+<p>（3）距名牌高中在750m之内，以便小孩上学便捷；</p>
+<p>（4）距名胜古迹500m之内；</p>
+<p>最后分别将满足上诉条件的其中一个条件的取值为1，不满足的取值为0，即如果满足距主要市区交通要道200m之内，取值为1，反之为0；其他亦是如此，最后将其累加得到分级。即满足三个条件累加得到3，满足2个条件的得到2，最后将全部分为4级。</p>
+<h2 id="实验步骤-1"><a href="#实验步骤-1" class="headerlink" title="实验步骤"></a>实验步骤</h2><p><strong>一、缓冲区分析</strong></p>
+<p>1.主干道噪声缓冲区的建立</p>
+<p>（1）选择交通网络图层（network.shp）打开图层属性表，左上角【表选项】|【按属性选择】输入‘TYPE=ST’，选择出市区主要道路出来；</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/c728c5cbbc4f8c4d9a120a630978dac0.png" alt="c728c5cbbc4f8c4d9a120a630978dac0"></p>
+<p>（2）调出缓冲向导</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/e4cce71d3c12609edd91adad9e6bf3ec.png" alt="e4cce71d3c12609edd91adad9e6bf3ec"></p>
+<p>【自定义】|【自定义模式】|【命令】|【工具】|【缓冲向导】将其拖到菜单栏空白处；</p>
+<p>（3）【缓冲向导】对话框，按照需求选择；</p>
+<p>2.完成交通（噪声）、商业中心、学校、名胜古迹的缓冲分布图</p>
+<p><strong><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/1133f718f0aae28106eb737963939d64.png" alt="1133f718f0aae28106eb737963939d64"></strong></p>
+<p>​                                                                        图二 市区交通要道200m之外缓冲区</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/1397f59a4abc76388f6daa7f7825379c.png" alt="1397f59a4abc76388f6daa7f7825379c"></p>
+<p>​                                                            图三 商业中心影响范围缓冲区</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/158ef3cc7a8d299f16af9117cdcd2661.png" alt="158ef3cc7a8d299f16af9117cdcd2661"></p>
+<p>​                                                                                        图四 名牌高中的覆盖范围</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/90699aa4a8af34678ae6fa146254c93c.png" alt="90699aa4a8af34678ae6fa146254c93c"></p>
+<p>​                                                                    图五 名胜古迹的周边覆盖影响范围</p>
+<p><strong>二、叠置分析</strong></p>
+<p>1.对商业中心、名牌高中、名胜古迹进行【叠置分析】中的【交集】操作，具体如下：</p>
+<p>【分析工具】|【叠加分析】|【相交】| three.shp</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/627365e3a600349085425493d566bbf3.png" alt="627365e3a600349085425493d566bbf3"></p>
+<p>​                                                                    图六 满足三个条件的区域</p>
+<p>2.利用交通（噪声）缓冲分布图对生成的three.shp进行擦除处理，具体如下：</p>
+<p>【分析工具】|【叠加分析】|【擦除】| four.shp</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/04992b9010c425f663f8df53f833fad5.png" alt="04992b9010c425f663f8df53f833fad5"></p>
+<p>​                                                                        图七 购房者的最佳选择区域</p>
+<p>3.分级别</p>
+<p>满足四个条件为第一等级，以此类推</p>
+<ol>
+<li><p>分别打开商业中心、名牌高中、名胜古迹的缓冲区图层添加market、school、famous字段，全部赋值1；</p>
+</li>
+<li><p>打开交通（噪声）缓冲区图层添加voice字段，赋值-1（这里取-1的原因是噪声缓冲区之外才是满足要求的）；</p>
+</li>
+<li><p>【分析工具】|【叠加分析】|【联合】| union.shp</p>
+</li>
+</ol>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/e4cc9a02c582455a4d3bf88b8ff6a761.png" alt="e4cc9a02c582455a4d3bf88b8ff6a761"></p>
+<p>​                                                                        图八 四个缓冲区的叠加图</p>
+<ol>
+<li><p>打开生成的union.shp的属性表，添加class字段，右键【字段计算器】输入“class=market+voice+school+famous”；</p>
+</li>
+<li><p>符号化</p>
+</li>
+</ol>
+<p>根据class进行分级表达；</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/8a12b4144887e44c2d88054f56d8acbf.png" alt="8a12b4144887e44c2d88054f56d8acbf"></p>
+<p>​                                                                    图九 区域居住适宜性分级</p>
+<h1 id="应用实例二-大型商场选址"><a href="#应用实例二-大型商场选址" class="headerlink" title="应用实例二 大型商场选址"></a>应用实例二 大型商场选址</h1><h2 id="实验内容-2"><a href="#实验内容-2" class="headerlink" title="实验内容"></a>实验内容</h2><p>要求</p>
+<p>待寻找地区的区位条件为：</p>
+<ol>
+<li><p>离城市主要交通线路50m以内，以保证商场交通的通达性；</p>
+</li>
+<li><p>保证在居民区100m范围内，便于居民步行到达商场；</p>
+</li>
+<li><p>距停车场100m范围内，便于顾客停车；</p>
+</li>
+<li><p>距已经存在的商场500m范围之外，减少竞争压力。</p>
+</li>
+</ol>
+<h2 id="实验步骤-2"><a href="#实验步骤-2" class="headerlink" title="实验步骤"></a>实验步骤</h2><p>说明：由于此实验与实验三步骤一致，此处不再赘述。</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/4801a99f49b3f326a55e3061e3d66927-1595217223005.png" alt="4801a99f49b3f326a55e3061e3d66927"></p>
+<p>​                                                                    图一 离城市主要交通线路50m以内</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/9ce289ab19ab7582206173ff8613a425.png" alt="9ce289ab19ab7582206173ff8613a425"></p>
+<p>​                                                            图二 在居民区100m范围内</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/28d6a77328d4e569c9402628284cb30b.png" alt="28d6a77328d4e569c9402628284cb30b"></p>
+<p>​                                                                图三 距停车场100m范围内</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/98d69051ee6eb927a968a044910a2476.png" alt="98d69051ee6eb927a968a044910a2476"></p>
+<p>​                                                            图四 已经存在的商场500m范围</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/1ed6a9659883511bc7793b3502c559fd.png" alt="1ed6a9659883511bc7793b3502c559fd"></p>
+<p>​                                                                            图五 相交结果</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/bb3d6f4ba884f3782b9751040a23922b.png" alt="bb3d6f4ba884f3782b9751040a23922b"></p>
+<p>​                                                                            图六 擦除结果</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/d0cf4d2d306fee794741c8381e352eab.png" alt="d0cf4d2d306fee794741c8381e352eab"></p>
+<p>​                                                                        图七 联合结果</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/bffab35aaf89e0642df334b0de856cc2.jpg" alt="bffab35aaf89e0642df334b0de856cc2"></p>
+<p>​                                                                            图八 商场选址适宜性分析结果</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>通过本实验，了解到了矢量数据不同于栅格数据，一般不存在模式化的分析处理方法。在ArcGIS中，矢量数据的空间分析主要集中于缓冲分析、叠置分析、网络分析和追踪分析等方面。通过该实验掌握缓冲区的基本原理、缓冲区建立和缓冲区分析的基本方法；理解矢量数据空间叠加分析的基本原理、掌握常用的空间叠加分析方法；通过具体应用实例进行市区择房分析和大型超市选址综合应用，进一步掌握和理解叠置分析和缓冲分析。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">天际线上的猪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://dong-666.github.io/2020/07/20/ArcGIS%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/">http://dong-666.github.io/2020/07/20/ArcGIS矢量数据分析方法及典型应用实例/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Dong-666.github.io" target="_blank">Dong</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ArcGIS/">ArcGIS</a><a class="post-meta__tags" href="/tags/GIS/">GIS</a><a class="post-meta__tags" href="/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/">空间分析</a></div><div class="post_share"><div class="social-share" data-image="/img/code.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><button class="reward-button" type="button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.png" alt="wechat" onclick="window.open('/img/wechat.png')"/><div class="post-qr-code__desc">wechat</div></li><li class="reward-item"><img class="post-qr-code__img" src="/img/alipay.jpg" alt="alipay" onclick="window.open('/img/alipay.jpg')"/><div class="post-qr-code__desc">alipay</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/20/ArcGIS%E5%88%B6%E4%BD%9C%E9%98%B4%E5%BD%B1%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93/"><img class="prev-cover" data-src="/img/ArcGIS.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ArcGIS制作阴影效果总结</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/20/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"><img class="next-cover" data-src="/img/code.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">异步编程</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/07/20/ArcGIS不同坡度植被覆盖率分析/" title="ArcGIS不同坡度植被覆盖率分析"><img class="relatedPosts_cover" data-src="/img/ArcGIS.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="relatedPosts_title">ArcGIS不同坡度植被覆盖率分析</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/20/ArcGIS制作阴影效果总结/" title="ArcGIS制作阴影效果总结"><img class="relatedPosts_cover" data-src="/img/ArcGIS.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="relatedPosts_title">ArcGIS制作阴影效果总结</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/20/ArcGIS地形梯度效果生成/" title="ArcGIS地形梯度效果生成"><img class="relatedPosts_cover" data-src="/img/ArcGIS.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="relatedPosts_title">ArcGIS地形梯度效果生成</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/20/ArcGIS坐标系总结/" title="坐标系总结"><img class="relatedPosts_cover" data-src="/img/ArcGIS.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="relatedPosts_title">坐标系总结</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/20/ArcGIS基于围棋视角下肯德基麦当劳分布特点可视化-厦门为例/" title="ArcGIS基于围棋视角下肯德基麦当劳分布特点可视化---厦门为例"><img class="relatedPosts_cover" data-src="/img/ArcGIS.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="relatedPosts_title">ArcGIS基于围棋视角下肯德基麦当劳分布特点可视化---厦门为例</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/20/ArcGIS格网统计图/" title="ArcGIS格网统计图"><img class="relatedPosts_cover" data-src="/img/ArcGIS.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="relatedPosts_title">ArcGIS格网统计图</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'K4oel47dX9gLB9DECHDKW5HF-gzGzoHsz',
+      appKey: 'FI26zV0So19K2wVMY6Ds4nAA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'hide',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" style="background-image: url(/img/ArcGIS.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 天际线上的猪</div><div class="footer_custom_text">Hi, Welcome to my blog</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

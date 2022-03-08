@@ -1,0 +1,465 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>四、webpack入门 | Dong</title><meta name="description" content="根据b站学习Vue所记录下来的笔记"><meta name="keywords" content="Vue,Vue入门"><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon3.png"><link rel="canonical" href="http://dong-666.github.io/2021/03/01/%E5%9B%9B%E3%80%81webpack%E5%85%A5%E9%97%A8/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="四、webpack入门"><meta property="og:url" content="http://dong-666.github.io/2021/03/01/%E5%9B%9B%E3%80%81webpack%E5%85%A5%E9%97%A8/"><meta property="og:site_name" content="Dong"><meta property="og:description" content="根据b站学习Vue所记录下来的笔记"><meta property="og:image" content="http://dong-666.github.io/img/code.jpg"><meta property="article:published_time" content="2021-03-01T07:00:04.000Z"><meta property="article:modified_time" content="2021-06-03T11:55:51.909Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="五、CLI入门" href="http://dong-666.github.io/2021/03/01/%E4%BA%94%E3%80%81Vue-CLI%E5%85%A5%E9%97%A8/"><link rel="next" title="三、组件化开发" href="http://dong-666.github.io/2021/03/01/%E4%B8%89%E3%80%81Vue%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"languages":{"author":"作者: 天际线上的猪","link":"链接: ","source":"来源: Dong","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: false,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-06-03 19:55:51'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">97</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#认识"><span class="toc-number">1.</span> <span class="toc-text">认识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前端模块化"><span class="toc-number">1.1.</span> <span class="toc-text">前端模块化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包"><span class="toc-number">1.2.</span> <span class="toc-text">打包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#和grunt-gulp的对比"><span class="toc-number">1.3.</span> <span class="toc-text">和grunt&#x2F;gulp的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">1.4.</span> <span class="toc-text">安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#起步"><span class="toc-number">2.</span> <span class="toc-text">起步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#入口和出口"><span class="toc-number">3.1.</span> <span class="toc-text">入口和出口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#局部安装webpack的问题"><span class="toc-number">3.2.</span> <span class="toc-text">局部安装webpack的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json中定义启动"><span class="toc-number">3.3.</span> <span class="toc-text">package.json中定义启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loader"><span class="toc-number">4.</span> <span class="toc-text">loader</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">4.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css-loader、style-loader"><span class="toc-number">4.2.</span> <span class="toc-text">css-loader、style-loader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#less-loader"><span class="toc-number">4.3.</span> <span class="toc-text">less-loader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片处理"><span class="toc-number">4.4.</span> <span class="toc-text">图片处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#url-loader"><span class="toc-number">4.4.1.</span> <span class="toc-text">url-loader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#file-loader"><span class="toc-number">4.4.2.</span> <span class="toc-text">file-loader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改文件名字"><span class="toc-number">4.4.3.</span> <span class="toc-text">修改文件名字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6语法处理babel-loader"><span class="toc-number">4.5.</span> <span class="toc-text">ES6语法处理babel-loader</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack配置vue🔺"><span class="toc-number">5.</span> <span class="toc-text">webpack配置vue🔺</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-1"><span class="toc-number">5.1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单文件组件🔺"><span class="toc-number">5.2.</span> <span class="toc-text">单文件组件🔺</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于关注点分离"><span class="toc-number">5.3.</span> <span class="toc-text">关于关注点分离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack-plugin"><span class="toc-number">6.</span> <span class="toc-text">webpack-plugin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介-1"><span class="toc-number">6.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加版权信息"><span class="toc-number">6.2.</span> <span class="toc-text">添加版权信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包html"><span class="toc-number">6.3.</span> <span class="toc-text">打包html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js压缩"><span class="toc-number">6.4.</span> <span class="toc-text">js压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue搭建本地服务器"><span class="toc-number">6.5.</span> <span class="toc-text">vue搭建本地服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack配置文件的分离"><span class="toc-number">7.</span> <span class="toc-text">webpack配置文件的分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包文件解析"><span class="toc-number">8.</span> <span class="toc-text">打包文件解析</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/code.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Dong</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">四、webpack入门</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-03-01 15:00:04"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-03-01</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-06-03 19:55:51"><i class="fas fa-history fa-fw"></i> 更新于 2021-06-03</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/Vue/">Vue</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">3.9k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 14 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="认识"><a href="#认识" class="headerlink" title="认识"></a>认识</h2><p><a href="https://www.webpackjs.com/concepts/" target="_blank" rel="noopener">官方文档</a></p>
+<blockquote>
+<p><strong>简介：</strong>本质上，<em>webpack</em> 是一个现代 JavaScript 应用程序的<em>静态模块打包器(module bundler)<em>。当 webpack 处理应用程序时，它会递归地构建一个</em>依赖关系图(dependency graph)*，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 *bundle</em></p>
+</blockquote>
+<p><img src= "/img/loading.gif" data-src="/2021/03/01/%E5%9B%9B%E3%80%81webpack%E5%85%A5%E9%97%A8/image-20200921194136709.png" alt="image-20200921194136709"></p>
+<p>两个点来解释上面这段话：<strong>模块</strong> 和 <strong>打包</strong></p>
+<h3 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h3><ol>
+<li><p>webpack其中一个核心就是让我们可能进行模块化开发，并且会帮助我们处理模块间的依赖关系。</p>
+</li>
+<li><p>而且不仅仅是JavaScript文件，我们的CSS、图片、json文件等等在webpack中都可以被当做模块来使用（在后续我们会看到）。</p>
+</li>
+</ol>
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><ol>
+<li>将webpack中的各种资源模块进行打包合并成一个或多个包(Bundle)。</li>
+<li>并且在打包的过程中，还可以对资源进行处理，比如压缩图片，将scss转成css，将ES6语法转成ES5语法，将TypeScript转成JavaScript等等操作。</li>
+</ol>
+<h3 id="和grunt-gulp的对比"><a href="#和grunt-gulp的对比" class="headerlink" title="和grunt/gulp的对比"></a>和grunt/gulp的对比</h3><ol>
+<li>grunt/gulp更加强调的是前端流程的自动化，模块化不是它的核心。</li>
+<li>webpack更加强调模块化开发管理，而文件压缩合并、预处理等功能，是他附带的功能。</li>
+</ol>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>要先安装node</p>
+<p>检测node环境</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+
+<p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i webpack --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>为什么全局安装后要还要局部安装</p>
+<ol>
+<li>在终端直接执行webpack命令，使用的全局安装的webpack</li>
+<li>当在package.json中定义了scripts，其中包含了webpack命令，那么使用的是局部webpack</li>
+</ol>
+<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><ol>
+<li><p>创建对应的文件夹</p>
+<ul>
+<li>dist文件夹：用于存放之后打包的文件</li>
+<li>src文件夹：用于存放我们写的源文件</li>
+<li>main.js：项目的入口文件。</li>
+<li>mathUtils.js：定义了一些数学工具函数，可以在其他地方引用，并且使用。</li>
+<li>index.html：浏览器打开展示的首页html</li>
+<li>package.json：通过npm init生成的，npm包管理的文件</li>
+</ul>
+</li>
+<li><p>打包指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack src/main.js dist/bundle.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>index.html使用打包后的文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"dist/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="入口和出口"><a href="#入口和出口" class="headerlink" title="入口和出口"></a>入口和出口</h3><p>创建一个webpack.config.js文件用来将webpack打包命令进行简化，从而直接在配置中定义出口和入口</p>
+<p><strong>注意：</strong>文件名字必须命名为webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./public/02-inport.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname,<span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="局部安装webpack的问题"><a href="#局部安装webpack的问题" class="headerlink" title="局部安装webpack的问题"></a>局部安装webpack的问题</h3><p>启动webpack进行打包需要定位到node_modules/.bin/webpack才能执行webpack命令，或者，通过下面的方式</p>
+<h3 id="package-json中定义启动"><a href="#package-json中定义启动" class="headerlink" title="package.json中定义启动"></a>package.json中定义启动</h3><p>在package.json中定义启动有什么优势呢</p>
+<p>package.json中的scripts的脚本在执行时，会按照一定的顺序寻找命令对应的位置。</p>
+<p>首先，会寻找本地的node_modules/.bin路径中对应的命令。</p>
+<p>如果没有找到，会去全局的环境变量中寻找</p>
+<p>下面介绍一下使用</p>
+<ol>
+<li><p>首先是在json文件下定义npm命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"npx webpack"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cmd执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
+<p><em>loader</em> 让 webpack 能够去处理那些非 JavaScript 文件（webpack 自身只理解 JavaScript）。loader 可以将所有类型的文件转换为 webpack 能够处理的有效<a href="https://www.webpackjs.com/concepts/modules" target="_blank" rel="noopener">模块</a>，然后你就可以利用 webpack 的打包能力，对它们进行处理。</p>
+<p>本质上，webpack loader 将所有类型的文件，转换为应用程序的依赖图（和最终的 bundle）可以直接引用的模块。</p>
+</blockquote>
+<p>在更高层面，在 webpack 的配置中 <strong>loader</strong> 有两个目标：</p>
+<ol>
+<li><code>test</code> 属性，用于标识出应该被对应的 loader 进行转换的某个或某些文件。</li>
+<li><code>use</code> 属性，表示进行转换时，应该使用哪个 loader。</li>
+</ol>
+<p><strong>loader通用使用过程</strong></p>
+<ol>
+<li>通过npm安装需要使用的loader</li>
+<li>在webpack.config.js中的modules关键字的loaders下进行配置</li>
+</ol>
+<h3 id="css-loader、style-loader"><a href="#css-loader、style-loader" class="headerlink" title="css-loader、style-loader"></a>css-loader、style-loader</h3><p><strong>作用</strong></p>
+<p>转换css文件（css-loader）并对其进行解析（style-loader）后样式改变</p>
+<p><strong>安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev css-loader style-loader</span><br></pre></td></tr></table></figure>
+
+<p><strong>main.js文件导入css模块</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> css <span class="keyword">from</span> <span class="string">'file.css'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>webpack.config.js</strong>配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/i</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里解释一下，为什么style-loader在css-loader前面</p>
+<p>因为webpack在读取使用的loader的过程中，是按照从右向左的顺序读取的</p>
+<h3 id="less-loader"><a href="#less-loader" class="headerlink" title="less-loader"></a>less-loader</h3><p><strong>安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev less-loader less</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">  use: [&#123;</span><br><span class="line">      loader: <span class="string">'style-loader'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">'css-loader'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">'less-loader'</span>,</span><br><span class="line">      options: &#123;</span><br><span class="line">        lessOptions: &#123;</span><br><span class="line">          strictMath: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以解析less文件</p>
+<h3 id="图片处理"><a href="#图片处理" class="headerlink" title="图片处理"></a>图片处理</h3><h4 id="url-loader"><a href="#url-loader" class="headerlink" title="url-loader"></a>url-loader</h4><p><strong>安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev url-loader</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(png|jpg|gif|jpeg)$/i</span>,</span><br><span class="line">  use: [&#123;</span><br><span class="line">    loader: <span class="string">'url-loader'</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">      limit: <span class="number">11000</span>,</span><br><span class="line">      name: <span class="string">'img/[name].[hash:6].[ext]'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;, ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>打包后你会发现，运行index.html，在f12窗口中查看一下，你会发现背景图是通过base64显示出来的，这也是limit属性的作用，当图片小于11kb时，会对图片进行base64编码</p>
+<p>但是，如果你放了一张超过11kb的照片后，你会发现，打包的时候它会报错，这个时候我们就需要安装另外一个模块file-loader</p>
+<h4 id="file-loader"><a href="#file-loader" class="headerlink" title="file-loader"></a>file-loader</h4><p><strong>安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev file-loader</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong></p>
+<p>这里要注意，不能同时配置url-loader和file-loader，也就是说你配了url-loader后就不要去配置file-loader，反过来也是，你配置了file-loader后就不要去配置url-loader了，否则打包的时候会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(png|jpe?g|gif)$/i</span>,</span><br><span class="line">  loader: <span class="string">'file-loader'</span>,</span><br><span class="line">  options: &#123;</span><br><span class="line">    name: <span class="string">'img/[name].[hash:6].[ext]'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改文件名字"><a href="#修改文件名字" class="headerlink" title="修改文件名字"></a>修改文件名字</h4><p>我们发现webpack自动帮助我们生成一个非常长的名字</p>
+<ul>
+<li>这是一个32位hash值，目的是防止名字重复</li>
+<li>但是，真实开发中，我们可能对打包的图片名字有一定的要求</li>
+<li>比如，将所有的图片放在一个文件夹中，跟上图片原来的名称，同时也要防止重复</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="/2021/03/01/%E5%9B%9B%E3%80%81webpack%E5%85%A5%E9%97%A8/image-20200921211143890.png" alt="image-20200921211143890"></p>
+<p>所以，我们可以在options中添加上如下选项：</p>
+<ul>
+<li><p>img：文件要打包到的文件夹</p>
+</li>
+<li><p>name：获取图片原来的名字，放在该位置</p>
+</li>
+<li><p>hash:8：为了防止图片名称冲突，依然使用hash，但是我们只保留8位</p>
+</li>
+<li><p>ext：使用图片原来的扩展名</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(png|jpg|gif|jpeg)$/i</span>,</span><br><span class="line">  use: [&#123;</span><br><span class="line">    loader: <span class="string">'url-loader'</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">      limit: <span class="number">11000</span>,</span><br><span class="line">      name: <span class="string">'img/[name].[hash:6].[ext]'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;, ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>但是，我们会发现图片并没有显示出来，这是因为图片使用的路径不正确</p>
+<ul>
+<li><p>默认情况下，webpack会将生成的路径直接返回给使用者</p>
+</li>
+<li><p>但是，我们整个程序是打包在dist文件夹下的，所以这里我们需要在路径下再添加一个dist/，即在output选项里添加publishPath：’dist/‘</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">  path: path.join(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">  publicPath: <span class="string">'dist/'</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6语法处理babel-loader"><a href="#ES6语法处理babel-loader" class="headerlink" title="ES6语法处理babel-loader"></a>ES6语法处理babel-loader</h3><p><strong>安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader@7 babel-core babel-preset-es2015</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.m?js$/</span>,</span><br><span class="line">  exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">      presets: [<span class="string">'es2015'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后就可以看到打包后ES转成ES5的语法了</p>
+<h2 id="webpack配置vue🔺"><a href="#webpack配置vue🔺" class="headerlink" title="webpack配置vue🔺"></a>webpack配置vue🔺</h2><h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><p>当我们使用上vue后，你会发现，那些页面渲染不出来且报出了一个这样的错误</p>
+<p><img src= "/img/loading.gif" data-src="/2021/03/01/%E5%9B%9B%E3%80%81webpack%E5%85%A5%E9%97%A8/image-20200922084012737.png" alt="image-20200922084012737"></p>
+<p>这是一个关于runtime-only和runtime-compiler之间的问题，后面会有补充</p>
+<p>这个时候，你就需要在webpack的配置文件配置下面的代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">  alias: &#123;</span><br><span class="line">    <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>ok，问题就解决了</p>
+<h3 id="单文件组件🔺"><a href="#单文件组件🔺" class="headerlink" title="单文件组件🔺"></a>单文件组件🔺</h3><p>先放上官网对其介绍</p>
+<blockquote>
+<p>在很多 Vue 项目中，我们使用 <code>Vue.component</code> 来定义全局组件，紧接着用 <code>new Vue({ el: &#39;#container &#39;})</code> 在每个页面内指定一个容器元素。</p>
+<p>这种方式在很多中小规模的项目中运作的很好，在这些项目里 JavaScript 只被用来加强特定的视图。但当在更复杂的项目中，或者你的前端完全由 JavaScript 驱动的时候，下面这些缺点将变得非常明显：</p>
+<ul>
+<li><strong>全局定义 (Global definitions)</strong> 强制要求每个 component 中的命名不得重复</li>
+<li><strong>字符串模板 (String templates)</strong> 缺乏语法高亮，在 HTML 有多行的时候，需要用到丑陋的 <code>\</code></li>
+<li><strong>不支持 CSS (No CSS support)</strong> 意味着当 HTML 和 JavaScript 组件化时，CSS 明显被遗漏</li>
+<li><strong>没有构建步骤 (No build step)</strong> 限制只能使用 HTML 和 ES5 JavaScript，而不能使用预处理器，如 Pug (formerly Jade) 和 Babel</li>
+</ul>
+<p>文件扩展名为 <code>.vue</code> 的 <strong>single-file components (单文件组件)</strong> 为以上所有问题提供了解决方法，并且还可以使用 webpack 或 Browserify 等构建工具。</p>
+</blockquote>
+<p>简单的来讲，为了避免全局变量污染，避免多个子组件的存在导致代码易读性变得非常差，和CSS样式被遗漏，vue就创造了单文件组件，每个组件都有其定义，每个组件都单独分开，使结构更加清晰，并使页面形成树结构。</p>
+<p>下面是单组件的代码示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1 class&#x3D;&quot;aaa&quot;&gt;我是子组件&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;message&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F;将配置输出</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      message: &#39;woshizizujian&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.aaa &#123;</span><br><span class="line">  color: yellow;</span><br><span class="line">  font-size: 20px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>父节点代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2 class&#x3D;&quot;title&quot;&gt;&#123;&#123;message&#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;cpn&gt;&lt;&#x2F;cpn&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F;将子组件引入页面</span><br><span class="line">import cpn from &#39;.&#x2F;cpn.vue&#39;</span><br><span class="line">&#x2F;&#x2F;输出自身配置</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    cpn</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      message: &#39;你好啊&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, </span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.title &#123;</span><br><span class="line">  color: orange;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>main.js最终引用并简单配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./src/vue/App.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    App</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>主页面在需要用到组件的地方定义其绑定的标签即可</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>大家好啊？<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"img"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./dist/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当然，你想要解析vue文件，你还需要安装对应的loader</p>
+<ul>
+<li>vue-loader</li>
+<li>vue-template-compiler</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save-dev vue-loader vue-template-compiler</span><br></pre></td></tr></table></figure>
+
+<p>然后就是配置啦，我这里因为vue-loader装的是13的版本，所以就不需要具体做它的相关插件配置，下面是vue-template-compiler（渲染vue）和vue-loader（解析vue）的相关配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.vue$/</span>,</span><br><span class="line">  use: [<span class="string">'vue-loader'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关于关注点分离"><a href="#关于关注点分离" class="headerlink" title="关于关注点分离"></a>关于关注点分离</h3><p>还是先放出官网的介绍</p>
+<blockquote>
+<p>一个重要的事情值得注意，<strong>关注点分离不等于文件类型分离。</strong>在现代 UI 开发中，我们已经发现相比于把代码库分离成三个大的层次并将其相互交织起来，把它们划分为松散耦合的组件再将其组合起来更合理一些。在一个组件里，其模板、逻辑和样式是内部耦合的，并且把他们搭配在一起实际上使得组件更加内聚且更可维护。</p>
+</blockquote>
+<p>将页面拆分成多个组件，导航栏、搜索栏、底部栏等等，这既降低了组件的耦合度，又提高了组件的可复用性，更加适合我们的惯用思维，将大的问题拆成多个小的问题，一一解决，最后解决掉大问题，而这些处理掉小问题的解决方法又可以在将来的某个时候直接用上，何乐而不为呢</p>
+<h2 id="webpack-plugin"><a href="#webpack-plugin" class="headerlink" title="webpack-plugin"></a>webpack-plugin</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ul>
+<li><p>plugin是什么？</p>
+<ul>
+<li><p>plugin是插件的意思，通常是用于对某个现有的架构进行扩展。</p>
+</li>
+<li><p>webpack中的插件，就是对webpack现有功能的各种扩展，比如打包优化，文件压缩等等。</p>
+</li>
+</ul>
+</li>
+<li><p>loader和plugin区别</p>
+<ul>
+<li><p>loader主要用于转换某些类型的模块，它是一个转换器。</p>
+</li>
+<li><p>plugin是插件，它是对webpack本身的扩展，是一个扩展器。</p>
+</li>
+</ul>
+</li>
+<li><p>plugin的使用过程：</p>
+<ol>
+<li><p>通过npm安装需要使用的plugins(某些webpack已经内置的插件不需要安装)</p>
+</li>
+<li><p>在webpack.config.js中的plugins中配置插件</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="添加版权信息"><a href="#添加版权信息" class="headerlink" title="添加版权信息"></a>添加版权信息</h3><p>这是webpack自带的一个插件，如何使用呢</p>
+<ol>
+<li><p>首先在webpack.config.js文件中引入webpack</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.BannerPlugin(<span class="string">'我是版权信息哈哈哈'</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结果显示</p>
+<p><img src= "/img/loading.gif" data-src="/2021/03/01/%E5%9B%9B%E3%80%81webpack%E5%85%A5%E9%97%A8/image-20200923110703505.png" alt="image-20200923110703505"></p>
+</li>
+</ol>
+<h3 id="打包html"><a href="#打包html" class="headerlink" title="打包html"></a>打包html</h3><p><strong>简介:</strong> 可以将你定义的html模板在生产环境下打包并生成html文件，且会自动绑定bundle.js文件</p>
+<p><strong>安装：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin --save-dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用:</strong></p>
+<ol>
+<li><p>引用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.BannerPlugin(<span class="string">'我是版权信息哈哈哈'</span>),</span><br><span class="line">  <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">    template: <span class="string">"main.html"</span> <span class="comment">//模板</span></span><br><span class="line">  &#125;),</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="js压缩"><a href="#js压缩" class="headerlink" title="js压缩"></a>js压缩</h3><p><strong>简介：</strong>对js等文件进行压缩处理</p>
+<p><strong>安装:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install uglifyjs-webpack-plugin@1.1.1 --save-dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用</strong>：</p>
+<ol>
+<li><p>引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Uglifyjs = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> Uglifyjs(),</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>很简单有没有，不过在最新的vue版本，已经可以自动压缩了，所以看看就可以了</p>
+<h3 id="vue搭建本地服务器"><a href="#vue搭建本地服务器" class="headerlink" title="vue搭建本地服务器"></a>vue搭建本地服务器</h3><p><strong>简介：</strong>webpack提供了一个可选的本地开发服务器，这个本地服务器基于node.js搭建，内部使用express框架，可以实现我们想要的让浏览器自动刷新显示我们修改后的结果。</p>
+<p><strong>安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack-dev-server@2.9.1</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用</strong>（不需要引入模块，直接进行配置，注意：它和entry、output等是并列关系）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">  contentBase: <span class="string">'./dist/'</span>,</span><br><span class="line">  inline: <span class="literal">true</span>,</span><br><span class="line">  port: <span class="number">3333</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>相关参数说明:</strong></p>
+<ul>
+<li><p>contentBase：为哪一个文件夹提供本地服务，默认是根文件夹，我们这里要填写./dist</p>
+</li>
+<li><p>port：端口号</p>
+</li>
+<li><p>inline：页面实时刷新</p>
+</li>
+<li><p>historyApiFallback：在SPA页面中，依赖HTML5的history模式</p>
+</li>
+</ul>
+<p><strong>在package.json文件中可以定义–open直接打开该服务</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"dev": "webpack-dev-server --open"</span><br></pre></td></tr></table></figure>
+
+<h2 id="webpack配置文件的分离"><a href="#webpack配置文件的分离" class="headerlink" title="webpack配置文件的分离"></a>webpack配置文件的分离</h2><p>在开发中，一般大型的项目会需要配置很多plugin插件以及很多loader以及自身的相关配置，到后期整个文件会越来越大，代码可阅读性也会变得越来越差，并且，开发环境的有些配置在生产环境中是不需要的，所以我们可以按照基础必备配置、生产环境配置以及开发环境配置进行配置抽离，分为三个文件，并使用build文件夹将他们包裹起来</p>
+<ol>
+<li>base.config.js</li>
+<li>prod.config.js</li>
+<li>dev.config.js</li>
+</ol>
+<p><img src= "/img/loading.gif" data-src="/2021/03/01/%E5%9B%9B%E3%80%81webpack%E5%85%A5%E9%97%A8/image-20200923113605570.png" alt="image-20200923113605570"></p>
+<p>但是首先，你需要安装相关的npm插件用来合并vue配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack-merge --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后对之前的整个配置文件分离后可得到下面的各个配置base.config.js</p>
+<p>dev.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"><span class="keyword">const</span> baseConfig = <span class="built_in">require</span>(<span class="string">'./base.config'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = webpackMerge(baseConfig, &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">'./dist'</span>,</span><br><span class="line">    inline: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>修改base.config.js的打包输出路径， <code>path: path.join(__dirname, &#39;../dist&#39;)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./main.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, <span class="string">'../dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    <span class="comment">// publicPath: 'dist/'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置package.json文件，修改生产环境的运行代码和开发环境的运行代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"build": "webpack --config ./build/prod.config.js",</span><br><span class="line">"dev": "webpack-dev-server --open --config ./build/dev.config.js"</span><br></pre></td></tr></table></figure>
+
+<h2 id="打包文件解析"><a href="#打包文件解析" class="headerlink" title="打包文件解析"></a>打包文件解析</h2><p><strong>app.js</strong></p>
+<p>当前应用程序开发的所有代码</p>
+<p><strong>mainifest</strong></p>
+<p>打包代码的底层支持~联想一下CommonJS AMD CMD标准</p>
+<p>使浏览器能识别那些导出导入规则</p>
+<p><strong>vendor</strong><br>第三方框架（bs\axios\vue）代码</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">天际线上的猪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://dong-666.github.io/2021/03/01/%E5%9B%9B%E3%80%81webpack%E5%85%A5%E9%97%A8/">http://dong-666.github.io/2021/03/01/四、webpack入门/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Dong-666.github.io" target="_blank">Dong</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Vue/">Vue</a><a class="post-meta__tags" href="/tags/Vue%E5%85%A5%E9%97%A8/">Vue入门</a></div><div class="post_share"><div class="social-share" data-image="/img/code.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><button class="reward-button" type="button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.png" alt="wechat" onclick="window.open('/img/wechat.png')"/><div class="post-qr-code__desc">wechat</div></li><li class="reward-item"><img class="post-qr-code__img" src="/img/alipay.jpg" alt="alipay" onclick="window.open('/img/alipay.jpg')"/><div class="post-qr-code__desc">alipay</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/01/%E4%BA%94%E3%80%81Vue-CLI%E5%85%A5%E9%97%A8/"><img class="prev-cover" data-src="/img/code.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">五、CLI入门</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/01/%E4%B8%89%E3%80%81Vue%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91/"><img class="next-cover" data-src="/img/code.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">三、组件化开发</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/03/01/vue实现tabbar/" title="tabbar制作"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="relatedPosts_title">tabbar制作</div></div></a></div><div class="relatedPosts_item"><a href="/2021/03/01/一、Vue初识/" title="一、Vue初识"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="relatedPosts_title">一、Vue初识</div></div></a></div><div class="relatedPosts_item"><a href="/2021/03/01/七、Vuex入门/" title="七、Vuex入门"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="relatedPosts_title">七、Vuex入门</div></div></a></div><div class="relatedPosts_item"><a href="/2021/03/01/三、Vue组件化开发/" title="三、组件化开发"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="relatedPosts_title">三、组件化开发</div></div></a></div><div class="relatedPosts_item"><a href="/2021/03/01/二、Vue基础语法/" title="二、基础语法"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="relatedPosts_title">二、基础语法</div></div></a></div><div class="relatedPosts_item"><a href="/2021/03/01/八、axios入门/" title="八、axios学习"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="relatedPosts_title">八、axios学习</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'K4oel47dX9gLB9DECHDKW5HF-gzGzoHsz',
+      appKey: 'FI26zV0So19K2wVMY6Ds4nAA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'hide',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" style="background-image: url(/img/code.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 天际线上的猪</div><div class="footer_custom_text">Hi, Welcome to my blog</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

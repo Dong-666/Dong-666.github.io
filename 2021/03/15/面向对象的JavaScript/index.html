@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>面向对象的JavaScript | Dong</title><meta name="description" content="基于学习《JS设计模式与开发实践》第一部分第一节所做的相关笔记以及个人心得"><meta name="keywords" content="JavaScript"><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon3.png"><link rel="canonical" href="http://dong-666.github.io/2021/03/15/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84JavaScript/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="面向对象的JavaScript"><meta property="og:url" content="http://dong-666.github.io/2021/03/15/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84JavaScript/"><meta property="og:site_name" content="Dong"><meta property="og:description" content="基于学习《JS设计模式与开发实践》第一部分第一节所做的相关笔记以及个人心得"><meta property="og:image" content="http://dong-666.github.io/img/code.jpg"><meta property="article:published_time" content="2021-03-14T16:00:00.000Z"><meta property="article:modified_time" content="2021-03-20T02:36:30.674Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="利用斐波拉契数列理解递归" href="http://dong-666.github.io/2021/03/23/%E5%88%A9%E7%94%A8%E6%96%90%E6%B3%A2%E6%8B%89%E5%A5%91%E6%95%B0%E5%88%97%E7%90%86%E8%A7%A3%E9%80%92%E5%BD%92/"><link rel="next" title="async/await学习" href="http://dong-666.github.io/2021/03/10/async%E5%AD%A6%E4%B9%A0/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"languages":{"author":"作者: 天际线上的猪","link":"链接: ","source":"来源: Dong","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: false,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-03-20 10:36:30'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">97</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#动态类型语言"><span class="toc-number">1.</span> <span class="toc-text">动态类型语言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多态"><span class="toc-number">2.</span> <span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用继承来得到多态"><span class="toc-number">2.2.</span> <span class="toc-text">使用继承来得到多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态在面向对象程序设计的作用"><span class="toc-number">2.3.</span> <span class="toc-text">多态在面向对象程序设计的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#封装"><span class="toc-number">3.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型模式和基于原型继承的JavaScript对象系统"><span class="toc-number">4.</span> <span class="toc-text">原型模式和基于原型继承的JavaScript对象系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-create"><span class="toc-number">4.1.</span> <span class="toc-text">Object.create</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Io语言体验"><span class="toc-number">4.2.</span> <span class="toc-text">Io语言体验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中的原型继承"><span class="toc-number">4.3.</span> <span class="toc-text">JavaScript中的原型继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#所有的数据都是对象"><span class="toc-number">4.3.1.</span> <span class="toc-text">所有的数据都是对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS的克隆"><span class="toc-number">4.3.2.</span> <span class="toc-text">JS的克隆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象会记住它的原型"><span class="toc-number">4.3.3.</span> <span class="toc-text">对象会记住它的原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象委托"><span class="toc-number">4.3.4.</span> <span class="toc-text">对象委托</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型继承的未来"><span class="toc-number">5.</span> <span class="toc-text">原型继承的未来</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/code.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Dong</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">面向对象的JavaScript</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-03-15 00:00:00"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-03-15</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-03-20 10:36:30"><i class="fas fa-history fa-fw"></i> 更新于 2021-03-20</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">2.9k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 9 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><blockquote>
+<p>看了文章目录且看过《JS设计模式与开发实践》的同学是不是有点熟悉，本文章便是基于学习该书第一部分第一节所做的相关笔记以及个人心得</p>
+</blockquote>
+<h1 id="动态类型语言"><a href="#动态类型语言" class="headerlink" title="动态类型语言"></a>动态类型语言</h1><p>不知道之前大家是否学过其它面向对象语言——C#、JAVA等等，笔者之前是先学了C#,当时命名变量都要使用规定的数据类型，比如你要定义一个整型数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public int a &#x3D; 3; &#x2F;&#x2F;定义一个整型数值a</span><br></pre></td></tr></table></figure>
+
+<p>又比如你要定义一个字符串类型的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public string a &#x3D; &#39;我是猪&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>按照编程语言的数据类型分类，这便是<strong>静态类型语言——在编译时便以确定变量的类型</strong></p>
+<p>而到后面我学了JavaScript，第一次感觉到被变量类型释放，几乎一切数据类型都能var解决，要是不能，就用es6的let解决</p>
+<p>不管你想数值型、字符串型、还是布尔型，通通var，通通var，<code>var a = 3</code>，<code>var a = &quot;我是猪&quot;</code></p>
+<p>那这又是什么类型的语言呢，没错，正如标题——动态类型语言，来看看动态类型语言的特点</p>
+<blockquote>
+<p>动态类型的变量类型要到程序运行时，待变量被赋予某个值之后，才会具有某种类型</p>
+</blockquote>
+<p>我们的JavaScript便是这种类型的语言</p>
+<p>那么，这两者又有什么优缺点呢，静态类型数据优点便是在刚开始编译时便能发现类型不匹配的错误，缺点便是——有点复杂，正如书所说，迫使程序员按照契约来编写程序；而动态类型语言则可以让代码看起来更简洁，程序员可以把更多的精力放在业务实现上，但就是无法保证变量的类型，从而使程序在运行过程中可能会发生与变量类型有关的错误</p>
+<p>总结下，动态类型语言对变量类型的宽容给实际编码带来很大的灵活性。由于无需类型检测，我们可以尝试调用任何对象的任意方法，而无需考虑它原本是否被设计为拥有该方法，想一下，如果在C#，你定义不同类型的对象，但它们有同一个方法，而一个需求只需要具有该方法的对象，而不考虑它是属于何种类的，怎么实现呢，是不是很难（向上转型，强制类型转换）。书里有一个故事——鸭子类型，便形象生动的描述了该需求~嘎嘎嘎🦆</p>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>含义：同一操作作用于不同的对象上面，可以产生不同的解释和不同的执行结果</p>
+</blockquote>
+<p>也就是：你会唱歌，别人也会唱歌，但可能他会唱高音，而你，低音则更好听，则便是多态，两个人同样会唱歌这个动作，但是声音却不同</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> singing = <span class="function"><span class="keyword">function</span>(<span class="params">animal</span>) </span>&#123;</span><br><span class="line">  animal.singSong()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Human = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.singSong = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"啊~~"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Bird = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.singSong = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"叽叽喳喳"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">singing(<span class="keyword">new</span> Human())</span><br><span class="line">singing(<span class="keyword">new</span> Bird())</span><br></pre></td></tr></table></figure>
+
+<p>好吧，这里拿了人和鸟来比了，准确来说可能是叫，问题不大</p>
+<p>运行完，当然就是一个’啊啊啊’，一个’叽叽叽’啦</p>
+<p>这就是多态</p>
+<h2 id="使用继承来得到多态"><a href="#使用继承来得到多态" class="headerlink" title="使用继承来得到多态"></a>使用继承来得到多态</h2><p>在传统的静态语言编程中，如果我们要让不同的类实例化出来的对象分别完成同样的动作，比如‘叫’，我们一般就会使用继承这一特性去完成，定义一个动物类，定义默认动作——如大多数动物都会的“叫”，然后再定义不同的类（人、牛）去继承该类，然后再完成各自具体的叫声或叫法</p>
+<p>而当如果我们只想说“看，牛在叫”，而不是“看，牛在哞哞哞”时，这个时候我们就要直接使用基类—动物类的‘叫’这个动作，因为这个动作的默认执行对象类型是animal，而不能duck、cow、human等等，那么，这个时候我们就要使用<strong>向上转型</strong>来实现了</p>
+<p>而在JavaScript中，如果我们要使用该特性，就比较简单粗暴了，管它什么向上转型，你不是会叫吗，我直接把你这个动物类怼到函数不就行，就像上面的唱歌，这便是动态语言的好处，注重实现，不注重主体——给我叫，管你猪或鸭</p>
+<h2 id="多态在面向对象程序设计的作用"><a href="#多态在面向对象程序设计的作用" class="headerlink" title="多态在面向对象程序设计的作用"></a>多态在面向对象程序设计的作用</h2><p>看完这部分，总结成一段话</p>
+<blockquote>
+<p>多态可以把过程化的条件分支语句转化为对象的多态性，从而消除这些条件分支语句，增加代码可阅读性</p>
+</blockquote>
+<p>就比如营长喊开炮时，各个职位的人开始负责不同的事，运输兵运送炮弹，炮兵负责开炮，辅助员（我不知道该叫啥）装填弹药，而不是营长按照人员单，来到炮兵面前说，你开炮，接着跑到装炮弹员旁边，你装；跑到运输兵，你去运炮弹，这么一来，可能营长跑着跑着，自己已经中弹身亡了有木有，或还没等执行完，敌人已经冲到你面前了会不会。</p>
+<p>所以在js中，我们一般会封装一个函数去执行不同操作对象的同个动作，从而避免代码维护性难度的增加</p>
+<p>比如我们要使用arcgis提供的地图服务，然后在某一天，我们因为需求需要改成腾讯的，如果不封装从而实现多态的话，在以后我们可能会因为换一个api而改动大量的代码，这是极其痛苦q的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> renderMap = <span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</span><br><span class="line">  type.map()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//模拟arcgis的底图</span></span><br><span class="line"><span class="keyword">var</span> Arcgis = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.map = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'arcgis'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//模拟腾讯地图</span></span><br><span class="line"><span class="keyword">var</span> Tencent = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.map = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Tencent map'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">renderMap(<span class="keyword">new</span> Arcgis()) <span class="comment">//arcgis</span></span><br><span class="line">renderMap(<span class="keyword">new</span> Tencent()) <span class="comment">//Tencent map</span></span><br></pre></td></tr></table></figure>
+
+<p>如果在实际开发中遇到同个实现效果的api不同方法名的话，我们可以借助<strong>设配器模式</strong>（待补充）来解决该问题</p>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><p>总而言之——封装的目的就是将信息隐藏，不仅仅包括隐藏数据、还包括隐藏设计细节、实现细节、以及对象的类型，封装使得对象之间的耦合度变松散，对象之间只通过暴露的API接口来通信</p>
+<p>一般就是通过抽象类和接口来实现封装，像上面的地图调用、以及动物唱歌，算了还是叫声好一点，就是封装的过程，在这个过程你就会不自觉发现同样实现了多态</p>
+<h1 id="原型模式和基于原型继承的JavaScript对象系统"><a href="#原型模式和基于原型继承的JavaScript对象系统" class="headerlink" title="原型模式和基于原型继承的JavaScript对象系统"></a>原型模式和基于原型继承的JavaScript对象系统</h1><h2 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a>Object.create</h2><blockquote>
+<p>在以类为中心的面向对象编程语言中，类和对象的关系可以想象成铸模和铸件的关系，对象总是从类中创建而来。而在原型编程的思想中，类并不是必需的，对象未必需要从类中创建而来，一个对象是通过克隆另外一个对象所得到的。</p>
+</blockquote>
+<p>如果使用原型模式，我们只需要调用负责克隆的方法，完成对象的创建</p>
+<p>ECMAScript 5提供了Object.create 方法，可以用来克隆对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Plane = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">  <span class="keyword">this</span>.blood = <span class="number">100</span>; </span><br><span class="line">  <span class="keyword">this</span>.attackLevel = <span class="number">1</span>; </span><br><span class="line">  <span class="keyword">this</span>.defenseLevel = <span class="number">1</span>; </span><br><span class="line">&#125;; </span><br><span class="line"><span class="keyword">var</span> plane = <span class="keyword">new</span> Plane(); </span><br><span class="line">plane.blood = <span class="number">500</span>; </span><br><span class="line">plane.attackLevel = <span class="number">10</span>; </span><br><span class="line">plane.defenseLevel = <span class="number">7</span>; </span><br><span class="line"><span class="keyword">var</span> clonePlane = <span class="built_in">Object</span>.create( plane ); </span><br><span class="line"><span class="built_in">console</span>.log( clonePlane ); <span class="comment">// 输出：Object &#123;blood: 500, attackLevel: 10, defenseLevel: 7&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Io语言体验"><a href="#Io语言体验" class="headerlink" title="Io语言体验"></a>Io语言体验</h2><p>好的，我没有体验，<a href="http://iolanguage.com" target="_blank" rel="noopener">官网地址</a>，反正它就是明显的以克隆的方式创造“世界”，Io语言中最初只有一个根对象Object，其它对象就像克隆一样，从它不断“衍生”出来</p>
+<p>通过Io学习主要记住以下几点</p>
+<ol>
+<li><p><strong>原型链</strong>就是从根节点到当前节点的所有对象</p>
+<p>比如：object是Animal的原型，而Animai是Dog的原型，它们之间便是一条原型链</p>
+</li>
+<li><p>JS同Io一样，基于原型链的委托机制就是原型继承的本质</p>
+</li>
+<li><p>原型编程的重要特性：当对象无法响应某个请求时，会把该请求<strong>委托</strong>给它自己的<strong>原型</strong></p>
+</li>
+</ol>
+<p>现原型编程范型至少包括以下基本规则</p>
+<ul>
+<li>所有的数据都是<strong>对象</strong></li>
+<li>要得到一个对象，不是通过实例化类，而是找到一个对象作为原型并克隆它</li>
+<li>对象会记住它的原型</li>
+<li>如果对象无法响应某个请求，它会把这个请求委托给它自己的原型</li>
+</ul>
+<h2 id="JavaScript中的原型继承"><a href="#JavaScript中的原型继承" class="headerlink" title="JavaScript中的原型继承"></a>JavaScript中的原型继承</h2><blockquote>
+<p>JavaScript 同样遵守原型编程的基本规则</p>
+</blockquote>
+<h3 id="所有的数据都是对象"><a href="#所有的数据都是对象" class="headerlink" title="所有的数据都是对象"></a>所有的数据都是对象</h3><p>JavaScript 中的根对象是 Object.prototype 对象。Object.prototype 对象是一个空的对象。我们在 JavaScript 遇到的每个对象，实际上都是从 Object.prototype 对象克隆而来的， Object.prototype 对象就是它们的原型。</p>
+<p>在 JavaScript 语言里，我们并不需要关心克隆的细节，因为这是引擎内部负责实现的。</p>
+<h3 id="JS的克隆"><a href="#JS的克隆" class="headerlink" title="JS的克隆"></a>JS的克隆</h3><p>JavaScript 的函数既可以作为普通函数被调用， 也可以作为构造器被调用。当使用 new 运算符来调用函数时，此时的函数就是一个构造器。 用 new 运算符来创建对象的过程，实际上也只是先克隆 Object.prototype 对象，再进行一些其他额外操作的过程。</p>
+<h3 id="对象会记住它的原型"><a href="#对象会记住它的原型" class="headerlink" title="对象会记住它的原型"></a>对象会记住它的原型</h3><p>JavaScript 给对象提供了一个名为_proto_的隐藏属性，某个对象的_proto_属性默认会指 向它的构造器的原型对象，即{Constructor}.prototype。</p>
+<p>_proto_就是对象跟“对象构造器的原型”联系起来的纽带。（<strong>_proto_：指向该对象的构造函数的原型对象，prototype指向该方法的原型对象</strong>——来自<a href="https://www.zhihu.com/question/34183746/answer/58155878" target="_blank" rel="noopener">知乎</a>）</p>
+<h3 id="对象委托"><a href="#对象委托" class="headerlink" title="对象委托"></a>对象委托</h3><p>JavaScript 的对象最初都是由 Object.prototype 对象克隆而来的，但对象构造器的原型并不仅限于 Object.prototype 上，而是可以动态指向其他对象。</p>
+<p>原型链并不是无限长的，当对象通过原型链找某个属性找到根节点而找不到时，则会返回undefined（Object.prototype 的原型是 null）</p>
+<h1 id="原型继承的未来"><a href="#原型继承的未来" class="headerlink" title="原型继承的未来"></a>原型继承的未来</h1><p>除了根对象 Object.prototype 本身之外，任何对象都会有一个原型。而通过 Object.create( null )可以创建出<strong>没有原型</strong>的对象。</p>
+<p>ECMAScript 6 带来了新的 Class 语法。这让 JavaScript 看起来像是一门基于类的语言， 但其背后仍是通过原型机制来创建对象。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>上面就是自己在学习第一部分第一节所画下以及自己所理解的重点了，里面依旧有许多对目前的自己晦涩难懂的代码，实在是太菜了，在以后慢慢吃透js（不可能，还没吃完就来新的😂）的过程中回来看看这些自己不懂的代码和概念吧</p>
+<p>但毕竟收获是有的，通过之前学的C#结合JavaScript来进一步理解多态、封装以及在这两种不同编程风格的代码实现，也了解了原来js的对象是通过原型模式（克隆）实现继承的，大开眼界</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">天际线上的猪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://dong-666.github.io/2021/03/15/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84JavaScript/">http://dong-666.github.io/2021/03/15/面向对象的JavaScript/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Dong-666.github.io" target="_blank">Dong</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a></div><div class="post_share"><div class="social-share" data-image="/img/code.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><button class="reward-button" type="button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.png" alt="wechat" onclick="window.open('/img/wechat.png')"/><div class="post-qr-code__desc">wechat</div></li><li class="reward-item"><img class="post-qr-code__img" src="/img/alipay.jpg" alt="alipay" onclick="window.open('/img/alipay.jpg')"/><div class="post-qr-code__desc">alipay</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/23/%E5%88%A9%E7%94%A8%E6%96%90%E6%B3%A2%E6%8B%89%E5%A5%91%E6%95%B0%E5%88%97%E7%90%86%E8%A7%A3%E9%80%92%E5%BD%92/"><img class="prev-cover" data-src="/img/code.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">利用斐波拉契数列理解递归</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/10/async%E5%AD%A6%E4%B9%A0/"><img class="next-cover" data-src="/img/code.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">async/await学习</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/07/20/AJAX/" title="AJAX笔记"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="relatedPosts_title">AJAX笔记</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/18/ES6初识/" title="ES6初步学习笔记"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-18</div><div class="relatedPosts_title">ES6初步学习笔记</div></div></a></div><div class="relatedPosts_item"><a href="/2021/03/10/async学习/" title="async/await学习"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-10</div><div class="relatedPosts_title">async/await学习</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/28/babel转码器/" title="babel转码器"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-28</div><div class="relatedPosts_title">babel转码器</div></div></a></div><div class="relatedPosts_item"><a href="/2021/08/22/原型/" title="js原型小记（大记）"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-22</div><div class="relatedPosts_title">js原型小记（大记）</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/20/异步编程/" title="异步编程"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="relatedPosts_title">异步编程</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'K4oel47dX9gLB9DECHDKW5HF-gzGzoHsz',
+      appKey: 'FI26zV0So19K2wVMY6Ds4nAA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'hide',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" style="background-image: url(/img/code.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 天际线上的猪</div><div class="footer_custom_text">Hi, Welcome to my blog</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

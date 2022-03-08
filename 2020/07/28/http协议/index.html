@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>http协议 | Dong</title><meta name="description" content="本文基于阅读“图解HTTP”后做的一部分笔记，讲解了一部分的http协议知识。"><meta name="keywords" content="http协议,计算机网络"><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon3.png"><link rel="canonical" href="http://dong-666.github.io/2020/07/28/http%E5%8D%8F%E8%AE%AE/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="http协议"><meta property="og:url" content="http://dong-666.github.io/2020/07/28/http%E5%8D%8F%E8%AE%AE/"><meta property="og:site_name" content="Dong"><meta property="og:description" content="本文基于阅读“图解HTTP”后做的一部分笔记，讲解了一部分的http协议知识。"><meta property="og:image" content="http://dong-666.github.io/img/code.jpg"><meta property="article:published_time" content="2020-07-28T13:24:52.000Z"><meta property="article:modified_time" content="2021-03-20T03:03:13.664Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="nodejs之请求日志和错误日志" href="http://dong-666.github.io/2020/07/28/nodejs%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97/"><link rel="next" title="babel转码器" href="http://dong-666.github.io/2020/07/28/babel%E8%BD%AC%E7%A0%81%E5%99%A8/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"languages":{"author":"作者: 天际线上的猪","link":"链接: ","source":"来源: Dong","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: false,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-03-20 11:03:13'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">97</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#请求方式"><span class="toc-number">3.</span> <span class="toc-text">请求方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#状态码"><span class="toc-number">4.</span> <span class="toc-text">状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#成功2XX"><span class="toc-number">4.1.</span> <span class="toc-text">成功2XX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向3XX"><span class="toc-number">4.2.</span> <span class="toc-text">重定向3XX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端错误4XX"><span class="toc-number">4.3.</span> <span class="toc-text">客户端错误4XX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器错误5XX"><span class="toc-number">4.4.</span> <span class="toc-text">服务器错误5XX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">4.5.</span> <span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代理、网关、隧-道"><span class="toc-number">5.</span> <span class="toc-text">代理、网关、隧 道</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代理"><span class="toc-number">5.1.</span> <span class="toc-text">代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网关"><span class="toc-number">5.2.</span> <span class="toc-text">网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隧道"><span class="toc-number">5.3.</span> <span class="toc-text">隧道</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Http缺点"><span class="toc-number">6.</span> <span class="toc-text">Http缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通信使用明文（不加密），内容可能会被窃听"><span class="toc-number">6.1.</span> <span class="toc-text">通信使用明文（不加密），内容可能会被窃听</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不验证通信方的身份就可能遭遇伪装"><span class="toc-number">6.2.</span> <span class="toc-text">不验证通信方的身份就可能遭遇伪装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无法证明报文完整性，可能已遭篡改"><span class="toc-number">6.3.</span> <span class="toc-text">无法证明报文完整性，可能已遭篡改</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/code.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Dong</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">http协议</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-07-28 21:24:52"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-07-28</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-03-20 11:03:13"><i class="fas fa-history fa-fw"></i> 更新于 2021-03-20</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">2.3k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 6 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><blockquote>
+<p>本文基于阅读<code>图解HTTP</code>后做的一部分笔记，讲解了一部分的http协议知识，期间还查阅了<code>菜鸟教程</code>的资料</p>
+</blockquote>
+<p> Web 使用一种名为 HTTP（HyperText Transfer Protocol，超文本传输协议）的协议作为规范，完成从客户端到服务器端等一系列运作流程。而协议是指规则的约定。可以说，Web 是建立在 HTTP 协议上通信的。 </p>
+<p> HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等） </p>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ul>
+<li><p>HTTP 协议用于客户端和服务器端之间的通信</p>
+</li>
+<li><p>通过请求和响应的交换达成通信 </p>
+</li>
+<li><p>HTTP 是不保存状态的协议 </p>
+<blockquote>
+<p> 不保存状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。 </p>
+</blockquote>
+</li>
+<li><p>请求 URI 定位资源 </p>
+</li>
+<li><p>可以使用 Cookie 的状态管理 </p>
+</li>
+<li><p>管线化 </p>
+<blockquote>
+<p> 管线化技术出现后，不用等待响应亦可直接发送下一个请求。 就能够做到同时并行发送多个请求，而不需要一个接一个地等待响应了</p>
+</blockquote>
+</li>
+<li><p>持久连接</p>
+<blockquote>
+<p>只要任意一端没有明确提出断开连接，则保持 TCP 连接状态 </p>
+</blockquote>
+</li>
+<li><p>Cookie管理状态</p>
+<blockquote>
+<p>Cookie 会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的 首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器 发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。 </p>
+<p>服务器端发现客户端发送过来的 Cookie 后，会去检查究竟是从哪一 个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前 的状态信息。 </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h1><p>下表源于<a href="https://www.runoob.com/http/http-methods.html" target="_blank" rel="noopener">菜鸟教程</a>，最常用的两种方法是get和post</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>GET</strong></td>
+<td align="left"><strong>请求指定的页面信息，并返回实体主体。</strong></td>
+</tr>
+<tr>
+<td align="left">HEAD</td>
+<td align="left">类似于 GET 请求，只不过返回的响应中没有具体的内容，用于获取报头</td>
+</tr>
+<tr>
+<td align="left"><strong>POST</strong></td>
+<td align="left"><strong>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的建立和/或已有资源的修改。</strong></td>
+</tr>
+<tr>
+<td align="left">PUT</td>
+<td align="left">从客户端向服务器传送的数据取代指定的文档的内容。</td>
+</tr>
+<tr>
+<td align="left">DELETE</td>
+<td align="left">请求服务器删除指定的页面。</td>
+</tr>
+<tr>
+<td align="left">CONNECT</td>
+<td align="left">HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。</td>
+</tr>
+<tr>
+<td align="left">OPTIONS</td>
+<td align="left">允许客户端查看服务器的性能。</td>
+</tr>
+<tr>
+<td align="left">TRACE</td>
+<td align="left">回显服务器收到的请求，主要用于测试或诊断。</td>
+</tr>
+<tr>
+<td align="left">PATCH</td>
+<td align="left">是对 PUT 方法的补充，用来对已知资源进行局部更新 。</td>
+</tr>
+</tbody></table>
+<h1 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h1><p> HTTP 状态码负责表示客户端 HTTP 请求的返回结果、标记服务器端 的处理是否正常、通知出现的错误等工作。</p>
+<p>常用状态码↓ </p>
+<h2 id="成功2XX"><a href="#成功2XX" class="headerlink" title="成功2XX"></a>成功2XX</h2><table>
+<thead>
+<tr>
+<th align="left">状态码</th>
+<th align="left">状态码短语</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">200</td>
+<td align="left">OK</td>
+<td align="left">请求成功。一般用于GET与POST请求</td>
+</tr>
+<tr>
+<td align="left">201</td>
+<td align="left">Created</td>
+<td align="left">已创建。成功请求并创建了新的资源</td>
+</tr>
+<tr>
+<td align="left">202</td>
+<td align="left">Accepted</td>
+<td align="left">已接受。已经接受请求，但未处理完成</td>
+</tr>
+<tr>
+<td align="left">203</td>
+<td align="left">Non-Authoritative Information</td>
+<td align="left">非授权信息。请求成功。但返回的meta信息不在原始的服务器，而是一个副本</td>
+</tr>
+<tr>
+<td align="left">204</td>
+<td align="left">No Content</td>
+<td align="left">无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</td>
+</tr>
+<tr>
+<td align="left">205</td>
+<td align="left">Reset Content</td>
+<td align="left">重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</td>
+</tr>
+<tr>
+<td align="left">206</td>
+<td align="left">Partial Content</td>
+<td align="left">部分内容。服务器成功处理了部分GET请求</td>
+</tr>
+</tbody></table>
+<h2 id="重定向3XX"><a href="#重定向3XX" class="headerlink" title="重定向3XX"></a>重定向3XX</h2><table>
+<thead>
+<tr>
+<th align="left">状态码</th>
+<th align="left">状态码英文名称</th>
+<th align="left">中文描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">301</td>
+<td align="left">Moved Permanently</td>
+<td align="left">永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替</td>
+</tr>
+<tr>
+<td align="left">302</td>
+<td align="left">Found</td>
+<td align="left">临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
+</tr>
+<tr>
+<td align="left">303</td>
+<td align="left">See Other</td>
+<td align="left">303 状态码和 302 Found 状态码有着相同的功能，但 303 状态码明确 表示客户端应当采用 GET 方法获取资源，这点与 302 状态码有区 别</td>
+</tr>
+<tr>
+<td align="left">304</td>
+<td align="left">Not Modified</td>
+<td align="left">该状态码表示客户端发送附带条件的请求 时，服务器端允许请求访问资源，但未满足条件的情况</td>
+</tr>
+<tr>
+<td align="left">307</td>
+<td align="left">Temporary Redirect</td>
+<td align="left">临时重定向。</td>
+</tr>
+</tbody></table>
+<h2 id="客户端错误4XX"><a href="#客户端错误4XX" class="headerlink" title="客户端错误4XX"></a>客户端错误4XX</h2><table>
+<thead>
+<tr>
+<th align="left">状态码</th>
+<th align="left">状态码英文名称</th>
+<th align="left">中文描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">400</td>
+<td align="left">Bad Request</td>
+<td align="left">该状态码表示请求报文中存在语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td align="left">401</td>
+<td align="left">Unauthorized</td>
+<td align="left">该状态码表示发送的请求需要有通过 HTTP 认证（BASIC 认证、 DIGEST 认证）的认证信息。另外若之前已进行过 1 次请求，则表示 用 户认证失败。</td>
+</tr>
+<tr>
+<td align="left">403</td>
+<td align="left">Forbidden</td>
+<td align="left">服务器理解请求客户端的请求，但是拒绝执行此请求</td>
+</tr>
+<tr>
+<td align="left">404</td>
+<td align="left">Not Found</td>
+<td align="left">服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置”您所请求的资源无法找到”的个性页面</td>
+</tr>
+</tbody></table>
+<h2 id="服务器错误5XX"><a href="#服务器错误5XX" class="headerlink" title="服务器错误5XX"></a>服务器错误5XX</h2><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>状态码英文名称</th>
+<th>中文描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>该状态码表明服务器端在执行请求时发生了错误。也有可能是 Web 应用存在的 bug 或某些临时的故障。</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中</td>
+</tr>
+</tbody></table>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p> 状态码和状况的不一致：不少返回的状态码响应都是错误的，但是用户可能察觉不到这点。 比如 Web 应用程序内部发生错误，状态码依然返回 200 OK，这种情况也经常遇到。  </p>
+<h1 id="代理、网关、隧-道"><a href="#代理、网关、隧-道" class="headerlink" title="代理、网关、隧 道"></a>代理、网关、隧 道</h1><blockquote>
+<p> HTTP 通信时，除客户端和服务器以外，还有一些用于通信数据转发 的应用程序，例如代理、网关和隧道。它们可以配合服务器工作。 这些应用程序和服务器可以将请求转发给通信线路上的下一站服务器，并且能接收从那台服务器发送的响应再转发给客户端。 </p>
+</blockquote>
+<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端“中间人”的角色，接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。</p>
+<h2 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h2><p>网关是转发其他服务器通信数据的服务器，接收从客户端发送来的请求时，它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉，自己的通信目标是一个网关。 </p>
+<h2 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h2><p>隧道是在相隔甚远的客户端和服务器两者之间进行中转，并保持双方 通信连接的应用程序。 </p>
+<h1 id="Http缺点"><a href="#Http缺点" class="headerlink" title="Http缺点"></a>Http缺点</h1><h2 id="通信使用明文（不加密），内容可能会被窃听"><a href="#通信使用明文（不加密），内容可能会被窃听" class="headerlink" title="通信使用明文（不加密），内容可能会被窃听"></a>通信使用明文（不加密），内容可能会被窃听</h2><ul>
+<li>TCP/IP 是可能被窃听的网络</li>
+<li>加密处理防止被窃听<ul>
+<li>通信加密（SSL、TLS）→与 SSL组合使用的 HTTP 被称为 HTTPS（HTTP Secure，超文本传输安全协议）</li>
+<li>内容的加密→由于HTTP 协议中没有加密机制，那么就对 HTTP 协议传输的内容本身加密。即把 HTTP 报文里所含的内容进行加密处理。</li>
+</ul>
+</li>
+</ul>
+<h2 id="不验证通信方的身份就可能遭遇伪装"><a href="#不验证通信方的身份就可能遭遇伪装" class="headerlink" title="不验证通信方的身份就可能遭遇伪装"></a>不验证通信方的身份就可能遭遇伪装</h2><ul>
+<li>任何人都可对服务器发起请求</li>
+<li>查明对手的证书<ul>
+<li>虽然使用 HTTP 协议无法确定通信方，但如果使用 SSL则可以。 SSL不仅提供加密处理，而且还使用了一种被称为证书的手段， 可用于确定方。</li>
+</ul>
+</li>
+</ul>
+<h2 id="无法证明报文完整性，可能已遭篡改"><a href="#无法证明报文完整性，可能已遭篡改" class="headerlink" title="无法证明报文完整性，可能已遭篡改"></a>无法证明报文完整性，可能已遭篡改</h2><ul>
+<li>接收的内容可被“中间人攻击”而遭到篡改</li>
+<li>防止篡改<ul>
+<li>虽然有使用 HTTP 协议确定报文完整性的方法，但事实上并不便捷、可靠。其中常用的是MD5和SHA-1等散列值校验的方法， 以及用来确认文件的数字签名方法。但是，用这些方法也依然无法百分百保证确认结果正确。因为 PGP 和 MD5 本身被改写的话，用户是没有办法意识到的。</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">天际线上的猪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://dong-666.github.io/2020/07/28/http%E5%8D%8F%E8%AE%AE/">http://dong-666.github.io/2020/07/28/http协议/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Dong-666.github.io" target="_blank">Dong</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/http%E5%8D%8F%E8%AE%AE/">http协议</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="/img/code.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><button class="reward-button" type="button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.png" alt="wechat" onclick="window.open('/img/wechat.png')"/><div class="post-qr-code__desc">wechat</div></li><li class="reward-item"><img class="post-qr-code__img" src="/img/alipay.jpg" alt="alipay" onclick="window.open('/img/alipay.jpg')"/><div class="post-qr-code__desc">alipay</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/28/nodejs%E4%B9%8B%E8%AF%B7%E6%B1%82%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97/"><img class="prev-cover" data-src="/img/code.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">nodejs之请求日志和错误日志</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/28/babel%E8%BD%AC%E7%A0%81%E5%99%A8/"><img class="next-cover" data-src="/img/code.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">babel转码器</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/04/18/数据链路层/" title="计算机网络-数据链路层"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-18</div><div class="relatedPosts_title">计算机网络-数据链路层</div></div></a></div><div class="relatedPosts_item"><a href="/2021/03/05/物理层/" title="计算机网络-物理层"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-05</div><div class="relatedPosts_title">计算机网络-物理层</div></div></a></div><div class="relatedPosts_item"><a href="/2021/04/18/计算机网络概述/" title="计算机网络概述"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-18</div><div class="relatedPosts_title">计算机网络概述</div></div></a></div><div class="relatedPosts_item"><a href="/2021/04/18/运输层/" title="计算机网络-运输层"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-18</div><div class="relatedPosts_title">计算机网络-运输层</div></div></a></div><div class="relatedPosts_item"><a href="/2021/04/18/应用层/" title="计算机网络-应用层"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-18</div><div class="relatedPosts_title">计算机网络-应用层</div></div></a></div><div class="relatedPosts_item"><a href="/2021/04/18/网络层/" title="计算机网络-网络层"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-18</div><div class="relatedPosts_title">计算机网络-网络层</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'K4oel47dX9gLB9DECHDKW5HF-gzGzoHsz',
+      appKey: 'FI26zV0So19K2wVMY6Ds4nAA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'hide',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" style="background-image: url(/img/code.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 天际线上的猪</div><div class="footer_custom_text">Hi, Welcome to my blog</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
