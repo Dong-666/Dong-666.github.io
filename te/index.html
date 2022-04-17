@@ -9,23 +9,21 @@
       content="根据腾讯疫情数据接口打造而成，为您提供全球疫情地图，疫情数据可视化，疫情趋势"
     />
     <meta name="keywords" content="全球疫情地图,疫情数据可视化,疫情趋势,新冠疫情" />
+    <link rel="icon" href="favicon.ico" />
     <title>全球疫情地图</title>
     <!-- JQ、Bootstrap -->
-    <link rel="stylesheet" href="css/sources/bootstrap.min.css" />
-    <script defer src="js/sources/jquery.js"></script>
-    <script defer src="js/sources/bootstrap.min.js"></script>
-    <!-- 时间、疫情确诊数量 -->
-    <script defer type="module" src="js/public/diagnosisNum.js"></script>
-    <script defer src="js/public/time.js"></script>
+    <link rel="stylesheet" href="sources/bootstrap.min.css" />
+    <script defer src="sources/jquery.js"></script>
+    <script defer src="sources/bootstrap.min.js"></script>
     <!-- echarts -->
-    <script defer src="js/sources/echarts.min.js"></script>
-    <script defer src="js/sources/world.js"></script>
-    <script defer src="js/sources/china.js"></script>
-    <script defer type="module" src="js/chartsInitData/topLeftInit.js"></script>
-    <script defer type="module" src="js/chartsInitData/bottomLeftInit.js"></script>
-    <script defer type="module" src="js/chartsInitData/rightInit.js"></script>
-    <script defer type="module" src="js/chartsInitData/centerMapInit.js"></script>
-    <script defer type="module" src="js/public/swichMapType.js"></script>
+    <script defer src="sources/echarts.min1.js"></script>
+    <script defer src="sources/world.js"></script>
+    <script defer src="sources/china.js"></script>
+    <!-- js主函数入口 -->
+    <!-- webpack打包版 -->
+    <script defer type="module" src="dist/bundle.js"></script>
+    <!-- 原始版 -->
+    <!-- <script defer type="module" src="js/index.js"></script> -->
     <!-- 样式 -->
     <link rel="stylesheet" href="css/index.css" />
   </head>
