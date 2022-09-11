@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dong-666.github.io/2022/05/15/%E9%87%8D%E5%9B%9E%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/</loc>
+    
+    <lastmod>2022-09-11T02:04:27.634Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://dong-666.github.io/2022/04/22/CSRF/</loc>
+    
+    <lastmod>2022-09-11T01:59:26.205Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://dong-666.github.io/2022/09/10/XSS/</loc>
+    
+    <lastmod>2022-09-11T01:54:00.921Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://dong-666.github.io/gallery/life/index.html</loc>
     
     <lastmod>2022-04-19T08:52:17.540Z</lastmod>
