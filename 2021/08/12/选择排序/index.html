@@ -1,115 +1,171 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>选择排序 | Dong</title><meta name="description" content="一种简单直观的排序算法"><meta name="keywords" content="算法"><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon3.png"><link rel="canonical" href="http://dong-666.github.io/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="选择排序"><meta property="og:url" content="http://dong-666.github.io/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/"><meta property="og:site_name" content="Dong"><meta property="og:description" content="一种简单直观的排序算法"><meta property="og:image" content="http://dong-666.github.io/img/algorithm.jpg"><meta property="article:published_time" content="2021-08-12T08:00:00.000Z"><meta property="article:modified_time" content="2022-03-02T08:00:41.076Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
-  document.documentElement.setAttribute('data-theme', 'dark')
-  if (document.querySelector('meta[name="theme-color"]') !== null) {
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
-  }
-}
-var activateLightMode = function () {
-  document.documentElement.setAttribute('data-theme', 'light')
-  if (document.querySelector('meta[name="theme-color"]') !== null) {
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
-  }
-}
-
-var getCookies = function (name) {
-  const value = `; ${document.cookie}`
-  const parts = value.split(`; ${name}=`)
-  if (parts.length === 2) return parts.pop().split(';').shift()
-}
-
-var autoChangeMode = 'false'
-var t = getCookies('theme')
-if (autoChangeMode === '1') {
-  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-
-  if (t === undefined) {
-    if (isLightMode) activateLightMode()
-    else if (isDarkMode) activateDarkMode()
-    else if (isNotSpecified || hasNoSupport) {
-      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
-      var now = new Date()
-      var hour = now.getHours()
-      var isNight = hour <= 6 || hour >= 18
-      isNight ? activateDarkMode() : activateLightMode()
-    }
-    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-      if (Cookies.get('theme') === undefined) {
-        e.matches ? activateDarkMode() : activateLightMode()
-      }
-    })
-  } else if (t === 'light') activateLightMode()
-  else activateDarkMode()
-} else if (autoChangeMode === '2') {
-  now = new Date()
-  hour = now.getHours()
-  isNight = hour <= 6 || hour >= 18
-  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-  else if (t === 'light') activateLightMode()
-  else activateDarkMode()
-} else {
-  if (t === 'dark') activateDarkMode()
-  else if (t === 'light') activateLightMode()
-}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="快速排序" href="http://dong-666.github.io/2021/08/20/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"><link rel="next" title="二分法" href="http://dong-666.github.io/2021/08/01/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>选择排序 | Dong</title><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一种简单直观的排序算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="选择排序">
+<meta property="og:url" content="http://dong-666.github.io/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Dong">
+<meta property="og:description" content="一种简单直观的排序算法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dong-666.github.io/img/algorithm.jpg">
+<meta property="article:published_time" content="2021-08-12T08:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-02T08:00:41.076Z">
+<meta property="article:author" content="天际线上的猪">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://dong-666.github.io/img/algorithm.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://dong-666.github.io/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  localSearch: undefined,
+  translate: undefined,
   noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
     success: '复制成功',
     error: '复制错误',
     noSupport: '浏览器不支持'
   },
-  bookmark: {
-    message_prev: '按',
-    message_next: '键将本页加入书签'
+  relativeDate: {
+    homepage: false,
+    post: false
   },
-  runtime_unit: '天',
-  runtime: true,
-  copyright: {"languages":{"author":"作者: 天际线上的猪","link":"链接: ","source":"来源: Dong","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
-  ClickShowText: undefined,
-  medium_zoom: false,
-  fancybox: true,
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
   Snackbar: undefined,
-  justifiedGallery: {
-    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
-  baiduPush: false,
-  highlightCopy: false,
-  highlightLang: true,
   isPhotoFigcaption: false,
-  islazyload: true,
-  isanchor: false    
-}</script><script>var GLOBAL_CONFIG_SITE = { 
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '选择排序',
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
-  isSidebar: true,
+  isToc: true,
   postUpdate: '2022-03-02 16:00:41'
-}</script><noscript><style>
-#nav {
-  opacity: 1
-}
-.justified-gallery img{
-  opacity: 1
-}
-</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
-</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">106</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">35</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#内存工作原理"><span class="toc-number">1.</span> <span class="toc-text">内存工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组和链表"><span class="toc-number">2.</span> <span class="toc-text">数组和链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#链表"><span class="toc-number">2.1.</span> <span class="toc-text">链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-number">2.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两者总结"><span class="toc-number">2.3.</span> <span class="toc-text">两者总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择排序"><span class="toc-number">3.</span> <span class="toc-text">选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">3.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-number">3.2.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体实现过程"><span class="toc-number">3.3.</span> <span class="toc-text">具体实现过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择排序实例代码"><span class="toc-number">4.</span> <span class="toc-text">选择排序实例代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优化版"><span class="toc-number">4.1.</span> <span class="toc-text">优化版</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/algorithm.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Dong</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">选择排序</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-08-12 16:00:00"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-08-12</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2022-03-02 16:00:41"><i class="fas fa-history fa-fw"></i> 更新于 2022-03-02</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">1.9k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 5 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="内存工作原理"><a href="#内存工作原理" class="headerlink" title="内存工作原理"></a>内存工作原理</h2><p>这里涉及的数据类型为<a href="https://blog.csdn.net/Oralinge/article/details/103585108" target="_blank" rel="noopener">引用类型</a>，计算机就像是很多抽屉的集合体，每个抽屉都有地址，当你往里面存储数据时，计算机会将每个数据存储到各自的“抽屉”去，然后用一个内存地址指向该抽屉，方便你根据内存地址去拿取你所需的值</p>
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">106</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/algorithm.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Dong"><span class="site-name">Dong</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">选择排序</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-12T08:00:00.000Z" title="发表于 2021-08-12 16:00:00">2021-08-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-02T08:00:41.076Z" title="更新于 2022-03-02 16:00:41">2022-03-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="选择排序"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="内存工作原理"><a href="#内存工作原理" class="headerlink" title="内存工作原理"></a>内存工作原理</h2><p>这里涉及的数据类型为<a target="_blank" rel="noopener" href="https://blog.csdn.net/Oralinge/article/details/103585108">引用类型</a>，计算机就像是很多抽屉的集合体，每个抽屉都有地址，当你往里面存储数据时，计算机会将每个数据存储到各自的“抽屉”去，然后用一个内存地址指向该抽屉，方便你根据内存地址去拿取你所需的值</p>
 <p>需要将数据存储到内存时，你请求计算机提供存储空间，计算机给你一个存储地址。需要存储多项数据时，有两种基本方式——数组和链表。</p>
 <h2 id="数组和链表"><a href="#数组和链表" class="headerlink" title="数组和链表"></a>数组和链表</h2><p>这里只会简单阐述数组和链表的概念，更多会讲述这两种不同数据类型的区别</p>
 <h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
-<p>链表是一种物理<a href="https://baike.baidu.com/item/存储单元/8727749" target="_blank" rel="noopener">存储单元</a>上非连续、非顺序的<a href="https://baike.baidu.com/item/存储结构/350782" target="_blank" rel="noopener">存储结构</a>，<a href="https://baike.baidu.com/item/数据元素/715313" target="_blank" rel="noopener">数据元素</a>的逻辑顺序是通过链表中的<a href="https://baike.baidu.com/item/指针/2878304" target="_blank" rel="noopener">指针</a>链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储<a href="https://baike.baidu.com/item/数据元素" target="_blank" rel="noopener">数据元素</a>的数据域，另一个是存储下一个结点地址的<a href="https://baike.baidu.com/item/指针/2878304" target="_blank" rel="noopener">指针</a>域。 </p>
+<p>链表是一种物理<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/存储单元/8727749">存储单元</a>上非连续、非顺序的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/存储结构/350782">存储结构</a>，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数据元素/715313">数据元素</a>的逻辑顺序是通过链表中的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/指针/2878304">指针</a>链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数据元素">数据元素</a>的数据域，另一个是存储下一个结点地址的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/指针/2878304">指针</a>域。 </p>
 </blockquote>
 <p>简单来说，链表中的元素可存储在内存的任何地方，链表的每个元素都存储了下一个元素的地址，从而使一系列随机的内存地址串在一起。所以，<strong>链表的优势在插入元素方面</strong>。</p>
 <p>当你要往数组插入元素时，计算机要根据数组的长度去寻找一块连续的跟该数组长度相匹配的内存去进行存储，而链表只要存储下个元素的内存地址即可，所以即使链表中的各个数据是分开的不连续的，但还是能通过上一个数据去寻找下个数据的位置。所以在插入数据方面，链表无需考虑其他，直接往内存插入新值即可</p>
 <p>这里举个例子，你和两个朋友去看电影，一般来说，你们三个如果关系太好了，好基友那种，分不开了，你们一般会买三张连续座位的票，从而可以坐在一起看，这便是数组，而当没有三张连续的电影票时，你们只能分开看，但可以根据电影票上的座位位置去找你的小伙伴，这便是链表。这里的座位编号便是内存地址，而你们就是一个又一个的数据。</p>
 <p>在删除方面：链表也是更好的选择，因为只需修改前一个元素指向的地址即可。而使用数组时，删除元素后，必须将后面的元素都向前移</p>
 <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><blockquote>
-<p><strong>数组</strong>（Array）是有序的元素序列。 [1] 若将有限个类型相同的变量的<a href="https://baike.baidu.com/item/集合/2908117" target="_blank" rel="noopener">集合</a>命名，那么这个名称为数组名。组成数组的各个变量称为数组的分量，也称为数组的元素，有时也称为<a href="https://baike.baidu.com/item/下标变量/12713827" target="_blank" rel="noopener">下标变量</a>。用于区分数组的各个元素的数字编号称为下标。数组是在<a href="https://baike.baidu.com/item/程序设计/223952" target="_blank" rel="noopener">程序设计</a>中，为了处理方便， 把具有相同类型的若干元素按<strong>有序</strong>的形式组织起来的一种形式。  这些有序排列的同类数据元素的集合称为数组</p>
+<p><strong>数组</strong>（Array）是有序的元素序列。 [1] 若将有限个类型相同的变量的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/集合/2908117">集合</a>命名，那么这个名称为数组名。组成数组的各个变量称为数组的分量，也称为数组的元素，有时也称为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/下标变量/12713827">下标变量</a>。用于区分数组的各个元素的数字编号称为下标。数组是在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/程序设计/223952">程序设计</a>中，为了处理方便， 把具有相同类型的若干元素按<strong>有序</strong>的形式组织起来的一种形式。  这些有序排列的同类数据元素的集合称为数组</p>
 </blockquote>
 <p>数组的优势：需要随机地读取元素时，数组的效率很高，因为可迅速找到数组的任何元素。在链表中，元素并非靠在一起的，你无法迅速计算出第五个元素的内存地址，而必须先访问第一个元素以获取第二个元素的地址，再访问第二个元素以获取第三个元素 的地址，以此类推，直到访问第五个元素</p>
 <h3 id="两者总结"><a href="#两者总结" class="headerlink" title="两者总结"></a>两者总结</h3><ul>
@@ -120,7 +176,7 @@ if (autoChangeMode === '1') {
 <li>在同一个数组中，所有元素的类型都必须相同</li>
 </ul>
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
-<p><a href="https://baike.baidu.com/item/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/9762418" target="_blank" rel="noopener">选择排序（Selection sort）</a>是一种简单直观的排序算法。它的工作原理是：第一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾。以此类推，直到全部待排序的数据元素的个数为零。选择排序是不稳定的排序方法</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/9762418">选择排序（Selection sort）</a>是一种简单直观的排序算法。它的工作原理是：第一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾。以此类推，直到全部待排序的数据元素的个数为零。选择排序是不稳定的排序方法</p>
 </blockquote>
 <h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕</p>
 <h3 id="具体实现过程"><a href="#具体实现过程" class="headerlink" title="具体实现过程"></a>具体实现过程</h3><p>有没有思考过对一组数进行排序时的过程是怎样的</p>
@@ -144,52 +200,6 @@ if (autoChangeMode === '1') {
 <li><p>对数组进行排序sort的主函数，使用新数组进行存储排序后的值，接着对原数组进行遍历和最大值查找，找出一个便在原数组删除该数据，避免引起无限循环导致内存泄漏，重复执行，直到最终结果出来</p>
 </li>
 </ol>
-<p><img src= "/img/loading.gif" data-src="/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png" alt="选择排序"></p>
-<h3 id="优化版"><a href="#优化版" class="headerlink" title="优化版"></a>优化版</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">index1, index2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = arr[index1];</span><br><span class="line">    arr[index1] = arr[index2];</span><br><span class="line">    arr[index2] = temp;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> minIndex = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">      arr[minIndex] &gt; arr[j] &amp;&amp; (minIndex = j);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(minIndex, i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">天际线上的猪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://dong-666.github.io/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">http://dong-666.github.io/2021/08/12/选择排序/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Dong-666.github.io" target="_blank">Dong</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><div class="post_share"><div class="social-share" data-image="/img/code.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><button class="reward-button" type="button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.png" alt="wechat" onclick="window.open('/img/wechat.png')"/><div class="post-qr-code__desc">wechat</div></li><li class="reward-item"><img class="post-qr-code__img" src="/img/alipay.jpg" alt="alipay" onclick="window.open('/img/alipay.jpg')"/><div class="post-qr-code__desc">alipay</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/20/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"><img class="prev-cover" data-src="/img/algorithm.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">快速排序</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/01/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"><img class="next-cover" data-src="/img/algorithm.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">二分法</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2022/02/20/K最近邻算法/" title="K最近邻算法KNN"><img class="relatedPosts_cover" data-src="/img/algorithm.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-20</div><div class="relatedPosts_title">K最近邻算法KNN</div></div></a></div><div class="relatedPosts_item"><a href="/2021/08/01/二分查找/" title="二分法"><img class="relatedPosts_cover" data-src="/img/algorithm.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-01</div><div class="relatedPosts_title">二分法</div></div></a></div><div class="relatedPosts_item"><a href="/2022/02/13/动态规划/" title="动态规划"><img class="relatedPosts_cover" data-src="/img/algorithm.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-13</div><div class="relatedPosts_title">动态规划</div></div></a></div><div class="relatedPosts_item"><a href="/2021/03/23/利用斐波拉契数列理解递归/" title="利用斐波拉契数列理解递归"><img class="relatedPosts_cover" data-src="/img/code.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-23</div><div class="relatedPosts_title">利用斐波拉契数列理解递归</div></div></a></div><div class="relatedPosts_item"><a href="/2021/07/20/大O表示法/" title="大O表示法"><img class="relatedPosts_cover" data-src="/img/algorithm.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-20</div><div class="relatedPosts_title">大O表示法</div></div></a></div><div class="relatedPosts_item"><a href="/2021/10/01/广度优先搜索/" title="广度优先搜索"><img class="relatedPosts_cover" data-src="/img/algorithm.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-01</div><div class="relatedPosts_title">广度优先搜索</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
-  var requestSetting = function (from,set) {
-    var from = from
-    var setting = set.split(',').filter(function(item){
-    return from.indexOf(item) > -1
-    });
-    setting = setting.length == 0 ? from :setting;
-    return setting
-  }
-
-  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
-  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
-
-  function initValine () {
-    window.valine = new Valine({
-      el:'#vcomment',
-      appId: 'K4oel47dX9gLB9DECHDKW5HF-gzGzoHsz',
-      appKey: 'FI26zV0So19K2wVMY6Ds4nAA',
-      placeholder: 'Please leave your footprints',
-      avatar: 'hide',
-      meta: guestInfo,
-      pageSize: '10',
-      lang: 'zh-CN',
-      recordIP: false,
-      serverURLs: '',
-      emojiCDN: '',
-      emojiMaps: "",
-      enableQQ: false,
-      requiredFields: requiredFields
-    });
-  }
-  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
-}
-
-if ('Valine' === 'Valine' || false) {
-  window.addEventListener('load', loadvaline)
-}
-else {
-  function loadOtherComment () {
-    loadvaline()
-  }
-}</script></div></div></div></article></main><footer id="footer" style="background-image: url(/img/algorithm.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 天际线上的猪</div><div class="footer_custom_text">Hi, Welcome to my blog</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
- <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
-POWERMODE.shake = false;
-document.body.addEventListener('input', POWERMODE);
-</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+<p><img src="/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png" alt="选择排序"></p>
+<h3 id="优化版"><a href="#优化版" class="headerlink" title="优化版"></a>优化版</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">selectSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">swap</span>(<span class="params">index1, index2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = arr[index1];</span><br><span class="line">    arr[index1] = arr[index2];</span><br><span class="line">    arr[index2] = temp;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> minIndex = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.<span class="property">length</span>; j++) &#123;</span><br><span class="line">      arr[minIndex] &gt; arr[j] &amp;&amp; (minIndex = j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">swap</span>(minIndex, i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://Dong-666.github.io">天际线上的猪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://dong-666.github.io/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">http://dong-666.github.io/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Dong-666.github.io" target="_blank">Dong</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><div class="post_share"><div class="social-share" data-image="/img/algorithm.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/20/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="快速排序"><img class="cover" src="/img/algorithm.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">快速排序</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/01/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分法"><img class="cover" src="/img/algorithm.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">二分法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/02/20/K%E6%9C%80%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/" title="K最近邻算法KNN"><img class="cover" src="/img/algorithm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-20</div><div class="title">K最近邻算法KNN</div></div></a></div><div><a href="/2021/08/01/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分法"><img class="cover" src="/img/algorithm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-01</div><div class="title">二分法</div></div></a></div><div><a href="/2021/03/23/%E5%88%A9%E7%94%A8%E6%96%90%E6%B3%A2%E6%8B%89%E5%A5%91%E6%95%B0%E5%88%97%E7%90%86%E8%A7%A3%E9%80%92%E5%BD%92/" title="利用斐波拉契数列理解递归"><img class="cover" src="/img/code.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-23</div><div class="title">利用斐波拉契数列理解递归</div></div></a></div><div><a href="/2022/02/13/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划"><img class="cover" src="/img/algorithm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-13</div><div class="title">动态规划</div></div></a></div><div><a href="/2021/07/20/%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" title="大O表示法"><img class="cover" src="/img/algorithm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-20</div><div class="title">大O表示法</div></div></a></div><div><a href="/2021/10/01/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" title="广度优先搜索"><img class="cover" src="/img/algorithm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-01</div><div class="title">广度优先搜索</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">天际线上的猪</div><div class="author-info__description">记录生活，记录学习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">106</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">内存工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">数组和链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">2.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E8%80%85%E6%80%BB%E7%BB%93"><span class="toc-number">2.3.</span> <span class="toc-text">两者总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">3.2.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="toc-number">3.3.</span> <span class="toc-text">具体实现过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">选择排序实例代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%89%88"><span class="toc-number">4.1.</span> <span class="toc-text">优化版</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/10/XSS/" title="Web安全-XSS"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Web安全-XSS"/></a><div class="content"><a class="title" href="/2022/09/10/XSS/" title="Web安全-XSS">Web安全-XSS</a><time datetime="2022-09-10T07:28:20.000Z" title="发表于 2022-09-10 15:28:20">2022-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/15/%E9%87%8D%E5%9B%9E%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/" title="重回作用域和闭包"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重回作用域和闭包"/></a><div class="content"><a class="title" href="/2022/05/15/%E9%87%8D%E5%9B%9E%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/" title="重回作用域和闭包">重回作用域和闭包</a><time datetime="2022-05-14T16:00:00.000Z" title="发表于 2022-05-15 00:00:00">2022-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/22/CSRF/" title="Web安全-CSRF"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Web安全-CSRF"/></a><div class="content"><a class="title" href="/2022/04/22/CSRF/" title="Web安全-CSRF">Web安全-CSRF</a><time datetime="2022-04-22T07:28:20.000Z" title="发表于 2022-04-22 15:28:20">2022-04-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/18/NPM%20%E6%93%8D%E4%BD%9C/" title="npm操作"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="npm操作"/></a><div class="content"><a class="title" href="/2022/04/18/NPM%20%E6%93%8D%E4%BD%9C/" title="npm操作">npm操作</a><time datetime="2022-04-18T07:00:00.000Z" title="发表于 2022-04-18 15:00:00">2022-04-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/15/node-token%E7%99%BB%E9%99%86%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81/" title="node登陆验证之jsonwebtoken"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="node登陆验证之jsonwebtoken"/></a><div class="content"><a class="title" href="/2022/04/15/node-token%E7%99%BB%E9%99%86%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81/" title="node登陆验证之jsonwebtoken">node登陆验证之jsonwebtoken</a><time datetime="2022-04-15T13:40:39.000Z" title="发表于 2022-04-15 21:40:39">2022-04-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 天际线上的猪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

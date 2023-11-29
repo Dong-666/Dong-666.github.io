@@ -1,133 +1,288 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dong - y</title><meta name="description" content="记录生活，记录学习"><meta name="keywords" content="webgis,ArcGIS,QGIS,前端"><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon3.png"><link rel="canonical" href="http://dong-666.github.io/page/3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="Dong"><meta property="og:url" content="http://dong-666.github.io/page/3/"><meta property="og:site_name" content="Dong"><meta property="og:description" content="记录生活，记录学习"><meta property="og:image" content="http://dong-666.github.io/img/avatar.jpg"><meta property="article:published_time" content="2023-02-12T03:04:55.327Z"><meta property="article:modified_time" content="2023-02-12T03:04:55.327Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
-  document.documentElement.setAttribute('data-theme', 'dark')
-  if (document.querySelector('meta[name="theme-color"]') !== null) {
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
-  }
-}
-var activateLightMode = function () {
-  document.documentElement.setAttribute('data-theme', 'light')
-  if (document.querySelector('meta[name="theme-color"]') !== null) {
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
-  }
-}
-
-var getCookies = function (name) {
-  const value = `; ${document.cookie}`
-  const parts = value.split(`; ${name}=`)
-  if (parts.length === 2) return parts.pop().split(';').shift()
-}
-
-var autoChangeMode = 'false'
-var t = getCookies('theme')
-if (autoChangeMode === '1') {
-  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-
-  if (t === undefined) {
-    if (isLightMode) activateLightMode()
-    else if (isDarkMode) activateDarkMode()
-    else if (isNotSpecified || hasNoSupport) {
-      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
-      var now = new Date()
-      var hour = now.getHours()
-      var isNight = hour <= 6 || hour >= 18
-      isNight ? activateDarkMode() : activateLightMode()
-    }
-    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-      if (Cookies.get('theme') === undefined) {
-        e.matches ? activateDarkMode() : activateLightMode()
-      }
-    })
-  } else if (t === 'light') activateLightMode()
-  else activateDarkMode()
-} else if (autoChangeMode === '2') {
-  now = new Date()
-  hour = now.getHours()
-  isNight = hour <= 6 || hour >= 18
-  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-  else if (t === 'light') activateLightMode()
-  else activateDarkMode()
-} else {
-  if (t === 'dark') activateDarkMode()
-  else if (t === 'light') activateLightMode()
-}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Dong - y</title><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录生活，记录学习">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dong">
+<meta property="og:url" content="http://dong-666.github.io/page/3/index.html">
+<meta property="og:site_name" content="Dong">
+<meta property="og:description" content="记录生活，记录学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="天际线上的猪">
+<meta property="article:tag" content="webgis">
+<meta property="article:tag" content="ArcGIS">
+<meta property="article:tag" content="QGIS">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://dong-666.github.io/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  localSearch: undefined,
+  translate: undefined,
   noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
     success: '复制成功',
     error: '复制错误',
     noSupport: '浏览器不支持'
   },
-  bookmark: {
-    message_prev: '按',
-    message_next: '键将本页加入书签'
+  relativeDate: {
+    homepage: false,
+    post: false
   },
-  runtime_unit: '天',
-  runtime: true,
-  copyright: {"languages":{"author":"作者: 天际线上的猪","link":"链接: ","source":"来源: Dong","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
-  ClickShowText: undefined,
-  medium_zoom: false,
-  fancybox: true,
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
   Snackbar: undefined,
-  justifiedGallery: {
-    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
-  baiduPush: false,
-  highlightCopy: false,
-  highlightLang: true,
   isPhotoFigcaption: false,
-  islazyload: true,
-  isanchor: false    
-}</script><script>var GLOBAL_CONFIG_SITE = { 
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Dong',
   isPost: false,
   isHome: true,
   isHighlightShrink: false,
-  isSidebar: false,
-  postUpdate: '2023-02-12 11:04:55'
-}</script><noscript><style>
-#nav {
-  opacity: 1
-}
-.justified-gallery img{
-  opacity: 1
-}
-</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
-</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">106</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">35</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/index.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Dong</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">Dong</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Dong-666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="tencent://message/?uin=2834471179&amp;Site=&amp;Menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/08/22/%E5%8E%9F%E5%9E%8B/" title="js原型小记（大记）">     <img class="post_bg" data-src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js原型小记（大记）"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/22/%E5%8E%9F%E5%9E%8B/" title="js原型小记（大记）">js原型小记（大记）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-22 16:00:00"><i class="far fa-calendar-alt"></i>2021-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="content">来吧，快七千字的js原型笔记，好好嚼吧，😭😭😭</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/08/20/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="快速排序">     <img class="post_bg" data-src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="快速排序"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/20/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="快速排序">快速排序</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-20 16:00:00"><i class="far fa-calendar-alt"></i>2021-08-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">采用分而治之的思想进行排序，是对冒泡排序算法的一种改进</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" title="选择排序">     <img class="post_bg" data-src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="选择排序"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" title="选择排序">选择排序</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-12 16:00:00"><i class="far fa-calendar-alt"></i>2021-08-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">一种简单直观的排序算法</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/08/01/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分法">     <img class="post_bg" data-src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二分法"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/01/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分法">二分法</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-08-01 16:00:00"><i class="far fa-calendar-alt"></i>2021-08-01</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/07/22/%E9%80%92%E5%BD%92/" title="递归">     <img class="post_bg" data-src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="递归"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/22/%E9%80%92%E5%BD%92/" title="递归">递归</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-07-22 14:00:00"><i class="far fa-calendar-alt"></i>2021-07-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">从前有座山，山里有座庙，庙里有个老和尚。。。</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/07/20/%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" title="大O表示法">     <img class="post_bg" data-src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大O表示法"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/20/%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" title="大O表示法">大O表示法</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-07-20 14:00:00"><i class="far fa-calendar-alt"></i>2021-07-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">大O表示法指出了算法有多块</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/04/18/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="计算机网络-数据链路层">     <img class="post_bg" data-src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络-数据链路层"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/04/18/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="计算机网络-数据链路层">计算机网络-数据链路层</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-04-18 15:28:20"><i class="far fa-calendar-alt"></i>2021-04-18</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="content">来呀客官，来看看数据链路层</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/04/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/" title="计算机网络概述">     <img class="post_bg" data-src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络概述"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/04/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/" title="计算机网络概述">计算机网络概述</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-04-18 15:28:20"><i class="far fa-calendar-alt"></i>2021-04-18</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="content">内容根据《计算机网络第七版》以及相关PPT整理制作，图片主要源于{电子工程出版社}，部分图片源于学校老师上课所画的图以及自己制作的思维导图</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">天际线上的猪</div><div class="author-info__description">记录生活，记录学习</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">文章</div><div class="length_num">106</div></a></div><div class="card-info-data-item is-center">      <a href="/tags"><div class="headline">标签</div><div class="length_num">35</div></a></div><div class="card-info-data-item is-center">     <a href="/categories"><div class="headline">分类</div><div class="length_num">14</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" type="button" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Dong-666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="tencent://message/?uin=2834471179&amp;Site=&amp;Menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">哇，你居然发现了这个宝藏博客！</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2022/09/10/XSS/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Web安全-XSS" alt="Web安全-XSS"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/09/10/XSS/" title="Web安全-XSS">Web安全-XSS</div><time class="aside-post_meta post-meta__date" title="发表于 2022-09-10 15:28:20">2022-09-10</time></div></a></div><div class="aside-recent-post"><a href="/2022/05/15/%E9%87%8D%E5%9B%9E%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="重回作用域和闭包" alt="重回作用域和闭包"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/05/15/%E9%87%8D%E5%9B%9E%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/" title="重回作用域和闭包">重回作用域和闭包</div><time class="aside-post_meta post-meta__date" title="发表于 2022-05-15 00:00:00">2022-05-15</time></div></a></div><div class="aside-recent-post"><a href="/2022/04/22/CSRF/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Web安全-CSRF" alt="Web安全-CSRF"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/04/22/CSRF/" title="Web安全-CSRF">Web安全-CSRF</div><time class="aside-post_meta post-meta__date" title="发表于 2022-04-22 15:28:20">2022-04-22</time></div></a></div><div class="aside-recent-post"><a href="/2022/04/18/NPM%20%E6%93%8D%E4%BD%9C/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="npm操作" alt="npm操作"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/04/18/NPM%20%E6%93%8D%E4%BD%9C/" title="npm操作">npm操作</div><time class="aside-post_meta post-meta__date" title="发表于 2022-04-18 15:00:00">2022-04-18</time></div></a></div><div class="aside-recent-post"><a href="/2022/04/15/node-token%E7%99%BB%E9%99%86%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="node登陆验证之jsonwebtoken" alt="node登陆验证之jsonwebtoken"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2022/04/15/node-token%E7%99%BB%E9%99%86%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81/" title="node登陆验证之jsonwebtoken">node登陆验证之jsonwebtoken</div><time class="aside-post_meta post-meta__date" title="发表于 2022-04-15 21:40:39">2022-04-15</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ArcGIS/"><span class="card-category-list-name">ArcGIS</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Echarts/"><span class="card-category-list-name">Echarts</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GIS/"><span class="card-category-list-name">GIS</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JavaScript/"><span class="card-category-list-name">JavaScript</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MongoDB/"><span class="card-category-list-name">MongoDB</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Node-js/"><span class="card-category-list-name">Node.js</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PostgreSQL/"><span class="card-category-list-name">PostgreSQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/QGIS/"><span class="card-category-list-name">QGIS</span><span class="card-category-list-count">16</span></a></li>
-            <li class="card-category-list-item more is-center"><a class="card-category-list-link-more" href="/categories">
-                <span>查看更多</span><i class="fas fa-angle-right"></i></a></li>           
-            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Ajax/" style="font-size: 16.5px; color: #999a9c">Ajax</a> <a href="/tags/ArcGIS/" style="font-size: 19px; color: #99a1ac">ArcGIS</a> <a href="/tags/ArcGIS-Server/" style="font-size: 16px; color: #999">ArcGIS Server</a> <a href="/tags/ES6/" style="font-size: 17.5px; color: #999da3">ES6</a> <a href="/tags/Echarts/" style="font-size: 16.5px; color: #999a9c">Echarts</a> <a href="/tags/GIS/" style="font-size: 22px; color: #99a9bf">GIS</a> <a href="/tags/Git/" style="font-size: 16px; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 16px; color: #999">Hexo</a> <a href="/tags/JQuery/" style="font-size: 16px; color: #999">JQuery</a> <a href="/tags/JavaScript/" style="font-size: 18.5px; color: #99a0a9">JavaScript</a> <a href="/tags/MongoDB/" style="font-size: 17px; color: #999c9f">MongoDB</a> <a href="/tags/Node/" style="font-size: 16px; color: #999">Node</a> <a href="/tags/Node-js/" style="font-size: 20.5px; color: #99a5b6">Node.js</a> <a href="/tags/PostgreSQL/" style="font-size: 16px; color: #999">PostgreSQL</a> <a href="/tags/Promise/" style="font-size: 16px; color: #999">Promise</a> <a href="/tags/QGIS%E5%85%A5%E9%97%A8/" style="font-size: 21px; color: #99a6b9">QGIS入门</a> <a href="/tags/SVN/" style="font-size: 16px; color: #999">SVN</a> <a href="/tags/Vue/" style="font-size: 21.5px; color: #99a8bc">Vue</a> <a href="/tags/Vue%E5%85%A5%E9%97%A8/" style="font-size: 19px; color: #99a1ac">Vue入门</a> <a href="/tags/Vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%95%86%E5%9F%8E/" style="font-size: 20px; color: #99a4b2">Vue移动端商城</a> <a href="/tags/Web%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #999a9c">Web安全</a> <a href="/tags/ajax/" style="font-size: 16px; color: #999">ajax</a> <a href="/tags/formidable/" style="font-size: 16px; color: #999">formidable</a> <a href="/tags/gitee/" style="font-size: 16px; color: #999">gitee</a> <a href="/tags/github/" style="font-size: 16px; color: #999">github</a> <a href="/tags/http%E5%8D%8F%E8%AE%AE/" style="font-size: 16px; color: #999">http协议</a> <a href="/tags/npm/" style="font-size: 16px; color: #999">npm</a> <a href="/tags/web/" style="font-size: 17px; color: #999c9f">web</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 16px; color: #999">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 16px; color: #999">博客</a> <a href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" style="font-size: 16px; color: #999">异步编程</a> <a href="/tags/%E6%96%B0%E6%8B%9F%E6%80%81/" style="font-size: 16px; color: #999">新拟态</a> <a href="/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/" style="font-size: 18.5px; color: #99a0a9">空间分析</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.5px; color: #99a2af">算法</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18px; color: #999ea6">计算机网络</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/archives">
-              <span>查看更多</span><i class="fas fa-angle-right"  ></i></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章数目 :</div><div class="webinfo-article-count">106</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">已运行时间 :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" publish_date="07/01/2020">     </div></div><div class="webinfo-item"><div class="webinfo-site-wordcount-name">本站总字数 :</div><div class="webinfo-site-wordcount">242.7k</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站访客数 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站总访问量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/index.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 天际线上的猪</div><div class="footer_custom_text">Hi, Welcome to my blog</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
- <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
-POWERMODE.shake = false;
-document.body.addEventListener('input', POWERMODE);
-</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleType = function () {
-  loadScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js',function () {
-      var subtitleEffect = true
-      jinrishici.load(function (result) {
-        if (subtitleEffect) {
-          var sub = "plain living and high thinking".length == 0 ? new Array() : "plain living and high thinking".split(',')
-          var content = result.data.content
-          var both = sub.unshift(content)
-          var typed = new Typed('#subtitle', {
-            strings: sub,
-            startDelay: 300,
-            typeSpeed: 150,
-            loop: true,
-            backSpeed: 50,
-          })
-        } else {
-          document.getElementById('subtitle').innerHTML = result.data.content
+  isToc: false,
+  postUpdate: '2023-11-29 10:26:43'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
         }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
       })
-    }
-  )
-}
-window.addEventListener('load', subtitleType)
-</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">106</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Dong"><span class="site-name">Dong</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Dong</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/22/%E5%8E%9F%E5%9E%8B/" title="js原型小记（大记）"><img class="post-bg" src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js原型小记（大记）"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/22/%E5%8E%9F%E5%9E%8B/" title="js原型小记（大记）">js原型小记（大记）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-22T08:00:00.000Z" title="发表于 2021-08-22 16:00:00">2021-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="content">原型、原型链、__proto__、prototype
+在以类为中心的面向对象编程语言中，类和对象的关系可以想象成铸模和铸件的关系，对象总是从类中创建而来。而在原型编程的思想中，类并不是必需的，对象未必需要从类中创建而来，一个对象是通过克隆另外一个对象所得到的。
+
+也就是说，在js中，我们是可以通过克隆创造世界，看下面的代码，首先我们创建一个构造函数
+1234567let User = function(name, age) &#123;  this.name = name,  this.age = age,  this.getName = function() &#123;    console.log(this.name)  &#125;&#125;  
+在这里，我们声明了一个构造函数，暂且将它想象成类，然后我们来new一个对象
+1let admin = new User(&#x27;Admin&#x27;, 18)
+我们创造了一个admin对象，接着，如果有一个admin和上面所创造的对象同名同年龄时，我们该怎么创建呢，有人说：这还不简单嘛，再new一个不就得了，确实，在这里new ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/20/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="快速排序"><img class="post-bg" src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="快速排序"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/20/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="快速排序">快速排序</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-20T08:00:00.000Z" title="发表于 2021-08-20 16:00:00">2021-08-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">D&amp;C（分而治之）工作原理：
+
+找出简单的基线条件；
+确定如何缩小问题的规模，使其符合基线条件
+
+案例对一块400m * 640m的土地进行划分
+
+
+对于640 m × 400 m的土地，可从中划出的最 大方块为400 m × 400 m。 这将余下一块更小的土地，其尺寸为400 m × 240 m
+
+
+重点：适用于这小块地的最大方块（正方形），也是适用于整块地的最大方块
+这是关于“欧几里得算法”的知识
+
+快速排序简介：
+采用分而治之的思想进行排序，是对冒泡排序算法的一种改进
+
+步骤:1) 选择基准值。
+2) 将数组分成两个子数组：小于基准值的元素和大于基准值的元素。 
+3) 对这两个子数组进行快速排序。
+代码实例使用快速排序进行排序
+
+定义左数组存储比当前值小的值，右数组存储比当前数值大的值，以及当前比较目标值
+定义基线条件：当当前传参数组索引小于等于1时，停止执行下面代码并返回当前数组
+定义递归条件
+截取当前数组内要进行比较的目标值，避免参与遍历导致无限循环
+进行遍历：大于当前值放至右数组，小于当前值放至左数组
+
+
+返回左数组＋当前值+右数组
+
+![carbon (1)]( ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" title="选择排序"><img class="post-bg" src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="选择排序"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/12/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" title="选择排序">选择排序</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-12T08:00:00.000Z" title="发表于 2021-08-12 16:00:00">2021-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">内存工作原理这里涉及的数据类型为引用类型，计算机就像是很多抽屉的集合体，每个抽屉都有地址，当你往里面存储数据时，计算机会将每个数据存储到各自的“抽屉”去，然后用一个内存地址指向该抽屉，方便你根据内存地址去拿取你所需的值
+需要将数据存储到内存时，你请求计算机提供存储空间，计算机给你一个存储地址。需要存储多项数据时，有两种基本方式——数组和链表。
+数组和链表这里只会简单阐述数组和链表的概念，更多会讲述这两种不同数据类型的区别
+链表
+链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 
+
+简单来说，链表中的元素可存储在内存的任何地方，链表的每个元素都存储了下一个元素的地址，从而使一系列随机的内存地址串在一起。所以，链表的优势在插入元素方面。
+当你要往数组插入元素时，计算机要根据数组的长度去寻找一块连续的跟该数组长度相匹配的内存去进行存储，而链表只要存储下个元素的内存地址即可，所以即 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/01/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分法"><img class="post-bg" src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二分法"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/01/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分法">二分法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-01T08:00:00.000Z" title="发表于 2021-08-01 16:00:00">2021-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">简介
+二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法。但是，折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。
+
+算法过程首先，假设表中元素是按升序排列，将表中间位置记录的关键字与查找关键字比较，如果两者相等，则查找成功；否则利用中间位置记录将表分成前、后两个子表，如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，否则进一步查找后一子表。重复以上过程，直到找到满足条件的记录，使查找成功，或直到子表不存在为止，此时查找不成功
+简单查找我们在日常生活中经常会玩一个游戏：找数字
+提问者给出该数字的范围，然后回答者根据这个范围进行猜数，如果比正确答案大，提问者便会说大了，如若小了，则提问者回答小了，直至猜出正确答案
+比如：提问者随便想出一个数字-57，范围是0-100，回答者开始猜，如下图
+
+等到他猜到57，便成功猜到正确答案了，这便是简单查找，回答者一个一个说，直到正确答案出来
+二分查找更简单的查找方式，根据方法名即可猜到，将猜测范围一分为二，比如0-100，那么你猜50，无论是大了还是小了，你立即就可以排除掉一半的数字，接着重 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/07/22/%E9%80%92%E5%BD%92/" title="递归"><img class="post-bg" src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="递归"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/22/%E9%80%92%E5%BD%92/" title="递归">递归</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-22T06:00:00.000Z" title="发表于 2021-07-22 14:00:00">2021-07-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">递归
+作用：递归只是让解决方案更清晰，并没有性能上的优势，如果使用循环，程序的性能可能更高；如果使用递归，程序可能更容易理解(但在我看来，递归有时候也很难理解)
+
+斐波那契数列就是运用递归的想法进行计算
+基线条件和递归条件
+每个递归函数都有两部分：基线条件（base case）和递归条件（recursive case）。递归条件指的是函数调用自己，而基线条件则指的是函数不再调用自己，从而避免形成无限循环
+
+1234// 基线条件if (newArr.length === 1) &#123;  return newArr[0];&#125;
+12// 递归条件return newArr.pop() + sum(newArr);
+上面为利用递归进行累加的函数
+调用栈栈只有两种操作：压入 （插入）和弹出（删除并读取）
+
+数组的压入与弹出
+12array.pop() //弹出array.push() //压入
+计算机在内部使用被称为调用栈的栈
+函数与调用栈12345678function hi() &#123;  console.log(&#x27;hi&#x27;);&#125;functi ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/07/20/%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" title="大O表示法"><img class="post-bg" src="/img/algorithm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大O表示法"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/20/%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" title="大O表示法">大O表示法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-20T06:00:00.000Z" title="发表于 2021-07-20 14:00:00">2021-07-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">大O表示法
+大O表示法指出了算法有多块
+
+
+
+大 O 表示法指出了最糟情况下的运行时间（算法执行步数）
+除最糟情况下的运行时间外，还应考虑平均情况的运行时间
+
+
+
+一些常见的大 O 运行时间
+O(log n)，也叫对数时间，这样的算法包括二分查找。 
+O(n)，也叫线性时间，这样的算法包括简单查找。
+O(n * log n)，一种速度较快的排序算法。
+O(n2 )，一种速度较慢的排序算法。
+O(n!)，包括旅行商问题等——一种非常慢的算法。
+
+
+最后总结：
+算法的速度指的并非时间，而是操作数的增速。
+谈论算法的速度时，我们说的是随着输入的增加，其运行时间将以什么样的速度增加。 
+算法的运行时间用大O表示法表示。
+大O表示法省略诸如1/2这样的常数
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/04/18/%E5%BA%94%E7%94%A8%E5%B1%82/" title="计算机网络-应用层"><img class="post-bg" src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络-应用层"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/04/18/%E5%BA%94%E7%94%A8%E5%B1%82/" title="计算机网络-应用层">计算机网络-应用层</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-04-18T07:28:20.000Z" title="发表于 2021-04-18 15:28:20">2021-04-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="content">
+注：内容根据《计算机网络第七版》以及相关PPT整理制作，图片主要源于{电子工程出版社}，部分图片源于学校老师上课所画的图以及自己制作的思维导图
+
+特点
+每个应用层协议都是为了解决某一类应用问题，而问题的解决又往往是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层的具体内容就是规定应用进程在通信时所遵循的协议。
+应用层的许多协议都是基于客户服务器方式。客户 (client) 和服务器 (server) 都是指通信中所涉及的两个应用进程。客户服务器方式所描述的是进程之间服务和被服务的关系。客户是服务请求方，服务器是服务提供方。 
+
+域名系统 DNS域名系统概述许多应用层软件经常直接使用域名系统 DNS (Domain Name System)，但计算机的用户只是间接而不是直接使用域名系统。 
+互联网采用层次结构的命名树作为主机的名字，并使用分布式的域名系统 DNS。
+名字到 IP 地址的解析是由若干个域名服务器程序完成的。域名服务器程序在专设的结点上运行，运行该程序的机器称为域名服务器。 
+互联网的域名结构互联网采用了层次树状结构的命名方法。
+任何一个连接在互联网上的 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/04/18/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="计算机网络-数据链路层"><img class="post-bg" src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络-数据链路层"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/04/18/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="计算机网络-数据链路层">计算机网络-数据链路层</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-04-18T07:28:20.000Z" title="发表于 2021-04-18 15:28:20">2021-04-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="content">
+注：内容根据《计算机网络第七版》以及相关PPT整理制作，图片主要源于{电子工程出版社}，部分图片源于学校老师上课所画的图以及自己制作的思维导图
+
+概述首先看看不同定义下的计算机网络体系结构
+
+在OSI和五层协议里面，数据链路层都在其中扮演着重要的角色，在TCP/IP的体系结构里，数据链路层及以下则被抽象掉了
+数据链路层是实现设备之间通信的非常重要的一层，不管经过的是什么网络，电话网、局域网、广域网等，需要注意的是：在里面，路由器在转发分组时只用到下三层协议
+
+再来看看处于交换机下的数据链路层
+
+若主机H1向H2发送数据，则实际上数据的流动是通过五层从左向右，从上向下传递过去的，但若只从数据链路层来看的话，数据是从H1→R1→R2→R2→R3→H2的链路层传过去的
+
+数据链路层使用的信道主要有以下两种类型
+(a) 点对点信道：这种信道使用一对一的点对点通信方式。
+
+(b) 广播信道：使用一对多的广播通信方式。必须使用专用的共享信道协议来协调这些主机的数据发送。
+
+使用点对点信道的数据链路层数据链路和帧链路和数据链路的区别链路 (link) 是一条无源的点到点的物理线路段，中间没有任何其 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#content-inner">14</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">天际线上的猪</div><div class="author-info__description">记录生活，记录学习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">106</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/10/XSS/" title="Web安全-XSS"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Web安全-XSS"/></a><div class="content"><a class="title" href="/2022/09/10/XSS/" title="Web安全-XSS">Web安全-XSS</a><time datetime="2022-09-10T07:28:20.000Z" title="发表于 2022-09-10 15:28:20">2022-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/15/%E9%87%8D%E5%9B%9E%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/" title="重回作用域和闭包"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重回作用域和闭包"/></a><div class="content"><a class="title" href="/2022/05/15/%E9%87%8D%E5%9B%9E%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/" title="重回作用域和闭包">重回作用域和闭包</a><time datetime="2022-05-14T16:00:00.000Z" title="发表于 2022-05-15 00:00:00">2022-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/22/CSRF/" title="Web安全-CSRF"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Web安全-CSRF"/></a><div class="content"><a class="title" href="/2022/04/22/CSRF/" title="Web安全-CSRF">Web安全-CSRF</a><time datetime="2022-04-22T07:28:20.000Z" title="发表于 2022-04-22 15:28:20">2022-04-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/18/NPM%20%E6%93%8D%E4%BD%9C/" title="npm操作"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="npm操作"/></a><div class="content"><a class="title" href="/2022/04/18/NPM%20%E6%93%8D%E4%BD%9C/" title="npm操作">npm操作</a><time datetime="2022-04-18T07:00:00.000Z" title="发表于 2022-04-18 15:00:00">2022-04-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/15/node-token%E7%99%BB%E9%99%86%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81/" title="node登陆验证之jsonwebtoken"><img src="/img/code.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="node登陆验证之jsonwebtoken"/></a><div class="content"><a class="title" href="/2022/04/15/node-token%E7%99%BB%E9%99%86%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81/" title="node登陆验证之jsonwebtoken">node登陆验证之jsonwebtoken</a><time datetime="2022-04-15T13:40:39.000Z" title="发表于 2022-04-15 21:40:39">2022-04-15</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ArcGIS/"><span class="card-category-list-name">ArcGIS</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Echarts/"><span class="card-category-list-name">Echarts</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GIS/"><span class="card-category-list-name">GIS</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JavaScript/"><span class="card-category-list-name">JavaScript</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MongoDB/"><span class="card-category-list-name">MongoDB</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Node-js/"><span class="card-category-list-name">Node.js</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PostgreSQL/"><span class="card-category-list-name">PostgreSQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/QGIS/"><span class="card-category-list-name">QGIS</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Echarts/" style="font-size: 1.13em; color: #999a9c">Echarts</a> <a href="/tags/%E6%96%B0%E6%8B%9F%E6%80%81/" style="font-size: 1.1em; color: #999">新拟态</a> <a href="/tags/MongoDB/" style="font-size: 1.17em; color: #999c9f">MongoDB</a> <a href="/tags/Vue%E5%85%A5%E9%97%A8/" style="font-size: 1.3em; color: #99a1ac">Vue入门</a> <a href="/tags/JavaScript/" style="font-size: 1.27em; color: #99a0a9">JavaScript</a> <a href="/tags/GIS/" style="font-size: 1.5em; color: #99a9bf">GIS</a> <a href="/tags/ajax/" style="font-size: 1.1em; color: #999">ajax</a> <a href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">异步编程</a> <a href="/tags/web/" style="font-size: 1.17em; color: #999c9f">web</a> <a href="/tags/github/" style="font-size: 1.1em; color: #999">github</a> <a href="/tags/ES6/" style="font-size: 1.2em; color: #999da3">ES6</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 1.23em; color: #999ea6">计算机网络</a> <a href="/tags/Web%E5%AE%89%E5%85%A8/" style="font-size: 1.13em; color: #999a9c">Web安全</a> <a href="/tags/QGIS%E5%85%A5%E9%97%A8/" style="font-size: 1.43em; color: #99a6b9">QGIS入门</a> <a href="/tags/Ajax/" style="font-size: 1.13em; color: #999a9c">Ajax</a> <a href="/tags/PostgreSQL/" style="font-size: 1.1em; color: #999">PostgreSQL</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">前端</a> <a href="/tags/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/" style="font-size: 1.27em; color: #99a0a9">空间分析</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.33em; color: #99a2af">算法</a> <a href="/tags/JQuery/" style="font-size: 1.1em; color: #999">JQuery</a> <a href="/tags/SVN/" style="font-size: 1.1em; color: #999">SVN</a> <a href="/tags/formidable/" style="font-size: 1.1em; color: #999">formidable</a> <a href="/tags/Node-js/" style="font-size: 1.4em; color: #99a5b6">Node.js</a> <a href="/tags/Vue/" style="font-size: 1.47em; color: #99a8bc">Vue</a> <a href="/tags/http%E5%8D%8F%E8%AE%AE/" style="font-size: 1.1em; color: #999">http协议</a> <a href="/tags/ArcGIS/" style="font-size: 1.3em; color: #99a1ac">ArcGIS</a> <a href="/tags/npm/" style="font-size: 1.1em; color: #999">npm</a> <a href="/tags/ArcGIS-Server/" style="font-size: 1.1em; color: #999">ArcGIS Server</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/gitee/" style="font-size: 1.1em; color: #999">gitee</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.1em; color: #999">博客</a> <a href="/tags/Vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%95%86%E5%9F%8E/" style="font-size: 1.37em; color: #99a4b2">Vue移动端商城</a> <a href="/tags/Node/" style="font-size: 1.1em; color: #999">Node</a> <a href="/tags/Promise/" style="font-size: 1.1em; color: #999">Promise</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">106</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-11-29T02:26:42.523Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 天际线上的猪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
