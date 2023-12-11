@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Docker入门笔记 | Dong</title><meta name="author" content="天际线上的猪"><meta name="copyright" content="天际线上的猪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="将Docker从SpringCloud抽离出来的入门笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入门笔记">
+<meta property="og:url" content="http://dong-666.github.io/2023/12/05/Docker/index.html">
+<meta property="og:site_name" content="Dong">
+<meta property="og:description" content="将Docker从SpringCloud抽离出来的入门笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dong-666.github.io/img/sea.jpg">
+<meta property="article:published_time" content="2023-12-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-11T02:50:23.940Z">
+<meta property="article:author" content="天际线上的猪">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://dong-666.github.io/img/sea.jpg"><link rel="shortcut icon" href="/img/favicon3.png"><link rel="canonical" href="http://dong-666.github.io/2023/12/05/Docker/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":false,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 天际线上的猪","link":"链接: ","source":"来源: Dong","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker入门笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-11 10:50:23'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Dong" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">120</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/sea.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Dong"><span class="site-name">Dong</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/te/"><i class="fa-fw fas fa-map"></i><span> 疫情地图</span></a></div><div class="menus_item"><a class="site-page" href="/todolist/"><i class="fa-fw fas fa-check-circle"></i><span> ToDoList</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> Gallery</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Docker入门笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-04T16:00:00.000Z" title="发表于 2023-12-05 00:00:00">2023-12-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-11T02:50:23.940Z" title="更新于 2023-12-11 10:50:23">2023-12-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Docker/">Docker</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Docker入门笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2023/12/05/Docker/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2023/12/05/Docker/" itemprop="commentCount"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><blockquote>
+<p>相关资料可以移步至SpringCloud中的Docker查找，教程主要来源于黑马SpringCloud教程，后面看的GeekHour有部分截图在这里</p>
+</blockquote>
+<h2 id="简介与作用"><a href="#简介与作用" class="headerlink" title="简介与作用"></a>简介与作用</h2><blockquote>
+<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/镜像/1574?fromModule=lemma_inlink">镜像</a>中，然后发布到任何流行的 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Linux?fromModule=lemma_inlink">Linux</a>或<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Windows/165458?fromModule=lemma_inlink">Windows</a>操作系统的机器上，也可以实现<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/虚拟化/547949?fromModule=lemma_inlink">虚拟化</a>。容器是完全使用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/沙箱/393318?fromModule=lemma_inlink">沙箱</a>机制，相互之间不会有任何接口</p>
+</blockquote>
+<p>大型项目组件较多，运行环境也较为复杂，部署时会碰到一些问题：</p>
+<ul>
+<li>依赖关系复杂，容易出现兼容性问题</li>
+<li>开发、测试、生产环境有差异</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220922204851957.png" alt="image-20220922204851957"></p>
+<p>Docker为了解决<strong>依赖的兼容问题</strong>的，采用了两个手段：</p>
+<ul>
+<li><p>将应用的Libs（函数库）、Deps（依赖）、配置与应用一起打包</p>
+</li>
+<li><p>将每个应用放到一个隔离<strong>容器</strong>去运行，避免互相干扰</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220922204914118.png" alt="image-20220922204914118"></p>
+<p>Docker如何解决<strong>不同系统环境</strong>的问题？</p>
+<ul>
+<li>Docker将用户程序与所需要调用的系统(比如Ubuntu)函数库一起打包</li>
+<li>Docker运行到不同操作系统时，直接基于打包的函数库，借助于操作系统的Linux内核来运行</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220922205211881.png" alt="image-20220922205211881"></p>
+<p>Docker是一个快速交付应用、运行应用的技术，具备下列优势：</p>
+<ul>
+<li>可以将程序及其依赖、运行环境一起打包为一个镜像，可以迁移到任意Linux操作系统</li>
+<li>运行时利用沙箱机制形成隔离容器，各个应用互不干扰</li>
+<li>启动、移除都可以通过一行命令完成，方便快捷</li>
+</ul>
+<h2 id="Docker和虚拟机的区别"><a href="#Docker和虚拟机的区别" class="headerlink" title="Docker和虚拟机的区别"></a>Docker和虚拟机的区别</h2><p><strong>虚拟机</strong>（virtual machine）是在操作系统中<strong>模拟</strong>硬件设备，然后运行另一个操作系统，比如在 Windows 系统里面运行 Ubuntu 系统，这样就可以运行任意的Ubuntu应用了。</p>
+<p><strong>Docker</strong>仅仅是封装函数库，并没有模拟完整的操作系统</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220922205358267.png" alt="image-20220922205358267"></p>
+<p>Docker和虚拟机的差异：</p>
+<ul>
+<li>docker是一个系统进程；虚拟机是在操作系统中的操作系统</li>
+<li>docker体积小、启动速度快、性能好；虚拟机体积大、启动速度慢、性能一般</li>
+</ul>
+<h2 id="Docker架构"><a href="#Docker架构" class="headerlink" title="Docker架构"></a>Docker架构</h2><h3 id="镜像与容器"><a href="#镜像与容器" class="headerlink" title="镜像与容器"></a>镜像与容器</h3><ul>
+<li><p><strong>镜像（Image）</strong>：Docker将应用程序及其所需的依赖、函数库、环境、配置等文件打包在一起，称为镜像。</p>
+</li>
+<li><p><strong>容器（Container）</strong>：镜像中的应用程序运行后形成的进程就是<strong>容器</strong>，只是Docker会给容器进程做隔离，对外不可见。</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20210731153059464.png" alt="image-20210731153059464"></p>
+<h3 id="DockerHub"><a href="#DockerHub" class="headerlink" title="DockerHub"></a>DockerHub</h3><p>开源应用程序非常多，打包这些应用往往是重复的劳动。为了避免这些重复劳动，人们就会将自己打包的应用镜像，例如Redis、MySQL镜像放到网络上，共享使用，就像GitHub的代码共享一样。</p>
+<ul>
+<li><p>DockerHub：<a target="_blank" rel="noopener" href="https://hub.docker.com/">DockerHub</a>是一个官方的Docker镜像的托管平台。这样的平台称为Docker Registry。</p>
+</li>
+<li><p>国内也有类似于DockerHub 的公开服务，比如 <a target="_blank" rel="noopener" href="https://c.163yun.com/hub">网易云镜像服务</a>、<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/">阿里云镜像库</a>等。</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20210731153743354.png" alt="image-20210731153743354"></p>
+<h3 id="Docker架构-1"><a href="#Docker架构-1" class="headerlink" title="Docker架构"></a>Docker架构</h3><p>Docker是一个CS架构的程序，由两部分组成：</p>
+<ul>
+<li><p>服务端(server)：Docker守护进程，负责处理Docker指令，管理镜像、容器等</p>
+</li>
+<li><p>客户端(client)：通过命令或RestAPI向Docker服务端发送指令。可以在本地或远程向服务端发送指令。</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220922210001332.png" alt="image-20220922210001332"></p>
+<h2 id="Docker在centos的安装"><a href="#Docker在centos的安装" class="headerlink" title="Docker在centos的安装"></a>Docker在centos的安装</h2><p>移步安装教程-&gt;Centos7安装Docker.md</p>
+<p>查看docker运行状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+<h2 id="Docker的基本操作"><a href="#Docker的基本操作" class="headerlink" title="Docker的基本操作"></a>Docker的基本操作</h2><h3 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h3><p>镜像名称一般分两部分组成：[repository]:[tag]</p>
+<p>在没有指定tag时，默认是latest，代表最新版本的镜像</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923160342406.png" alt="image-20220923160342406"></p>
+<p>Docker操作镜像结构图</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923160652105.png" alt="image-20220923160652105"></p>
+<p>大致结构图如下</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20230828161112284.png" alt="image-20230828161112284"></p>
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>从<a target="_blank" rel="noopener" href="https://hub.docker.com/">docker hub</a>查找对应镜像拉取指令</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923161001250.png" alt="image-20220923161001250"></p>
+<p>xshell执行该命令</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+<p>查看现有镜像</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<h3 id="导出与加载本地镜像"><a href="#导出与加载本地镜像" class="headerlink" title="导出与加载本地镜像"></a>导出与加载本地镜像</h3><ol>
+<li>利用docker xx –help命令查看docker save和docker load的语法</li>
+<li>使用docker save导出镜像到磁盘 </li>
+<li>使用docker load加载镜像</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o nginx.tar</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i nginx.tar</span><br></pre></td></tr></table></figure>
+<h3 id="镜像操作指令"><a href="#镜像操作指令" class="headerlink" title="镜像操作指令"></a>镜像操作指令</h3><ul>
+<li><p>docker images</p>
+<p>查看镜像</p>
+</li>
+<li><p>docker rmi</p>
+<p>移除镜像</p>
+</li>
+<li><p>docker pull</p>
+<p>拉取镜像</p>
+</li>
+<li><p>docker build -t 镜像名:版本 . （.为当前目录）</p>
+<p>构建镜像</p>
+</li>
+<li><p>docker push</p>
+<p>推送镜像</p>
+</li>
+<li><p>docker save</p>
+<p>打包镜像</p>
+</li>
+<li><p>docker load</p>
+<p>加载镜像压缩包</p>
+</li>
+<li><p>docker rmi –force [-f] $(docker images | grep 共有关键字 | awk ‘{print $3}’)</p>
+<p>批量删除含共有关键字的镜像</p>
+</li>
+</ul>
+<h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><p>容器操作结构图</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923162139234.png" alt="image-20220923162139234"></p>
+<p>以运行一个nginx为例，可以通过dockerHub查找相关容器运行指令</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923162513143.png" alt="image-20220923162513143"></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="language-bash"> --name containerName -p 80:80 -d nginx</span></span><br></pre></td></tr></table></figure>
+<p>命令解读：</p>
+<ul>
+<li><p>docker run ：创建并运行一个容器</p>
+</li>
+<li><p>–name : 给容器起一个名字，比如叫做mn</p>
+</li>
+<li><p>-p ：将宿主机端口与容器端口映射，冒号左侧是宿主机端口，右侧是容器端口</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923162645751.png" alt="image-20220923162645751"></p>
+</li>
+<li><p>-d：后台运行容器</p>
+</li>
+<li><p>nginx：镜像名称，例如nginx</p>
+</li>
+</ul>
+<p>进入容器并修改容器内容（以修改nginx的html为例）</p>
+<ol>
+<li><p>进入容器</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mn bash</span><br></pre></td></tr></table></figure>
+<p>命令解读：</p>
+<ol>
+<li>docker exec ：进入容器内部，执行一个命令</li>
+<li>-it : 给当前进入的容器创建一个标准输入、输出终端，允许我们与容器交互</li>
+<li>mn ：要进入的容器的名称</li>
+<li>bash：进入容器后执行的命令，bash是一个linux终端交互命令</li>
+</ol>
+</li>
+<li><p>进入html目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/nginx/html</span><br></pre></td></tr></table></figure></li>
+<li><p>修改html文件内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s#Welcome to nginx#你是个什么东西😒#g&#x27;</span> index.html</span><br><span class="line">sed -i <span class="string">&#x27;s#&lt;head&gt;#&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;#g&#x27;</span> index.html</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>注意：xec命令可以进入容器修改文件，但是在容器内修改文件是不推荐的</strong></p>
+<h3 id="操作redis容器"><a href="#操作redis容器" class="headerlink" title="操作redis容器"></a>操作redis容器</h3><p>运行redis</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="language-bash"> --name rd -p 6379:6379 -d redis redis-server --save 60 1 --loglevel warning</span></span><br></pre></td></tr></table></figure>
+<p>进入redis 并运行redis-cli</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it rd redis-cli</span><br></pre></td></tr></table></figure>
+<p>执行redis操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set num 666</span><br></pre></td></tr></table></figure>
+<p>退出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+<h3 id="容器操作指令"><a href="#容器操作指令" class="headerlink" title="容器操作指令"></a>容器操作指令</h3><ul>
+<li><p>docker logs </p>
+<p>查看容器日志</p>
+<p>添加 -f 参数可以持续查看日志</p>
+</li>
+<li><p>docker ps </p>
+<p>查看容器状态码</p>
+</li>
+<li><p>docker exec -it [容器名] [要执行的命令]</p>
+<p>进入容器</p>
+</li>
+<li><p>docker rm</p>
+<p>删除容器</p>
+<p>不能删除运行中的容器，除非添加 -f 参数</p>
+</li>
+<li><p>docker rm $(docker ps -aq)</p>
+<p>删除所有未使用的容器</p>
+</li>
+</ul>
+<h3 id="数据卷（容器数据管理）"><a href="#数据卷（容器数据管理）" class="headerlink" title="数据卷（容器数据管理）"></a>数据卷（容器数据管理）</h3><p>容器与数据耦合的问题</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923164129251.png" alt="image-20220923164129251"></p>
+<p>数据卷（volume）是一个虚拟目录，指向宿主机文件系统中的某个目录</p>
+<p>我们就可以直接操作宿主机文件系统下的文件，从而使得容器与数据分离，解耦合，方便操作容器内数据，保证数据安全</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923164153594.png" alt="image-20220923164153594"></p>
+<h3 id="数据卷操作"><a href="#数据卷操作" class="headerlink" title="数据卷操作"></a>数据卷操作</h3><p>数据卷操作的基本语法：<code>docker volume [COMMAND]</code></p>
+<p><code>docker volume</code>命令是数据卷操作，根据命令后跟随的<code>command</code>来确定下一步的操作：</p>
+<ul>
+<li><p>create    创建一个volume</p>
+</li>
+<li><p>inspect    显示一个或多个volume的信息</p>
+</li>
+<li><p>ls        列出所有的volume</p>
+</li>
+<li><p>prune    删除未使用的volume</p>
+</li>
+<li><p>rm        删除一个或多个指定的volume</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923164718854.png" alt="image-20220923164718854"></p>
+<h3 id="挂载数据卷"><a href="#挂载数据卷" class="headerlink" title="挂载数据卷"></a>挂载数据卷</h3><p>在创建容器时，可以通过 -v 参数来挂载一个数据卷到某个容器内目录，<strong>没有该数据卷时docker会帮我们创建一个</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="language-bash"> --name mn -v html:/usr/share/nginx/html -p80:80 -d nginx</span></span><br></pre></td></tr></table></figure>
+<p>上述内容是将html数据卷挂载到容器的/usr/share/nginx/html目录</p>
+<p>修改容器的数据卷内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看html数据卷的位置</span></span><br><span class="line">docker volume inspect html</span><br><span class="line"><span class="comment"># 进入该目录</span></span><br><span class="line"><span class="built_in">cd</span> /var/lib/docker/volumes/html/_data</span><br><span class="line"><span class="comment"># 修改文件</span></span><br><span class="line">vi index.html</span><br></pre></td></tr></table></figure>
+<h4 id="目录挂载"><a href="#目录挂载" class="headerlink" title="目录挂载"></a>目录挂载</h4><p>可以越过volumes直接将宿主机目录挂载起来</p>
+<p>目录挂载与数据卷挂载的语法是类似的：</p>
+<ul>
+<li>-v [宿主机目录]:[容器内目录]</li>
+<li>-v [宿主机文件]:[容器内文件]</li>
+<li>-v [volume名称]:[容器内目录]</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923165507651.png" alt="image-20220923165507651"></p>
+<p>两者优劣：</p>
+<ul>
+<li>数据卷挂载耦合度低，由docker来管理目录，但是目录较深，不好找</li>
+<li>目录挂载耦合度高，需要我们自己管理目录，不过目录容易寻找查看</li>
+</ul>
+<p>创建并运行一个MySQL容器，将宿主机目录直接挂载到容器</p>
+<ol>
+<li><p>通过拉取（pull）或者本地有镜像直接加载（load）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i  mysql.tar</span><br></pre></td></tr></table></figure></li>
+<li><p>查看镜像是否加载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure></li>
+<li><p>创建目录用于挂载</p>
+<p>/tmp/mysql/data</p>
+<p>/tmp/mysql/conf</p>
+</li>
+<li><p>将自定义的配置文件放入conf目录下：hmy.cnf</p>
+</li>
+<li><p>运行容器，通过<a target="_blank" rel="noopener" href="https://hub.docker.com/">docker hub</a>可以查询相关操作</p>
+<p>查看mysql容器conf所在目录</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220923170454842.png" alt="image-20220923170454842"></p>
+<p>通过<code>-e MYSQL_ROOT_PASSWORD=你的密码</code>可以设置mysql登陆密码</p>
+<p>完整执行命令</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="language-bash"> \</span></span><br><span class="line"><span class="language-bash"> --name mysql \</span></span><br><span class="line"><span class="language-bash"> -e MYSQL_ROOT_PASSWORD=123 \</span></span><br><span class="line"><span class="language-bash"> -p 3306:3306 \</span></span><br><span class="line"><span class="language-bash"> -v /tmp/mysql/conf:/etc/mysql/conf.d \</span></span><br><span class="line"><span class="language-bash"> -v /tmp/mysql/data:/var/lib/mysql \</span></span><br><span class="line"><span class="language-bash"> -d \</span></span><br><span class="line"><span class="language-bash"> mysql:5.7.25</span></span><br></pre></td></tr></table></figure>
+<h2 id="Docker自定义镜像"><a href="#Docker自定义镜像" class="headerlink" title="Docker自定义镜像"></a>Docker自定义镜像</h2></li>
+</ol>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>我们自己也可以构建Docker镜像，但需要首先了解镜像的结构</p>
+<p>镜像是将应用程序及其需要的系统函数库、环境、配置、依赖打包而成</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925091143503.png" alt="image-20220925091143503"></p>
+<p>构建镜像其实就是将上图所示的各层打包形成一个镜像的过程</p>
+<h3 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h3><p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#environment-replacement">Dockerfile reference | Docker Documentation</a></p>
+<p><strong>Dockerfile</strong>就是一个文本文件，其中包含一个个的<strong>指令(Instruction)</strong>，用指令来说明要执行什么操作来构建镜像。每一个指令都会形成一层Layer，一下是常见的指令</p>
+<table>
+<thead>
+<tr>
+<th><strong>指令</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>指定基础镜像</td>
+<td>FROM centos:6</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>设置环境变量，可在后面指令使用</td>
+<td>ENV key value</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>拷贝本地文件到镜像的指定目录</td>
+<td>COPY ./mysql-5.7.rpm /tmp</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>执行Linux的shell命令，一般是安装过程的命令</td>
+<td>RUN yum install gcc</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>指定容器运行时监听的端口，是给镜像使用者看的</td>
+<td>EXPOSE 8080</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>镜像中应用的启动命令，容器运行时调用</td>
+<td>ENTRYPOINT java -jar xx.jar</td>
+</tr>
+</tbody></table>
+<p>DockerFile示例</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定基础镜像</span></span><br><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">16.04</span></span><br><span class="line"><span class="comment"># 配置环境变量，JDK的安装目录</span></span><br><span class="line"><span class="keyword">ENV</span> JAVA_DIR=/usr/local</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝jdk和java项目的包</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./jdk8.tar.gz <span class="variable">$JAVA_DIR</span>/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./docker-demo.jar /tmp/app.jar</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装JDK</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> <span class="variable">$JAVA_DIR</span> \</span></span><br><span class="line"><span class="language-bash"> &amp;&amp; tar -xf ./jdk8.tar.gz \</span></span><br><span class="line"><span class="language-bash"> &amp;&amp; <span class="built_in">mv</span> ./jdk1.8.0_144 ./java8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line"><span class="keyword">ENV</span> JAVA_HOME=$JAVA_DIR/java8</span><br><span class="line"><span class="keyword">ENV</span> PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8090</span></span><br><span class="line"><span class="comment"># 入口，java项目的启动命令</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> java -jar /tmp/app.jar</span></span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20230828161118876.png" alt="image-20230828161118876"></p>
+<h3 id="构建Java项目"><a href="#构建Java项目" class="headerlink" title="构建Java项目"></a>构建Java项目</h3><p>一、基于Ubuntu构建</p>
+<ol>
+<li><p>新建一个空文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> docker-demo</span><br></pre></td></tr></table></figure></li>
+<li><p>拷贝jar文件到这个目录</p>
+</li>
+<li><p>拷贝jdk8.tar.gz文件到这个目录</p>
+</li>
+<li><p>创建或拷贝Dockerfile到这个目录</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925092443594.png" alt="image-20220925092443594"></p>
+<p>dockerfile文件内容如下</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定基础镜像</span></span><br><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">16.04</span></span><br><span class="line"><span class="comment"># 配置环境变量，JDK的安装目录</span></span><br><span class="line"><span class="keyword">ENV</span> JAVA_DIR=/usr/local</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝jdk和java项目的包</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./jdk8.tar.gz <span class="variable">$JAVA_DIR</span>/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./docker-demo.jar /tmp/app.jar</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装JDK</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> <span class="variable">$JAVA_DIR</span> \</span></span><br><span class="line"><span class="language-bash"> &amp;&amp; tar -xf ./jdk8.tar.gz \</span></span><br><span class="line"><span class="language-bash"> &amp;&amp; <span class="built_in">mv</span> ./jdk1.8.0_144 ./java8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line"><span class="keyword">ENV</span> JAVA_HOME=$JAVA_DIR/java8</span><br><span class="line"><span class="keyword">ENV</span> PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8090</span></span><br><span class="line"><span class="comment"># 入口，java项目的启动命令</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> java -jar /tmp/app.jar</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用命令进入目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp/docker-demo</span><br></pre></td></tr></table></figure></li>
+<li><p>运行命令：docker build -t 镜像名:版本 . （.为当前目录）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925092700817.png" alt="image-20220925092700817"></p>
+</li>
+<li><p>使用docker run创建容器并运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name javaweb -p 8090:8090 -d javaweb:1.0</span><br></pre></td></tr></table></figure>
+<p>二、基于java8构建Java项目</p>
+</li>
+</ol>
+<p>在DockerFile里，很多项目都是基于java8进行环境配置的，也就是说，下图所含内容都是重复性工作，每个项目都这么弄会重复工作，所以docker提供了镜像免去这些配置</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925092946611.png" alt="image-20220925092946611"></p>
+<ol>
+<li><p>新建一个空的目录，然后在目录中新建一个文件，命名为Dockerfile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> docker-demo</span><br><span class="line"><span class="built_in">touch</span> Dockerfile</span><br></pre></td></tr></table></figure></li>
+<li><p>拷贝jar包到这个目录中</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925092443594.png" alt="image-20220925092443594"></p>
+</li>
+<li><p>编写Dockerfile文件：</p>
+<ol>
+<li>基于java:8-alpine作为基础镜像</li>
+<li>将app.jar拷贝到镜像中</li>
+<li>暴露端口</li>
+<li>编写入口ENTRYPOINT</li>
+</ol>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span>-alpine</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./docker-demo.jar /tmp/app.jar</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8090</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> java -jar /tmp/app.jar</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用docker build命令构建镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t javaweb:2.0 .</span><br></pre></td></tr></table></figure></li>
+<li><p>使用docker run创建容器并运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name javaweb -p 8090:8090 -d javaweb:1.0</span><br></pre></td></tr></table></figure>
+<p>总结：</p>
+</li>
+<li><p>Dockerfile的本质是一个文件，通过指令描述镜像的构建过程</p>
+</li>
+<li><p>Dockerfile的第一行必须是FROM，从一个基础镜像来构建</p>
+</li>
+<li><p>基础镜像可以是基本操作系统，如Ubuntu。也可以是其他人制作好的镜像，例如：java:8-alpine</p>
+</li>
+</ol>
+<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker-Compose"></a>Docker-Compose</h2><p>可爱的🐙章鱼镇楼</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925095509889.png" alt="image-20220925095509889"></p>
+<h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>当我们有多个微服务需要构建时，用自定义镜像的方式去一个个构建难免有点麻烦，Docker-Compose可以帮助我们批量处理，只需要定义好各个包的相关属性即可</p>
+<blockquote>
+<p>Docker Compose可以基于Compose文件帮我们快速的部署分布式应用，而无需手动一个个创建和运行容器</p>
+<p>Compose文件是一个文本文件（yaml格式），通过指令定义集群中的每个容器如何运行</p>
+<p>DockerCompose的详细语法参考<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/build/">官网</a></p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20230828161122801.png" alt="image-20230828161122801"></p>
+<p>下面的Compose文件就描述一个项目，其中包含两个容器：</p>
+<ul>
+<li>mysql：一个基于<code>mysql:5.7.25</code>镜像构建的容器，并且挂载了两个目录</li>
+<li>web：一个基于<code>docker build</code>临时构建的镜像容器，映射端口8090（<strong>注意：构建自己的项目默认会去找app.jar，所以打包后的java项目一定要命名为app</strong>）</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">version:</span> <span class="string">&quot;3.8&quot;</span></span><br><span class="line"> <span class="attr">services:</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="string">image:</span> <span class="string">mysql:5.7.25</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">     <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="number">123</span> </span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="string">-</span> <span class="string">&quot;/tmp/mysql/data:/var/lib/mysql&quot;</span></span><br><span class="line">     <span class="string">-</span> <span class="string">&quot;/tmp/mysql/conf/hmy.cnf:/etc/mysql/conf.d/hmy.cnf&quot;</span></span><br><span class="line">  <span class="attr">web:</span></span><br><span class="line">    <span class="string">build:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">&quot;8090:8090&quot;</span></span><br></pre></td></tr></table></figure>
+<p>DockerCompose文件可以看做是将多个docker run命令写到一个文件，只是语法稍有差异</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20230828161127394.png" alt="image-20230828161127394"></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>移步安装教程-&gt;Centos7安装Docker.md</p>
+<h3 id="构建微服务集群（重点）"><a href="#构建微服务集群（重点）" class="headerlink" title="构建微服务集群（重点）"></a>构建微服务集群（重点）</h3><p>PS：踩了一天的坑，差点🧚其中，😅</p>
+<p>实现思路如下：</p>
+<ol>
+<li><p>创建如下目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-项目名</span><br><span class="line"></span><br><span class="line"> 	-微服务名1</span><br><span class="line"></span><br><span class="line"> 	-微服务名2</span><br><span class="line"></span><br><span class="line"> 	-微服务名... 	</span><br><span class="line"></span><br><span class="line">	-mysql</span><br><span class="line"></span><br><span class="line">		-conf</span><br><span class="line"></span><br><span class="line">		-data</span><br><span class="line">	docker-compose.yml</span><br></pre></td></tr></table></figure>
+<p>我的项目如下所示：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925101957961.png" alt="image-20220925101957961"></p>
+</li>
+<li><p>每个微服务目录下新建Dockerfile文件，并填入以下内容</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span>-alpine</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./app.jar /tmp/app.jar</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> java -jar /tmp/app.jar</span></span><br></pre></td></tr></table></figure>
+<p>含义是根据java:8-alpine进行打包，并构建当前目录下的app.jar包，所以，接下来你知道了吧，将每个微服务打包成名为app.jar包</p>
+</li>
+<li><p>用idea在每个微服务的pom.xml文件夹下修改或添加以下内容，用于将当前微服务打包为app.jar，记住，根目录下的就不要加这个东西了，在微服务里加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>既然来到了idea，我们需要再改个东西，每个微服务请求的其他服务理应都该是服务名称，否则一旦部署到其他环境，ip地址改变，我们就无从下手了（当然肯定有办法的只是比较麻烦），这里的nacos以及mysql等一些需要请求的服务ip都改为服务名称</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="comment">#url: jdbc:mysql://localhost:3306/cloud_user?useSSL=false</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://mysql:3306/cloud_user?useSSL=false</span> <span class="comment">#用于docker部署设置的微服务名</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="comment">#server-addr: localhost:8848 # Nacos地址</span></span><br><span class="line">      <span class="comment">#server-addr: localhost:80 # nginx反向代理Nacos</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">nacos:8848</span> <span class="comment"># 用于docker部署设置的微服务名</span></span><br></pre></td></tr></table></figure></li>
+<li><p>然后就是进行打包操作了，gogogo，在项目根目录执行package操作</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925102949437.png" alt="image-20220925102949437"></p>
+<p>然后，将打包后的各个jar包拖至前面创建好的哥哥微服务目录下</p>
+</li>
+<li><p>接下来配置下mysql，mysql目录下的conf目录是用于存储相关的配置文件，文件命名为<code>hmy.cnf</code>，文件具体内容可以从网上查找，也可以直接复制下面的</p>
+<p>data目录用于存储一些mysql的数据，这里先不管了，后面构建完再创建也行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">skip-name-resolve</span><br><span class="line">character_set_server=utf8</span><br><span class="line">datadir=/var/lib/mysql</span><br><span class="line">server-id=1000</span><br></pre></td></tr></table></figure></li>
+<li><p>然后，进到docker-compose.yml文件里，我们需要配置各个微服务的构建</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nacos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nacos/nacos-server</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MODE:</span> <span class="string">standalone</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8848:8848&quot;</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:5.7.25</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;$PWD/mysql/data:/var/lib/mysql&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;$PWD/mysql/conf:/etc/mysql/conf.d/&quot;</span></span><br><span class="line">    <span class="attr">ports:</span>  </span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">  <span class="attr">userservice:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./user-service</span></span><br><span class="line">  <span class="attr">orderservice:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./order-service</span></span><br><span class="line">  <span class="attr">gateway:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./gateway</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;10010:10010&quot;</span></span><br></pre></td></tr></table></figure>
+<p>至此，整体文件创建配置完成，下面就要到服务器上的配置了，整体目录结构如下</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925103638293.png" alt="image-20220925103638293"></p>
+</li>
+<li><p>将整个目录上传至虚拟机，在目录根路径下利用 <code>docker-compose up -d</code> 来部署，你可以输入<code>docker-compose --help</code> 去查看相关操作，这时候，项目就会自动化构建并运行了</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925113905394.png" alt="image-20220925113905394"></p>
+</li>
+<li><p>还没完，这时候我们通过<code>docker-compose logs 某个服务名</code>会发现服务会报错，因为在这里，nacos启动比其他微服务慢了，导致其他项目启动时没发现nacos，无法注册服务导致抛出异常，所以在这里我们需要重启下其他微服务，重启前最好重启下nacos服务，保证在浏览器能访问到<code>http://服务器地址:8848/nacos/index.html</code>后再进行下一步</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose restart nacos</span><br><span class="line">docker-compose restart 微服务1 微服务2 微服务...</span><br></pre></td></tr></table></figure></li>
+<li><p>在上一步完成后，服务相关的设置就已经ok了，但是这时的mysql还没有数据，我们需要在自己电脑上将本地的数据进行sql导出，然后连接上linux里面的数据库，将数据导入</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/12/05/Docker/image-20220925113513578.png" alt="image-20220925113513578"></p>
+</li>
+<li><p>大功告成，浏览器输入地址享用吧，在这时你也可以将mysql的data目录进行备份处理，这样在其他的系统就可以直接拷贝过去，无需执行第十步了</p>
+</li>
+</ol>
+<h2 id="Docker镜像仓库"><a href="#Docker镜像仓库" class="headerlink" title="Docker镜像仓库"></a>Docker镜像仓库</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><p><a target="_blank" rel="noopener" href="https://hub.docker.com/_/registry">registry - Official Image | Docker Hub</a></p>
+<p>镜像仓库（ Docker Registry ）有公共的和私有的两种形式：</p>
+<ol>
+<li>公共仓库：例如Docker官方的 <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a>，国内也有一些云服务商提供类似于 Docker Hub 的公开服务，比如 <a target="_blank" rel="noopener" href="https://c.163.com/hub">网易云镜像服务</a>、<a target="_blank" rel="noopener" href="https://hub.daocloud.io/">DaoCloud</a><a target="_blank" rel="noopener" href="https://hub.daocloud.io/"> </a><a target="_blank" rel="noopener" href="https://hub.daocloud.io/">镜像服务</a>、<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/">阿里云镜像服务</a>等。</li>
+<li>私有仓库：用户在本地搭建的私有 Docker Registry，企业自己的镜像最好是采用私有Docker Registry来实现</li>
+</ol>
+<h3 id="安装并搭建私有镜像仓库"><a href="#安装并搭建私有镜像仓库" class="headerlink" title="安装并搭建私有镜像仓库"></a>安装并搭建私有镜像仓库</h3><p>移步安装教程-&gt;Centos7安装Docker.md</p>
+<h3 id="推送镜像和拉取镜像"><a href="#推送镜像和拉取镜像" class="headerlink" title="推送镜像和拉取镜像"></a>推送镜像和拉取镜像</h3><p>记住：记得重新打包（tag）时，一定要加上镜像仓库地址（如下）</p>
+<p>tag本地镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag nginx:latest 你的ip:8080/nginx:1.0 </span><br></pre></td></tr></table></figure>
+<p>推送镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push 你的ip:8080/nginx:1.0 </span><br></pre></td></tr></table></figure>
+<p>拉取镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 你的ip:8080/nginx:1.0 </span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://Dong-666.github.io">天际线上的猪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://dong-666.github.io/2023/12/05/Docker/">http://dong-666.github.io/2023/12/05/Docker/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Dong-666.github.io" target="_blank">Dong</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Web/">Web</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a></div><div class="post_share"><div class="social-share" data-image="/img/sea.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/11/10/Linux%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/" title="Linux入门"><img class="cover" src="/img/sea.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux入门</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/08/22/Flowable/" title="Flowable入门"><img class="cover" src="/img/sea.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-22</div><div class="title">Flowable入门</div></div></a></div><div><a href="/2022/08/22/Maven%E5%85%A5%E9%97%A8/" title="Maven入门"><img class="cover" src="/img/sea.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-22</div><div class="title">Maven入门</div></div></a></div><div><a href="/2022/09/01/JavaWeb/" title="JavaWeb"><img class="cover" src="/img/sea.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-01</div><div class="title">JavaWeb</div></div></a></div><div><a href="/2022/07/19/MySql/" title="MySQL入门笔记"><img class="cover" src="/img/sea.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-19</div><div class="title">MySQL入门笔记</div></div></a></div><div><a href="/2022/09/11/Mybatis/" title="Mybatis入门笔记"><img class="cover" src="/img/sea.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-11</div><div class="title">Mybatis入门笔记</div></div></a></div><div><a href="/2023/11/01/Nginx/" title="Nginx"><img class="cover" src="/img/sea.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-01</div><div class="title">Nginx</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">天际线上的猪</div><div class="author-info__description">记录生活，记录学习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">120</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Dong-666"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://message/?uin=2834471179&amp;Site=&amp;Menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">小破站一个🍕🍔🍟！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker"><span class="toc-number">1.</span> <span class="toc-text">Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">简介与作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">Docker和虚拟机的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">Docker架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E4%B8%8E%E5%AE%B9%E5%99%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">镜像与容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DockerHub"><span class="toc-number">1.3.2.</span> <span class="toc-text">DockerHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E6%9E%B6%E6%9E%84-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">Docker架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%9C%A8centos%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.4.</span> <span class="toc-text">Docker在centos的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">Docker的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F"><span class="toc-number">1.5.1.</span> <span class="toc-text">镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">1.5.2.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F"><span class="toc-number">1.5.3.</span> <span class="toc-text">导出与加载本地镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.4.</span> <span class="toc-text">镜像操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.5.</span> <span class="toc-text">容器操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9Credis%E5%AE%B9%E5%99%A8"><span class="toc-number">1.5.6.</span> <span class="toc-text">操作redis容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.7.</span> <span class="toc-text">容器操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%EF%BC%88%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%EF%BC%89"><span class="toc-number">1.5.8.</span> <span class="toc-text">数据卷（容器数据管理）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.9.</span> <span class="toc-text">数据卷操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">1.5.10.</span> <span class="toc-text">挂载数据卷</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD"><span class="toc-number">1.5.10.1.</span> <span class="toc-text">目录挂载</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F"><span class="toc-number">1.6.</span> <span class="toc-text">Docker自定义镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DockerFile"><span class="toc-number">1.6.2.</span> <span class="toc-text">DockerFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BAJava%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.6.3.</span> <span class="toc-text">构建Java项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose"><span class="toc-number">1.7.</span> <span class="toc-text">Docker-Compose</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-number">1.7.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.7.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9B%86%E7%BE%A4%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">1.7.3.</span> <span class="toc-text">构建微服务集群（重点）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93"><span class="toc-number">1.8.</span> <span class="toc-text">Docker镜像仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="toc-number">1.8.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%B9%B6%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93"><span class="toc-number">1.8.2.</span> <span class="toc-text">安装并搭建私有镜像仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E9%95%9C%E5%83%8F%E5%92%8C%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">1.8.3.</span> <span class="toc-text">推送镜像和拉取镜像</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/12/05/Docker/" title="Docker入门笔记"><img src="/img/sea.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker入门笔记"/></a><div class="content"><a class="title" href="/2023/12/05/Docker/" title="Docker入门笔记">Docker入门笔记</a><time datetime="2023-12-04T16:00:00.000Z" title="发表于 2023-12-05 00:00:00">2023-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/10/Linux%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/" title="Linux入门"><img src="/img/sea.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux入门"/></a><div class="content"><a class="title" href="/2023/11/10/Linux%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/" title="Linux入门">Linux入门</a><time datetime="2023-11-09T16:00:00.000Z" title="发表于 2023-11-10 00:00:00">2023-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/01/Nginx/" title="Nginx"><img src="/img/sea.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx"/></a><div class="content"><a class="title" href="/2023/11/01/Nginx/" title="Nginx">Nginx</a><time datetime="2023-10-31T16:00:00.000Z" title="发表于 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/15/Redis/" title="Redis入门笔记"><img src="/img/sea.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis入门笔记"/></a><div class="content"><a class="title" href="/2023/10/15/Redis/" title="Redis入门笔记">Redis入门笔记</a><time datetime="2023-10-14T16:00:00.000Z" title="发表于 2023-10-15 00:00:00">2023-10-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/26/SpringCloud/" title="SpringCloud"><img src="/img/sea.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringCloud"/></a><div class="content"><a class="title" href="/2022/10/26/SpringCloud/" title="SpringCloud">SpringCloud</a><time datetime="2022-10-25T16:00:00.000Z" title="发表于 2022-10-26 00:00:00">2022-10-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/sea.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 天际线上的猪</div><div class="footer_custom_text">Hi, Welcome to my blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'K4oel47dX9gLB9DECHDKW5HF-gzGzoHsz',
+      appKey: 'FI26zV0So19K2wVMY6Ds4nAA',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
